@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Análise Crítica de Certificado de Calibração</title>
+  <link rel="stylesheet" href="formulario.css">
+</head>
+<body>
+  <h2 class="title">ANÁLISE CRÍTICA DE CERTIFICADO DE FORNECEDOR DE CALIBRAÇÃO DE EQUIPAMENTO MÉDICO-HOSPITALAR (EMH)</h2>
+
+  <h2>Dados do Certificado</h2>
+  <table>
+    <tr>
+      <td>CÓDIGO DO CERTIFICADO:</td>
+      <td><input type="text" id="codigoCertificado"></td>
+      <td>DATA DO CERTIFICADO:</td>
+      <td><input type="date" id="dataCertificado"></td>
+      <td>VALIDADE DO CERTIFICADO:</td>
+      <td><input type="date" id="validadeCertificado"></td>
+    </tr>
+    <tr>
+      <td>FORNECEDOR:</td>
+      <td colspan="5"><input type="text" id="fornecedor" style="width: 100%;"></td>
+    </tr>
+  </table>
+
+  <h2>Dados do EMH</h2>
+  <table>
+    <tr>
+      <td>IDEC DO EMH:</td>
+      <td><input type="text" id="idecEMH"></td>
+      <td>NÚMERO DE SÉRIE DO EMH:</td>
+      <td><input type="text" id="numeroSerieEMH"></td>
+      <td>DESCRIÇÃO DO EMH:</td>
+      <td><input type="text" id="descricaoEMH"></td>
+      <td>Nº da OS:</td>
+      <td><input type="text" id="numeroOS"></td>
+    </tr>
+  </table>
+
+  <h2>Checklist do Certificado</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ITEM</th>
+        <th>ITEM DE VERIFICAÇÃO</th>
+        <th>SIM</th>
+        <th>NÃO</th>
+        <th>OBSERVAÇÃO</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>IDENTIFICAÇÃO CLARA DO FORNECEDOR TERCEIRIZADO QUE REALIZOU A CALIBRAÇÃO: Papel timbrado com dados do fornecedor</td>
+        <td><input type="radio" name="item1" value="sim" checked></td>
+        <td><input type="radio" name="item1" value="nao"></td>
+        <td><input type="text" id="observacao1"></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>DESCRIÇÃO E IDENTIFICAÇÃO INDIVIDUAL DO EMH ANALISADO: Código (IDEC), marca, modelo, número de série</td>
+        <td><input type="radio" name="item2" value="sim" checked></td>
+        <td><input type="radio" name="item2" value="nao"></td>
+        <td><input type="text" id="observacao2"></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>A DATA EM QUE A CALIBRAÇÃO FOI COMPLETADA</td>
+        <td><input type="radio" name="item3" value="sim" checked></td>
+        <td><input type="radio" name="item3" value="nao"></td>
+        <td><input type="text" id="observacao3"></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>RESULTADOS DA CALIBRAÇÃO: O(s) valor(es) da(s) Incerteza(s) e o VVC por ponto medido. (Obs: Se não for dado o VVC, é necessário que seja dada a Média das Leituras por ponto E/Ou o Erro (Correção). VN=VVC+|Erro|)</td>
+        <td><input type="radio" name="item4" value="sim" checked></td>
+        <td><input type="radio" name="item4" value="nao"></td>
+        <td><input type="text" id="observacao4"></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>IDENTIFICAÇÃO DO PROCEDIMENTO DA CALIBRAÇÃO: Identificação do procedimento de calibração utilizado. Referência do Procedimento</td>
+        <td><input type="radio" name="item5" value="sim" checked></td>
+        <td><input type="radio" name="item5" value="nao"></td>
+        <td><input type="text" id="observacao5"></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>CONDIÇÕES AMBIENTAIS PERTINENTES: Apresentação dos valores de umidade e temperatura no momento da calibração</td>
+        <td><input type="radio" name="item6" value="sim" checked></td>
+        <td><input type="radio" name="item6" value="nao"></td>
+        <td><input type="text" id="observacao6"></td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>QUALQUER LIMITAÇÃO AO USO. Registrar quais as limitações no campo 'Observação',</td>
+        <td><input type="radio" name="item7" value="sim" checked></td>
+        <td><input type="radio" name="item7" value="nao"></td>
+        <td><input type="text" id="observacao7"></td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>IDENTIFICAÇÃO DA(S) PESSOA(S) QUE REALIZOU(ARAM) A COMPROVAÇÃO METROLÓGICA</td>
+        <td><input type="radio" name="item8" value="sim" checked></td>
+        <td><input type="radio" name="item8" value="nao"></td>
+        <td><input type="text" id="observacao8"></td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>IDENTIFICAÇÃO DA(S) PESSOA(S) RESPONSÁVEL(IS) PELA CORREÇÃO DA INFORMAÇÃO REGISTRADA: Aprovação do certificado e seus dados pelo fornecedor terceirizado</td>
+        <td><input type="radio" name="item9" value="sim" checked></td>
+        <td><input type="radio" name="item9" value="nao"></td>
+        <td><input type="text" id="observacao9"></td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>IDENTIFICAÇÃO INDIVIDUAL (TAL COMO CÓDIGO DE DOCUMENTO OU NÚMEROS DE SÉRIE) DE QUALQUER RELATÓRIO OU CERTIFICADO DE CALIBRAÇÃO E OUTROS DOCUMENTOS PERTINENTES: Identificação do Código do Certificado de Calibração dos padrões utilizados (rastreabilidade).</td>
+        <td><input type="radio" name="item10" value="sim" checked></td>
+        <td><input type="radio" name="item10" value="nao"></td>
+        <td><input type="text" id="observacao10"></td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>EVIDÊNCIA DA RASTREABILIDADE DOS RESULTADOS DA CALIBRAÇÃO: Disponibilização de cópia da rastreabilidade dos padrões utilizados</td>
+        <td><input type="radio" name="item11" value="sim" checked></td>
+        <td><input type="radio" name="item11" value="nao"></td>
+        <td><input type="text" id="observacao11"></td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>REQUISITOS METROLÓGICOS PARA USO PRETENDIDO: Análise de conformidade</td>
+        <td><input type="radio" name="item12" value="sim" checked></td>
+        <td><input type="radio" name="item12" value="nao"></td>
+        <td><input type="text" id="observacao12"></td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>RESULTADOS DA CALIBRAÇÃO OBTIDOS, APÓS E ONDE REQUERIDO, ANTES DE QUALQUER AJUSTE, MODIFICAÇÃO OU REPARO: Dados da Comprovação antes e após ajuste do EMH caso tenha sido necessário</td>
+        <td><input type="radio" name="item13" value="sim" checked></td>
+        <td><input type="radio" name="item13" value="nao"></td>
+        <td><input type="text" id="observacao13"></td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td>DETALHES SOBRE QUAISQUER MANUTENÇÕES, TAIS COMO, ASSISTÊNCIA TÉCNICA, CALIBRAÇÕES (AJUSTES), REPAROS E MODIFICAÇÕES REALIZADAS: Histórico do EMH disponível no software de gestão de engenharia</td>
+        <td><input type="radio" name="item14" value="sim" checked></td>
+        <td><input type="radio" name="item14" value="nao"></td>
+        <td><input type="text" id="observacao14"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Resultados da Calibração</h2>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="8">Condição de Ensaio</th>
+      </tr>
+      <tr>
+        <th>Variável</th>
+        <th class="coluna-vvc">V.V.C.</th>
+        <th>Média das leituras (M)</th>
+        <th>Incerteza Expandida (Uk)</th>
+        <th>TOLERÂNCIA (%)*</th>
+        <th class="coluna-muk">Resultado da Medição <br>(M-Uk, M+Uk)</th>
+        <th>Resultado Esperado <br>(MÍN, MÁX)</th>
+        <th>Conformidade Normativa</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td class="coluna-vvc"><input type="number" id="vvc1" value="100"></td>
+            <td><input type="number" id="media1"></td>
+            <td><input type="number" id="incerteza1"></td>
+            <td><input type="text" id="tolerancia1"></td>
+            <td class="coluna-muk"><span id="resultadoMedicao1"></span></td>
+            <td><input type="text" id="resultadoEsperado1" readonly></td>
+            <td><span id="conformidade1"></span></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><input type="number" id="vvc2" value="50"></td>
+            <td><input type="number" id="media2"></td>
+            <td><input type="number" id="incerteza2"></td>
+            <td><input type="text" id="tolerancia2"></td>
+            <td><span id="resultadoMedicao2"></span></td>
+            <td><input type="text" id="resultadoEsperado2" readonly></td>
+            <td><span id="conformidade2"></span></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><input type="number" id="vvc3" value="20"></td>
+            <td><input type="number" id="media3"></td>
+            <td><input type="number" id="incerteza3"></td>
+            <td><input type="text" id="tolerancia3"></td>
+            <td><span id="resultadoMedicao3"></span></td>
+            <td><input type="text" id="resultadoEsperado3" readonly></td>
+            <td><span id="conformidade3"></span></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <h2>Observações Finais:</h2>
+  <textarea id="observacoesFinais"></textarea>
+
+  <h2>Aprovação Final</h2>
+  <label for="aprovacao">O CERTIFICADO DO EMH SATISFAZ AOS REQUISITOS EXPLICITADOS?</label><br>
+  <input type="radio" name="aprovacao" value="sim" checked> SIM
+  <input type="radio" name="aprovacao" value="nao"> NÃO
+
+  <h2>Dados da Análise</h2>
+  <table>
+    <tr>
+      <td>DATA DA ANÁLISE:</td>
+      <td><input type="date" id="dataAnalise"></td>
+      <td>RESPONSÁVEL PELA ANÁLISE:</td>
+      <td><input type="text" id="responsavelAnalise"></td>
+    </tr>
+  </table>
+
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.16.105/build/pdf.min.js"></script>
+  <script>
+    // Configurar o workerSrc do PDF.js
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js";
+  </script>
+  <script src="formulario.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  font-size: medium;
+}
+
+.title {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  color: #555;
+  margin-top: 30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+/* Estilos para as colunas */
+.coluna-vvc {
+  width: 80px; /* ajuste este valor para a largura desejada */
+}
+
+.coluna-muk {
+  width: 150px; /* ajuste este valor para a largura desejada */
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+textarea,
+span[id^="resultadoMedicao"] { 
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  display: block; 
+  font-size: inherit; /* Herda o tamanho de fonte do elemento pai */
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+textarea {
+  height: 80px;
+}
+
+.conforme {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.naoConforme {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Media Query para telas menores (Mobile) */
+@media (max-width: 768px) { 
+  table {
+    font-size: 14px; /* Diminui o tamanho da fonte */
+  }
+
+  th, td {
+    padding: 6px; /* Diminui o espaçamento interno */
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  textarea,
+  span[id^="resultadoMedicao"] {
+    padding: 4px; /* Diminui o espaçamento interno dos inputs */
+    font-size: 14px; /* Diminui o tamanho da fonte dos inputs */
+  }
+
+  .coluna-vvc {
+    width: 40px; /* Ajusta a largura da coluna V.V.C. */
+  }
+
+  .coluna-muk {
+    width: 100px; /* Ajusta a largura da coluna (M-Uk, M+Uk) */
+  }
+}
