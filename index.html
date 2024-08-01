@@ -7,15 +7,23 @@
 <body>
   <h2 class="title">ANÁLISE CRÍTICA DE CERTIFICADO DE FORNECEDOR DE CALIBRAÇÃO DE EQUIPAMENTO MÉDICO-HOSPITALAR (EMH)</h2>
 
+  <input type="file" id="certificadoInput" accept="application/pdf">
+
+  <label for="percentagemSelect">Escolha a porcentagem da tolerância:</label>
+  <select id="percentagemSelect">
+    <option value="5">5%</option>
+    <option value="10">10%</option>
+  </select>
+
   <h2>Dados do Certificado</h2>
   <table>
     <tr>
       <td>CÓDIGO DO CERTIFICADO:</td>
       <td><input type="text" id="codigoCertificado"></td>
       <td>DATA DO CERTIFICADO:</td>
-      <td><input type="date" id="dataCertificado"></td>
+      <td><input type="text" id="dataCertificado"></td>
       <td>VALIDADE DO CERTIFICADO:</td>
-      <td><input type="date" id="validadeCertificado"></td>
+      <td><input type="text" id="validadeCertificado"></td>
     </tr>
     <tr>
       <td>FORNECEDOR:</td>
@@ -26,12 +34,10 @@
   <h2>Dados do EMH</h2>
   <table>
     <tr>
-      <td>IDEC DO EMH:</td>
-      <td><input type="text" id="idecEMH"></td>
-      <td>NÚMERO DE SÉRIE DO EMH:</td>
-      <td><input type="text" id="numeroSerieEMH"></td>
-      <td>DESCRIÇÃO DO EMH:</td>
+      <td>EQUIPAMENTO:</td>
       <td><input type="text" id="descricaoEMH"></td>
+      <td>NÚMERO DE SÉRIE:</td>
+      <td><input type="text" id="numeroSerieEMH"></td>
       <td>Nº da OS:</td>
       <td><input type="text" id="numeroOS"></td>
     </tr>
@@ -219,11 +225,8 @@
     </tr>
   </table>
 
-  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.16.105/build/pdf.min.js"></script>
-  <script>
-    // Configurar o workerSrc do PDF.js
-    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js";
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="formulario.js"></script>
+  <script src="pdfHandler.js"></script> 
 </body>
 </html>
