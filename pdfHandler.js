@@ -62,12 +62,12 @@ async function processarCertificado(pdfUrl) {
 
   let codigoCertificado;
   
-  if (medias[3] < medias[7] && medias[7] < medias[11]) {
+  if (medias[3] < medias[7] && medias[7] < medias[11] || medias[1] > medias[2] && medias[1] > medias[3]) {
     // Ordem crescente
     codigoCertificado = textoLimpo.split('Os resultados apresentados nesse certificado foram determinados pela média das 3 medições.')[1]?.split(' Certificado de Calibração')[0]?.trim() || '';
   } else {
     // Ordem decrescente
-    codigoCertificado = textoLimpo.split('FATIMA ')[1]?.split(' Certificado de Calibração')[0]?.trim() || '';
+    codigoCertificado = textoLimpo.split('FATIMA ')[1]?.split(' Certificado de Calibração')[0]?.trim() ||'';
   }
 
   // Continue extraindo os dados como antes
@@ -93,7 +93,7 @@ async function processarCertificado(pdfUrl) {
     media1 = medias[3] || '';
     media2 = medias[7] || '';
     media3 = medias[11] || '';
-    incerteza1 = incertezas[23] || '';
+    incerteza1 = incertezas[23] || incertezas[11] || '';
     incerteza2 = incertezas[31] || '';
     incerteza3 = incertezas[39] || '';
   }
@@ -104,7 +104,7 @@ async function processarCertificado(pdfUrl) {
     validadeCertificado: calcularDataValidade(textoLimpo.match(/Data da Emissão:\s*(\d{2}\/\d{2}\/\d{4})/)?.[1]?.trim()),
     fornecedor: 'Fresenius Kabi',
     descricaoEMH: textoLimpo.match(/Identificação do Equipamento\s+(.*?)\s+\d{8}/s)?.[1]?.trim() || '',
-    numeroSerieEMH: textoLimpo.match(/Volumat\s+([\d.]+)/)?.[1]?.trim() || '',
+    numeroSerieEMH: textoLimpo.match(/Volumat\s+([\d.]+)/)?.[1]?.trim() || textoLimpo.match(/Agilia VP\s+([\d.]+)/)?.[1]?.trim() || textoLimpo.match(/Agilia\s+([\d.]+)/)?.[1]?.trim() || textoLimpo.match(/Applix\s+([\d.]+)/)?.[1]?.trim() ||'',
     dataAnalise: new Date().toISOString().split('T')[0],
     media1: media1,
     media2: media2,
