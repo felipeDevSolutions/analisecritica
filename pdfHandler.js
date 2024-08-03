@@ -50,32 +50,54 @@ async function processarCertificado(pdfUrl) {
   const textoLimpo = textoPDF.replace(/\s+/g, ' ').trim();
 
   const blocoTabela = textoLimpo.split('MÉDIA')[1]?.split('Medida - Padrão')[0]?.trim() || '';
-  const blocoCodigo = textoLimpo.split('FATIMA ')[1]?.split(' Certificado de Calibração')[0]?.trim() || '';
 
-  // Verifique o formato de "blocoCodigo" para garantir que esteja correto
-  const codigoCertificado = blocoCodigo || '';
-
-  // Extraia os dados com regex ajustado
+  // Verifique a ordem das medições para determinar como extrair o código do certificado
   const regexMedicao = /(\d+,\d+)\s*ml\/h/g;
-  const regexIncerteza = /(\d+,\d+)/g;
-
   const medias = [];
-  const incertezas = [];
-  
   let match;
   
   while ((match = regexMedicao.exec(blocoTabela)) !== null) {
     medias.push(parseFloat(match[1].replace(',', '.')));
   }
+
+  let codigoCertificado;
   
-  while ((match = regexIncerteza.exec(textoLimpo)) !== null) {
-    // Adicione apenas as incertezas relevantes (baseado na ordem de aparecimento)
-    if (incertezas) {
-      incertezas.push(parseFloat(match[1].replace(',', '.')));
-    }
+  if (medias[3] < medias[7] && medias[7] < medias[11]) {
+    // Ordem crescente
+    codigoCertificado = textoLimpo.split('Os resultados apresentados nesse certificado foram determinados pela média das 3 medições.')[1]?.split(' Certificado de Calibração')[0]?.trim() || '';
+  } else {
+    // Ordem decrescente
+    codigoCertificado = textoLimpo.split('FATIMA ')[1]?.split(' Certificado de Calibração')[0]?.trim() || '';
   }
 
-  // Complete dados do certificado
+  // Continue extraindo os dados como antes
+  const regexIncerteza = /(\d+,\d+)/g;
+  const incertezas = [];
+
+  while ((match = regexIncerteza.exec(textoLimpo)) !== null) {
+    incertezas.push(parseFloat(match[1].replace(',', '.')));
+  }
+
+  let media1, media2, media3, incerteza1, incerteza2, incerteza3;
+
+  if (medias[3] < medias[7] && medias[7] < medias[11]) {
+    // Ordem crescente
+    media1 = medias[11] || '';
+    media2 = medias[7] || '';
+    media3 = medias[3] || '';
+    incerteza1 = incertezas[39] || '';
+    incerteza2 = incertezas[31] || '';
+    incerteza3 = incertezas[23] || '';
+  } else {
+    // Ordem decrescente
+    media1 = medias[3] || '';
+    media2 = medias[7] || '';
+    media3 = medias[11] || '';
+    incerteza1 = incertezas[23] || '';
+    incerteza2 = incertezas[31] || '';
+    incerteza3 = incertezas[39] || '';
+  }
+
   const dadosCertificado = {
     codigoCertificado: codigoCertificado,
     dataCertificado: textoLimpo.match(/Data da Emissão:\s*(\d{2}\/\d{2}\/\d{4})/)?.[1]?.trim() || '',
@@ -84,17 +106,18 @@ async function processarCertificado(pdfUrl) {
     descricaoEMH: textoLimpo.match(/Identificação do Equipamento\s+(.*?)\s+\d{8}/s)?.[1]?.trim() || '',
     numeroSerieEMH: textoLimpo.match(/Volumat\s+([\d.]+)/)?.[1]?.trim() || '',
     dataAnalise: new Date().toISOString().split('T')[0],
-    media1: medias[3] || '',
-    media2: medias[7] || '',
-    media3: medias[11] || '',
-    incerteza1: incertezas[23] || '',
-    incerteza2: incertezas[31] || '',
-    incerteza3: incertezas[39] || ''
+    media1: media1,
+    media2: media2,
+    media3: media3,
+    incerteza1: incerteza1,
+    incerteza2: incerteza2,
+    incerteza3: incerteza3
   };
 
   console.log(dadosCertificado);
   preencherFormulario(dadosCertificado);
 }
+
 
 // Função para calcular a data de validade (um ano após a data de emissão)
 function calcularDataValidade(dataEmissaoStr) {

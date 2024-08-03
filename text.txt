@@ -1,0 +1,589 @@
+O sistema está assim:
+
+📦Análise Crítica
+ ┣ 📜formulario.css
+ ┣ 📜formulario.js
+ ┣ 📜index.html
+ ┗ 📜pdfHandler.js
+
+index.html:
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Análise Crítica de Certificado de Calibração</title>
+  <link rel="stylesheet" href="formulario.css">
+</head>
+<body>
+  <h2 class="title">ANÁLISE CRÍTICA DE CERTIFICADO DE FORNECEDOR DE CALIBRAÇÃO DE EQUIPAMENTO MÉDICO-HOSPITALAR (EMH)</h2>
+
+  <input type="file" id="certificadoInput" accept="application/pdf">
+
+  <label for="percentagemSelect">Escolha a porcentagem da tolerância:</label>
+  <select id="percentagemSelect">
+    <option value="5">5%</option>
+    <option value="10">10%</option>
+  </select>
+
+  <h2>Dados do Certificado</h2>
+  <table>
+    <tr>
+      <td>Código do Certificado:</td>
+      <td><input type="text" id="codigoCertificado"></td>
+      <td>Data do Certificado:</td>
+      <td><input type="text" id="dataCertificado"></td>
+      <td>Validade do Certificado:</td>
+      <td><input type="text" id="validadeCertificado"></td>
+    </tr>
+    <tr>
+      <td>Fornecedor:</td>
+      <td colspan="5"><input type="text" id="fornecedor" style="width: 100%;"></td>
+    </tr>
+  </table>
+
+  <h2>Dados do EMH</h2>
+  <table>
+    <tr>
+      <td>Equipamento:</td>
+      <td><input type="text" id="descricaoEMH"></td>
+      <td>Número de série:</td>
+      <td><input type="text" id="numeroSerieEMH"></td>
+      <td>Nº da OS:</td>
+      <td><input type="text" id="numeroOS"></td>
+    </tr>
+  </table>
+
+  <h2>Checklist do Certificado</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ITEM</th>
+        <th>ITEM DE VERIFICAÇÃO</th>
+        <th>SIM</th>
+        <th>NÃO</th>
+        <th>OBSERVAÇÃO</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>O certificado possui a identificação clara do fornecedor terceirizado, incluindo dados no papel timbrado?</td>
+        <td><input type="radio" name="item1" value="sim" checked></td>
+        <td><input type="radio" name="item1" value="nao"></td>
+        <td><input type="text" id="observacao1"></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>O equipamento analisado está claramente descrito e identificado, incluindo Código (IDEC), marca, modelo e número de série?</td>
+        <td><input type="radio" name="item2" value="sim" checked></td>
+        <td><input type="radio" name="item2" value="nao"></td>
+        <td><input type="text" id="observacao2"></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>A data em que a calibração foi completada está claramente indicada?</td>
+        <td><input type="radio" name="item3" value="sim" checked></td>
+        <td><input type="radio" name="item3" value="nao"></td>
+        <td><input type="text" id="observacao3"></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Os resultados da calibração, incluindo o(s) valor(es) da(s) incerteza(s) e o VVC por ponto medido, estão presentes? Se o VVC não for dado, a média das leituras por ponto e/ou o erro (correção) foram fornecidos? VN = VVC + |Erro|</td>
+        <td><input type="radio" name="item4" value="sim" checked></td>
+        <td><input type="radio" name="item4" value="nao"></td>
+        <td><input type="text" id="observacao4"></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>O procedimento de calibração utilizado está claramente identificado, incluindo a referência do procedimento?</td>
+        <td><input type="radio" name="item5" value="sim" checked></td>
+        <td><input type="radio" name="item5" value="nao"></td>
+        <td><input type="text" id="observacao5"></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>As condições ambientais pertinentes, como umidade e temperatura no momento da calibração, estão apresentadas?</td>
+        <td><input type="radio" name="item6" value="sim" checked></td>
+        <td><input type="radio" name="item6" value="nao"></td>
+        <td><input type="text" id="observacao6"></td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>Quaisquer limitações ao uso do equipamento foram registradas no campo 'Observação'?</td>
+        <td><input type="radio" name="item7" value="sim" ></td>
+        <td><input type="radio" name="item7" value="nao" checked></td>
+        <td><input type="text" id="observacao7"></td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>A(s) pessoa(s) que realizou(ram) a comprovação metrológica estão claramente identificadas?</td>
+        <td><input type="radio" name="item8" value="sim" checked></td>
+        <td><input type="radio" name="item8" value="nao"></td>
+        <td><input type="text" id="observacao8"></td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>A(s) pessoa(s) responsável(is) pela correção da informação registrada, incluindo a aprovação do certificado e seus dados pelo fornecedor terceirizado, estão identificadas?</td>
+        <td><input type="radio" name="item9" value="sim" checked></td>
+        <td><input type="radio" name="item9" value="nao"></td>
+        <td><input type="text" id="observacao9"></td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>Qualquer relatório ou certificado de calibração, incluindo identificação individual como código de documento ou números de série, está claramente indicado, incluindo a rastreabilidade dos padrões utilizados?</td>
+        <td><input type="radio" name="item10" value="sim" checked></td>
+        <td><input type="radio" name="item10" value="nao"></td>
+        <td><input type="text" id="observacao10"></td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>Foi fornecida evidência da rastreabilidade dos resultados da calibração, incluindo cópia da rastreabilidade dos padrões utilizados?</td>
+        <td><input type="radio" name="item11" value="sim"></td>
+        <td><input type="radio" name="item11" value="nao" checked></td>
+        <td><input type="text" id="observacao11"></td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Os resultados da calibração obtidos, antes e onde requerido, após qualquer ajuste, modificação ou reparo, estão claramente documentados?</td>
+        <td><input type="radio" name="item12" value="sim"></td>
+        <td><input type="radio" name="item12" value="nao" checked></td>
+        <td><input type="text" id="observacao12"></td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>Detalhes sobre quaisquer manutenções, tais como assistência técnica, calibrações (ajustes), reparos e modificações realizadas, estão disponíveis no software de gestão de engenharia?</td>
+        <td><input type="radio" name="item13" value="sim" checked></td>
+        <td><input type="radio" name="item13" value="nao"></td>
+        <td><input type="text" id="observacao13"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Resultados da Calibração</h2>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="8">Condição de Ensaio</th>
+      </tr>
+      <tr>
+        <th class="coluna-vvc">V.V.C.</th>
+        <th>Média das leituras (M)</th>
+        <th>Incerteza Expandida (Uk)</th>
+        <th class="coluna-tolerancia">Tolerânica (%)</th>
+        <th class="coluna-muk">Resultado da Medição <br>(M-Uk, M+Uk)</th>
+        <th>Resultado Esperado <br>(MÍN, MÁX)</th>
+        <th>Conformidade Normativa</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="coluna-vvc"><input type="number" id="vvc1" value="100"></td>
+            <td><input type="number" id="media1"></td>
+            <td><input type="number" id="incerteza1"></td>
+            <td class="coluna-tolerancia"><input type="text" id="tolerancia1"></td>
+            <td class="coluna-muk"><span id="resultadoMedicao1"></span></td>
+            <td><input type="text" id="resultadoEsperado1" readonly></td>
+            <td><span id="conformidade1"></span></td>
+        </tr>
+        <tr>
+            <td><input type="number" id="vvc2" value="50"></td>
+            <td><input type="number" id="media2"></td>
+            <td><input type="number" id="incerteza2"></td>
+            <td><input type="text" id="tolerancia2"></td>
+            <td><span id="resultadoMedicao2"></span></td>
+            <td><input type="text" id="resultadoEsperado2" readonly></td>
+            <td><span id="conformidade2"></span></td>
+        </tr>
+        <tr>
+            <td><input type="number" id="vvc3" value="20"></td>
+            <td><input type="number" id="media3"></td>
+            <td><input type="number" id="incerteza3"></td>
+            <td><input type="text" id="tolerancia3"></td>
+            <td><span id="resultadoMedicao3"></span></td>
+            <td><input type="text" id="resultadoEsperado3" readonly></td>
+            <td><span id="conformidade3"></span></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <h2>Observações Finais:</h2>
+  <textarea id="observacoesFinais"></textarea>
+
+  <h2>Aprovação Final</h2>
+  <label for="aprovacao">O CERTIFICADO DO EMH SATISFAZ AOS REQUISITOS EXPLICITADOS?</label><br>
+  <input type="radio" name="aprovacao" value="sim" checked> SIM
+  <input type="radio" name="aprovacao" value="nao"> NÃO
+
+  <h2>Dados da Análise</h2>
+  <table>
+    <tr>
+      <td>DATA DA ANÁLISE:</td>
+      <td><input type="date" id="dataAnalise"></td>
+      <td>RESPONSÁVEL PELA ANÁLISE:</td>
+      <td><input type="text" id="responsavelAnalise"></td>
+    </tr>
+  </table>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="formulario.js"></script>
+  <script src="pdfHandler.js"></script> 
+</body>
+</html>
+
+
+formulario.js:
+const vvcInputs = document.querySelectorAll('input[id^="vvc"]');
+const mediaInputs = document.querySelectorAll('input[id^="media"]');
+const incertezaInputs = document.querySelectorAll('input[id^="incerteza"]');
+const toleranciaInputs = document.querySelectorAll('input[id^="tolerancia"]');
+const resultadoMedicaoSpans = document.querySelectorAll('span[id^="resultadoMedicao"]');
+const resultadoEsperadoInputs = document.querySelectorAll('input[id^="resultadoEsperado"]');
+const conformidadeSpans = document.querySelectorAll('span[id^="conformidade"]');
+const aprovacaoRadios = document.querySelectorAll('input[name="aprovacao"]');
+
+function calcularResultados(index) {
+  const vvc = parseFloat(vvcInputs[index].value) || 0;
+  const media = parseFloat(mediaInputs[index].value) || 0;
+  const incerteza = parseFloat(incertezaInputs[index].value) || 0;
+  const tolerancia = parseFloat(toleranciaInputs[index].value) || 0; 
+
+  // Calcula Resultado da Medição (M-Uk, M+Uk)
+  const resultadoMin = media - incerteza;
+  const resultadoMax = media + incerteza;
+  resultadoMedicaoSpans[index].textContent = `${resultadoMin.toFixed(3)}, ${resultadoMax.toFixed(3)}`;
+
+  // Calcula Resultado Esperado (MÍN, MÁX) em relação ao V.V.C.
+  const esperadoMin = vvc - (vvc * (tolerancia / 100)); // Calcula a porcentagem da tolerância
+  const esperadoMax = vvc + (vvc * (tolerancia / 100)); // Calcula a porcentagem da tolerância
+  resultadoEsperadoInputs[index].value = `${esperadoMin.toFixed(3)}, ${esperadoMax.toFixed(3)}`;
+
+  // Avalia a Conformidade
+  if (resultadoMin >= esperadoMin && resultadoMax <= esperadoMax) {
+    conformidadeSpans[index].textContent = 'CONFORME';
+    conformidadeSpans[index].style.color = 'green';
+  } else {
+    conformidadeSpans[index].textContent = 'NÃO CONFORME';
+    conformidadeSpans[index].style.color = 'red';
+  }
+}
+
+function atualizarAprovacaoFinal() {
+  let todasConformes = true;
+  for (let i = 0; i < conformidadeSpans.length; i++) {
+    if (conformidadeSpans[i].textContent !== 'CONFORME') {
+      todasConformes = false;
+      break; 
+    }
+  }
+
+  if (todasConformes) {
+    aprovacaoRadios[0].checked = true; 
+  } else {
+    aprovacaoRadios[1].checked = true;
+  }
+}
+
+// Adiciona evento de input a cada campo para recalcular os resultados
+for (let i = 0; i < vvcInputs.length; i++) {
+  vvcInputs[i].addEventListener('input', () => {
+    calcularResultados(i);
+    atualizarAprovacaoFinal(); // Atualiza a aprovação final após o cálculo
+  });
+  mediaInputs[i].addEventListener('input', () => {
+    calcularResultados(i);
+    atualizarAprovacaoFinal(); // Atualiza a aprovação final após o cálculo
+  });
+  incertezaInputs[i].addEventListener('input', () => {
+    calcularResultados(i);
+    atualizarAprovacaoFinal(); // Atualiza a aprovação final após o cálculo
+  });
+  toleranciaInputs[i].addEventListener('input', () => {
+    calcularResultados(i);
+    atualizarAprovacaoFinal(); // Atualiza a aprovação final após o cálculo
+  });
+}
+
+// Executa o cálculo inicial ao carregar a página
+for (let i = 0; i < vvcInputs.length; i++) {
+  calcularResultados(i);
+}
+
+
+pdfHandler.js:
+// pdfHandler.js
+
+// Configura o worker do pdf.js
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+// Função para extrair texto do PDF usando pdf.js
+async function extractTextFromPDF(pdfUrl) {
+  const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+  const page = await pdf.getPage(1);
+  const textContent = await page.getTextContent();
+  let extractedText = '';
+
+  textContent.items.forEach(item => {
+    extractedText += item.str + ' ';
+  });
+
+  return extractedText.trim();
+}
+
+// Função para preencher o formulário com os dados extraídos
+function preencherFormulario(dadosCertificado) {
+  document.getElementById('codigoCertificado').value = dadosCertificado.codigoCertificado;
+  document.getElementById('dataCertificado').value = dadosCertificado.dataCertificado;
+  document.getElementById('validadeCertificado').value = dadosCertificado.validadeCertificado;
+  document.getElementById('fornecedor').value = dadosCertificado.fornecedor;
+  document.getElementById('descricaoEMH').value = dadosCertificado.descricaoEMH;
+  document.getElementById('numeroSerieEMH').value = dadosCertificado.numeroSerieEMH;
+  document.getElementById('dataAnalise').value = dadosCertificado.dataAnalise;
+
+  // Preenche o campo de tolerância com o valor selecionado
+  const porcentagem = document.getElementById('percentagemSelect').value || '5';
+  document.getElementById('tolerancia1').value = porcentagem;
+  document.getElementById('tolerancia2').value = porcentagem;
+  document.getElementById('tolerancia3').value = porcentagem;
+
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById(`media${i}`).value = dadosCertificado[`media${i}`] || '';
+    document.getElementById(`incerteza${i}`).value = dadosCertificado[`incerteza${i}`] || '';
+  }
+
+  for (let i = 0; i < 3; i++) {
+    const vvcInput = document.getElementById(`vvc${i + 1}`);
+    vvcInput.dispatchEvent(new Event('input'));
+  }
+}
+
+// Função principal para processar o PDF e preencher o formulário
+async function processarCertificado(pdfUrl) {
+  const textoPDF = await extractTextFromPDF(pdfUrl);
+  const textoLimpo = textoPDF.replace(/\s+/g, ' ').trim();
+
+  const blocoTabela = textoLimpo.split('MÉDIA')[1]?.split('Medida - Padrão')[0]?.trim() || '';
+
+  // Verifique a ordem das medições para determinar como extrair o código do certificado
+  const regexMedicao = /(\d+,\d+)\s*ml\/h/g;
+  const medias = [];
+  let match;
+  
+  while ((match = regexMedicao.exec(blocoTabela)) !== null) {
+    medias.push(parseFloat(match[1].replace(',', '.')));
+  }
+
+  let codigoCertificado;
+  
+  if (medias[3] < medias[7] && medias[7] < medias[11]) {
+    // Ordem crescente
+    codigoCertificado = textoLimpo.split('Os resultados apresentados nesse certificado foram determinados pela média das 3 medições.')[1]?.split(' Certificado de Calibração')[0]?.trim() || '';
+  } else {
+    // Ordem decrescente
+    codigoCertificado = textoLimpo.split('FATIMA ')[1]?.split(' Certificado de Calibração')[0]?.trim() || '';
+  }
+
+  // Continue extraindo os dados como antes
+  const regexIncerteza = /(\d+,\d+)/g;
+  const incertezas = [];
+
+  while ((match = regexIncerteza.exec(textoLimpo)) !== null) {
+    incertezas.push(parseFloat(match[1].replace(',', '.')));
+  }
+
+  let media1, media2, media3, incerteza1, incerteza2, incerteza3;
+
+  if (medias[3] < medias[7] && medias[7] < medias[11]) {
+    // Ordem crescente
+    media1 = medias[11] || '';
+    media2 = medias[7] || '';
+    media3 = medias[3] || '';
+    incerteza1 = incertezas[39] || '';
+    incerteza2 = incertezas[31] || '';
+    incerteza3 = incertezas[23] || '';
+  } else {
+    // Ordem decrescente
+    media1 = medias[3] || '';
+    media2 = medias[7] || '';
+    media3 = medias[11] || '';
+    incerteza1 = incertezas[23] || '';
+    incerteza2 = incertezas[31] || '';
+    incerteza3 = incertezas[39] || '';
+  }
+
+  const dadosCertificado = {
+    codigoCertificado: codigoCertificado,
+    dataCertificado: textoLimpo.match(/Data da Emissão:\s*(\d{2}\/\d{2}\/\d{4})/)?.[1]?.trim() || '',
+    validadeCertificado: calcularDataValidade(textoLimpo.match(/Data da Emissão:\s*(\d{2}\/\d{2}\/\d{4})/)?.[1]?.trim()),
+    fornecedor: 'Fresenius Kabi',
+    descricaoEMH: textoLimpo.match(/Identificação do Equipamento\s+(.*?)\s+\d{8}/s)?.[1]?.trim() || '',
+    numeroSerieEMH: textoLimpo.match(/Volumat\s+([\d.]+)/)?.[1]?.trim() || '',
+    dataAnalise: new Date().toISOString().split('T')[0],
+    media1: media1,
+    media2: media2,
+    media3: media3,
+    incerteza1: incerteza1,
+    incerteza2: incerteza2,
+    incerteza3: incerteza3
+  };
+
+  console.log(dadosCertificado);
+  preencherFormulario(dadosCertificado);
+}
+
+
+// Função para calcular a data de validade (um ano após a data de emissão)
+function calcularDataValidade(dataEmissaoStr) {
+  if (!dataEmissaoStr) return '';
+
+  const partesData = dataEmissaoStr.split('/');
+  const dia = parseInt(partesData[0], 10);
+  const mes = parseInt(partesData[1], 10) - 1;
+  const ano = parseInt(partesData[2], 10);
+
+  const dataEmissao = new Date(ano, mes, dia);
+  dataEmissao.setFullYear(dataEmissao.getFullYear() + 1);
+
+  const diaValidade = dataEmissao.getDate().toString().padStart(2, '0');
+  const mesValidade = (dataEmissao.getMonth() + 1).toString().padStart(2, '0');
+  const anoValidade = dataEmissao.getFullYear();
+
+  return `${diaValidade}/${mesValidade}/${anoValidade}`;
+}
+
+// Adiciona um listener ao input de arquivo para processar o PDF selecionado
+document.getElementById('certificadoInput').addEventListener('change', function (event) {
+  const file = event.target.files[0];
+  if (file && file.type === 'application/pdf') {
+    const fileURL = URL.createObjectURL(file);
+    processarCertificado(fileURL);
+  }
+});
+
+
+
+
+formulario.css:
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  font-size: medium;
+}
+
+.title {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  color: #555;
+  margin-top: 30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+/* Estilos para as colunas */
+.coluna-vvc {
+  width: 80px; /* ajuste este valor para a largura desejada */
+}
+
+.coluna-tolerancia {
+  width: 110px; /* ajuste este valor para a largura desejada */
+}
+
+.coluna-muk {
+  width: 150px; /* ajuste este valor para a largura desejada */
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+textarea,
+span[id^="resultadoMedicao"] { 
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  display: block; 
+  font-size: inherit; /* Herda o tamanho de fonte do elemento pai */
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+textarea {
+  height: 80px;
+}
+
+.conforme {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.naoConforme {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+@media print {
+  #certificadoInput,
+  #percentagemSelect,
+  label[for="percentagemSelect"] {
+    display: none;
+  }
+
+  /* Estilos para as colunas */
+  .coluna-vvc {
+    width: 90px; /* ajuste este valor para a largura desejada */
+  }
+
+  .coluna-tolerancia {
+    width: 110px; /* ajuste este valor para a largura desejada */
+  }
+
+  .coluna-muk {
+    width: 150px; /* ajuste este valor para a largura desejada */
+  }
+}
+
+/* Media Query para telas menores (Mobile) */
+@media (max-width: 768px) { 
+  table {
+    font-size: 14px; /* Diminui o tamanho da fonte */
+  }
+
+  th, td {
+    padding: 6px; /* Diminui o espaçamento interno */
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  textarea,
+  span[id^="resultadoMedicao"] {
+    padding: 4px; /* Diminui o espaçamento interno dos inputs */
+    font-size: 14px; /* Diminui o tamanho da fonte dos inputs */
+  }
+
+  .coluna-vvc {
+    width: 40px; /* Ajusta a largura da coluna V.V.C. */
+  }
+
+  .coluna-muk {
+    width: 100px; /* Ajusta a largura da coluna (M-Uk, M+Uk) */
+  }
+}

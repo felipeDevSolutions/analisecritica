@@ -22,7 +22,7 @@ table {
 
 th, td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 5px;
   text-align: left;
 }
 
@@ -33,7 +33,11 @@ th {
 
 /* Estilos para as colunas */
 .coluna-vvc {
-  width: 80px; /* ajuste este valor para a largura desejada */
+  width: 100px; /* ajuste este valor para a largura desejada */
+}
+
+.coluna-tolerancia {
+  width: 110px; /* ajuste este valor para a largura desejada */
 }
 
 .coluna-muk {
@@ -69,6 +73,34 @@ textarea {
 .naoConforme {
   background-color: #f8d7da;
   color: #721c24;
+}
+
+@media print {
+
+  table {
+    font-size: 8px; /* Ajuste o tamanho conforme necessário */
+  }
+
+  #certificadoInput,
+  #percentagemSelect,
+  label[for="percentagemSelect"] {
+    display: none;
+  }
+
+  /* Estilos para as colunas */
+  .coluna-vvc-impressao {
+    width: 200px; /* ajuste este valor para a largura desejada */
+  }
+
+  /* Nova classe para ajustar a coluna na impressão */
+  .coluna-tolerancia-impressao {
+    width: 80px; /* Ajuste este valor conforme necessário */
+  }
+
+  .coluna-muk {
+    width: 150px; /* ajuste este valor para a largura desejada */
+  }
+
 }
 
 /* Media Query para telas menores (Mobile) */
