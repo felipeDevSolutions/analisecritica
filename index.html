@@ -12,17 +12,6 @@
     <div class="header-group">
       <input type="file" id="certificadoInput" accept="application/pdf">
     </div>
-    <div class="header-group">
-      <label for="percentagemSelect">Escolha a porcentagem da tolerância:</label>
-      <select id="percentagemSelect">
-        <option value="5">5%</option>
-        <option value="10">10%</option>
-      </select>
-    </div>
-    <div class="header-group">
-      <label for="responsavelAnalise">Responsável pela análise:</label>
-      <input type="text" id="responsavelAnalise">
-    </div>
   </div>
 
   <h2>Dados do Certificado</h2>
@@ -38,6 +27,8 @@
       <td><input type="text" id="dataCertificado"></td>
       <td>Validade do Certificado:</td>
       <td><input type="text" id="validadeCertificado"></td>
+      <td>Tolerância (%):</td>
+      <td><input type="text" id="toleranciaCertificado" readonly></td> 
     </tr>
   </table>
 
@@ -163,13 +154,13 @@
   <table>
     <thead>
       <tr>
-        <th colspan="8">Condição de Ensaio</th>
+        <th colspan="7">Condição de Ensaio</th>
       </tr>
       <tr>
         <th class="coluna-vvc">V.V.C.</th>
         <th>Média das leituras (M)</th>
         <th>Incerteza Expandida (Uk)</th>
-        <th class="coluna-tolerancia">Tolerânica (%)</th>
+        <th class="coluna-tolerancia">Tolerância (%)</th>
         <th class="coluna-muk">Resultado da Medição <br>(M-Uk, M+Uk)</th>
         <th>Resultado Esperado <br>(MÍN, MÁX)</th>
         <th>Conformidade Normativa</th>
@@ -180,7 +171,7 @@
             <td class="coluna-vvc"><input type="number" id="vvc1" value="100"></td>
             <td><input type="number" id="media1"></td>
             <td><input type="number" id="incerteza1"></td>
-            <td class="coluna-tolerancia"><input type="text" id="tolerancia1"></td>
+            <td class="coluna-tolerancia"><input type="text" id="tolerancia1" readonly></td>
             <td class="coluna-muk"><span id="resultadoMedicao1"></span></td>
             <td><input type="text" id="resultadoEsperado1" readonly></td>
             <td><span id="conformidade1"></span></td>
@@ -189,7 +180,7 @@
             <td><input type="number" id="vvc2" value="50"></td>
             <td><input type="number" id="media2"></td>
             <td><input type="number" id="incerteza2"></td>
-            <td><input type="text" id="tolerancia2"></td>
+            <td><input type="text" id="tolerancia2" readonly></td>
             <td><span id="resultadoMedicao2"></span></td>
             <td><input type="text" id="resultadoEsperado2" readonly></td>
             <td><span id="conformidade2"></span></td>
@@ -198,7 +189,7 @@
             <td><input type="number" id="vvc3" value="20"></td>
             <td><input type="number" id="media3"></td>
             <td><input type="number" id="incerteza3"></td>
-            <td><input type="text" id="tolerancia3"></td>
+            <td><input type="text" id="tolerancia3" readonly></td>
             <td><span id="resultadoMedicao3"></span></td>
             <td><input type="text" id="resultadoEsperado3" readonly></td>
             <td><span id="conformidade3"></span></td>
