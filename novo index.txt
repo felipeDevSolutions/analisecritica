@@ -1,0 +1,173 @@
+index.html:
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <title>Análise Crítica de Certificados de Calibração</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Análise Crítica de Certificados de Calibração</h1>
+
+    <div class="upload-section">
+      <label for="certificadoInput" class="custom-file-upload">
+        Importar Certificados (PDF)
+      </label>
+      <input type="file" id="certificadoInput" accept=".pdf" multiple>
+    </div>
+
+    <div id="thumbnails" class="thumbnail-container">
+      <!-- Miniaturas dos PDFs aparecerão aqui -->
+    </div>
+
+    <button id="analyze-button" class="analyze-btn">Analisar</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+script.js:
+document.getElementById('certificadoInput').addEventListener('change', handleFileSelect);
+
+
+let files = [];
+let currentPDFIndex = 0;
+let currentSectionIndex = 0;
+let pdfDoc = null;
+
+function handleFileSelect(event) {
+    files = Array.from(event.target.files);
+    const thumbnails = document.getElementById('thumbnails');
+    thumbnails.innerHTML = '';
+
+    files.forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = function() {
+            const pdfData = new Uint8Array(reader.result);
+            generateThumbnail(pdfData, index);
+        };
+        reader.readAsArrayBuffer(file);
+    });
+}
+
+function generateThumbnail(pdfData, index) {
+    const loadingTask = pdfjsLib.getDocument({ data: pdfData });
+    loadingTask.promise.then(function(pdf) {
+        pdf.getPage(1).then(function(page) {
+            const scale = 0.3; 
+            const viewport = page.getViewport({ scale: scale });
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            page.render(renderContext).promise.then(function() {
+                const img = document.createElement('img');
+                img.src = canvas.toDataURL();
+                img.alt = `PDF ${index + 1}`;
+                img.setAttribute('data-index', index);
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', () => loadPDF(index));
+                document.getElementById('thumbnails').appendChild(img);
+            }).catch(function(error) {
+                console.error('Erro ao renderizar a página:', error);
+            });
+        }).catch(function(error) {
+            console.error('Erro ao obter a página do PDF:', error);
+        });
+    }).catch(function(error) {
+        console.error('Erro ao carregar o documento PDF:', error);
+    });
+}
+
+function loadPDF(index) {
+    currentPDFIndex = index;
+    const file = files[index];
+    const reader = new FileReader();
+    reader.onload = function() {
+        const pdfData = new Uint8Array(reader.result);
+        pdfjsLib.getDocument({ data: pdfData }).promise.then(function(pdf) {
+            pdfDoc = pdf;
+            currentSectionIndex = 0; 
+            displaySection(currentSectionIndex);
+            extractAndDisplayData(pdfData); // Extraia e exiba os dados
+        }).catch(function(error) {
+            console.error('Erro ao carregar o documento PDF:', error);
+        });
+    };
+    reader.readAsArrayBuffer(file);
+}
+
+
+
+style.css:
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 0;
+  }
+  
+  .container {
+    width: 100%;
+    margin: 50px auto;
+    text-align: center;
+  }
+  
+  .custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  #certificadoInput {
+    display: none;
+  }
+  
+  .thumbnail-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .thumbnail-container img {
+    width: 100px;
+    height: auto;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .thumbnail-container img:hover {
+    transform: scale(1.1);
+  }
+  
+  .analyze-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .analyze-btn:hover {
+    background-color: #218838;
+  }

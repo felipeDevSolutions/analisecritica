@@ -3,7 +3,7 @@ const mediaInputs = document.querySelectorAll('input[id^="media"]');
 const incertezaInputs = document.querySelectorAll('input[id^="incerteza"]');
 const toleranciaInputs = document.querySelectorAll('input[id^="tolerancia"]');
 const resultadoMedicaoSpans = document.querySelectorAll('span[id^="resultadoMedicao"]');
-const resultadoEsperadoInputs = document.querySelectorAll('input[id^="resultadoEsperado"]');
+const resultadoEsperadoInputs = document.querySelectorAll('span[id^="resultadoEsperado"]');
 const conformidadeSpans = document.querySelectorAll('span[id^="conformidade"]');
 const aprovacaoRadios = document.querySelectorAll('input[name="aprovacao"]');
 
@@ -21,7 +21,7 @@ function calcularResultados(index) {
   // Calcula Resultado Esperado (MÍN, MÁX) em relação ao V.V.C.
   const esperadoMin = vvc - (vvc * (tolerancia / 100)); // Calcula a porcentagem da tolerância
   const esperadoMax = vvc + (vvc * (tolerancia / 100)); // Calcula a porcentagem da tolerância
-  resultadoEsperadoInputs[index].value = `${esperadoMin.toFixed(3)}, ${esperadoMax.toFixed(3)}`;
+  resultadoEsperadoInputs[index].textContent = `${esperadoMin.toFixed(3)}, ${esperadoMax.toFixed(3)}`;
 
   // Avalia a Conformidade
   if (resultadoMin >= esperadoMin && resultadoMax <= esperadoMax) {
