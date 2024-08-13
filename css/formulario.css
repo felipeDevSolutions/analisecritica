@@ -1,0 +1,264 @@
+:root {
+    --primary-color: #343d4b;
+    --secondary-color: #4c596d;
+    --background-color: #f8f9fa;
+    --text-color: #343d4b;
+    --border-color: #dee2e6;
+    --input-background-color: #ffffff;
+    --input-border-color: #ced4da;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    gap: 0px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--background-color);
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .title {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+  }
+  
+  h2 {
+    color: var(--primary-color);
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #52b2e2;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-top: 5px;
+    background-color: #ebebeb;
+  }
+  
+  .cabecalho {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .header-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .btn-upload {
+    cursor: pointer;
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: var(--secondary-color);
+  }
+  
+  textarea {
+    height: 80px;
+  }
+  
+  input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid var(--border-color);
+    padding: 5px;
+    text-align: left;
+    word-wrap: break-word;
+  }
+  
+  th {
+    background-color: var(--secondary-color);
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .coluna-vvc {
+    width: 90px;
+  }
+  
+  .coluna-media {
+    width: 150px;
+  }
+  
+  .coluna-incerteza {
+    width: 150px;
+  }
+  
+  .coluna-tolerancia {
+    width: 80px;
+  }
+  
+  .coluna-muk {
+    width: 150px;
+  }
+  
+  .form-group-aprovacao{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  
+  
+  
+  /* Estilos específicos para impressão */
+  @media print {
+    .cabecalho {
+        display: none;
+    }
+  
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+  
+    h2 {
+        background-color: var(--input-border-color) !important;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border-bottom: 3px solid #52b2e2;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-top: 5px;
+        color: var(--primary-color); /* Mantenha a cor do texto */
+    }
+    
+    input[type="text"],
+    input[type="date"],
+    input[type="number"] {
+        border: none;
+        box-shadow: none;
+        font-size: small;
+        word-wrap: break-word;
+    }
+  
+    
+  
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 10px;
+    }
+    
+    table {
+        border: 1px solid var(--border-color);
+        font-size: small;
+    }
+  
+    thead {
+        background-color: #d3e4cd; /* Cor diferente para a impressão */
+        color: #000; /* Texto preto para melhor leitura */
+    }
+  
+    th {
+        background-color: var(--secondary-color);
+        color: #fff;
+        font-weight: bold;
+    }
+  
+    td {
+        border: 1px solid var(--border-color);
+        font-size: small;
+        word-wrap: break-word;
+    }
+  
+    .title,
+    h2 {
+        page-break-after: avoid;
+    }
+  
+    .form-section {
+        page-break-inside: avoid;
+    }
+  
+    .coluna-vvc {
+        width: 70px;
+    }
+    
+    .coluna-media {
+        width: 100px;
+    }
+    
+    .coluna-incerteza {
+        width: 70px;
+    }
+    
+    .coluna-tolerancia {
+        width: 60px;
+    }
+    
+    .coluna-muk {
+        width: 100px;
+    }
+  
+    /* Classe para o resultado esperado */
+    .coluna-resultado-esperado { 
+        min-width: 80px; /* Largura mínima da coluna Resultado Esperado (MÍN, MÁX) na impressão */
+        word-wrap: break-word; /* Permite quebra de linha */
+    }
+  }
+  
+  /* Estilos para manter as tabelas legíveis na tela */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  thead {
+    background-color: var(--secondary-color);
+    color: #fff;
+  }
+  
+  th, td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: left;
+    word-wrap: break-word; /* Permite quebra de linha automática */
+    white-space: normal;
+  }

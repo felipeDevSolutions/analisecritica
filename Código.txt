@@ -1,0 +1,2744 @@
+📦startup2-1.0.0
+ ┣ 📂css
+ ┃ ┣ 📜analise.css
+ ┃ ┣ 📜bootstrap.min.css
+ ┃ ┣ 📜formulario.css
+ ┃ ┗ 📜style.css
+ ┣ 📂img
+ ┃ ┣ 📜about.jpg
+ ┃ ┣ 📜carousel-1.jpg
+ ┃ ┣ 📜carousel-2.jpg
+ ┃ ┣ 📜feature.jpg
+ ┃ ┗ 📜user.jpg
+ ┣ 📂js
+ ┃ ┣ 📜main.js
+ ┃ ┗ 📜script.js
+ ┣ 📂lib
+ ┃ ┣ 📂animate
+ ┃ ┃ ┣ 📜animate.css
+ ┃ ┃ ┗ 📜animate.min.css
+ ┃ ┣ 📂counterup
+ ┃ ┃ ┗ 📜counterup.min.js
+ ┃ ┣ 📂easing
+ ┃ ┃ ┣ 📜easing.js
+ ┃ ┃ ┗ 📜easing.min.js
+ ┃ ┣ 📂owlcarousel
+ ┃ ┃ ┣ 📂assets
+ ┃ ┃ ┃ ┣ 📜ajax-loader.gif
+ ┃ ┃ ┃ ┣ 📜owl.carousel.css
+ ┃ ┃ ┃ ┣ 📜owl.carousel.min.css
+ ┃ ┃ ┃ ┣ 📜owl.theme.default.css
+ ┃ ┃ ┃ ┣ 📜owl.theme.default.min.css
+ ┃ ┃ ┃ ┣ 📜owl.theme.green.css
+ ┃ ┃ ┃ ┣ 📜owl.theme.green.min.css
+ ┃ ┃ ┃ ┗ 📜owl.video.play.png
+ ┃ ┃ ┣ 📜LICENSE
+ ┃ ┃ ┣ 📜owl.carousel.js
+ ┃ ┃ ┗ 📜owl.carousel.min.js
+ ┃ ┣ 📂waypoints
+ ┃ ┃ ┣ 📜links.php
+ ┃ ┃ ┗ 📜waypoints.min.js
+ ┃ ┗ 📂wow
+ ┃ ┃ ┣ 📜wow.js
+ ┃ ┃ ┗ 📜wow.min.js
+ ┣ 📜analise.html
+ ┣ 📜Código.txt
+ ┣ 📜formulario.html
+ ┣ 📜index.html
+ ┣ 📜LICENSE.txt
+ ┗ 📜READ-ME.txt
+
+
+ index.html:
+ <!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>Análise Crítica de Certificados</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Ferramenta para Análise Crítica de Certificados de Calibração de Equipamentos Médico-Hospitalares"
+        name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+            <a href="index.html" class="navbar-brand p-0">
+                <h1 class="m-0"><i class="fa fa-tasks"></i> Análise Crítica</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="index.html" class="nav-item nav-link active">Início</a>
+                    <a href="#sobre" class="nav-item nav-link">Sobre</a>
+                    <a href="#planos" class="nav-item nav-link">Planos</a>
+                    <a href="#contato" class="nav-item nav-link">Contato</a>
+                </div>
+                <a href="analise.html" class="btn btn-primary py-2 px-4 ms-3">Experimentar</a>
+            </div>
+        </nav>
+
+        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="img/carousel-1.jpg" alt="Análise Crítica de Certificados">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Simplifique seu processo
+                                de
+                                Análise Crítica</h5>
+                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Experimente Nossa Solução Automatizada!</h1>
+                            <a href="#planos" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Veja
+                                nossos planos</a>
+                            <a href="analise.html"
+                                class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Experimentar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="img/carousel-2.jpg" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Otimize seu Tempo com Análise de Certificados Inteligente</h5>
+                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Analise seus certificados de
+                                forma
+                                fácil e eficiente</h1>
+                            <a href="#planos" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Veja
+                                nossos planos</a>
+                            <a href="analise.html"
+                                class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Experimentar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Sobre Start -->
+    <div id="sobre" class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-7">
+                    <div class="section-title position-relative pb-3 mb-5">
+                        <h5 class="fw-bold text-primary text-uppercase">Sobre Nós</h5>
+                        <h1 class="mb-0">A melhor solução para análise de certificados de calibração</h1>
+                    </div>
+                    <p class="mb-4">Cansado de analisar manualmente certificados de calibração? Apresentamos a você a
+                        ferramenta definitiva para facilitar o seu dia a dia! Com nossa plataforma online, você poderá:
+                    </p>
+                    <div class="row g-0 mb-3">
+                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Carregar múltiplos
+                                certificados
+                                em PDF</h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Extrair dados importantes
+                                automaticamente
+                            </h5>
+                        </div>
+                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Preencher um checklist
+                                interativo</h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Gerar relatórios completos
+                                de
+                                análise
+                            </h5>
+                        </div>
+                    </div>
+                    <a href="analise.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">
+                        Experimentar agora</a>
+                </div>
+                <div class="col-lg-5" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s"
+                            src="img/about.jpg" style="object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sobre End -->
+
+
+    <!-- Recursos Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h5 class="fw-bold text-primary text-uppercase">Deixe a Tecnologia Simplificar Suas Análises!</h5>
+                <h1 class="mb-0">Análise Crítica de Certificados: Eficiência e Precisão na Ponta dos Dedos!</h1>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="row g-5">
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa fa-file-alt text-white"></i>
+                            </div>
+                            <h4>Agilidade e Precisão</h4>
+                            <p class="mb-0">Extraia dados essenciais dos certificados automaticamente, eliminando a digitação manual e acelerando o processo de análise.</p>
+                        </div>
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa fa-chart-line text-white"></i>
+                            </div>
+                            <h4>Economia de Tempo</h4>
+                            <p class="mb-0">Automatize o processo de análise e economize tempo para se concentrar em
+                                outras tarefas importantes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.1s"
+                            src="img/feature.jpg" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row g-5">
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa fa-check-circle text-white"></i>
+                            </div>
+                            <h4>Conformidade Normativa</h4>
+                            <p class="mb-0">Garanta a conformidade com as normas com análises precisas e confiáveis. Minimize o risco de erros humanos e garanta a qualidade das suas calibrações.</p>
+                        </div>
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.8s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa fa-users text-white"></i>
+                            </div>
+                            <h4>Fácil de usar</h4>
+                            <p class="mb-0">Carregue, Analise, Pronto! Interface simples e intuitiva. Com poucos cliques, tenha grandes resultados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Recursos End -->
+
+    <!-- Planos Start -->
+    <div id="planos" class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h5 class="fw-bold text-primary text-uppercase">Planos</h5>
+                <h1 class="mb-0">Oferecemos planos flexíveis</h1>
+            </div>
+            <div class="row g-0">
+                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
+                    <div class="bg-light rounded">
+                        <div class="border-bottom py-4 px-5 mb-4">
+                            <h4 class="text-primary mb-1">Plano Básico</h4>
+                            <small class="text-uppercase">Para empresas de pequeno porte</small>
+                        </div>
+                        <div class="p-5 pt-0">
+                            <h1 class="display-5 mb-3">
+                                <small class="align-top" style="font-size: 22px; line-height: 45px;">R$</small>49,00<small
+                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mês</small>
+                            </h1>
+                            <div class="d-flex justify-content-between mb-3"><span>Até 50 certificados por mês</span><i
+                                    class="fa fa-check text-primary pt-1"></i></div>
+                            <div class="d-flex justify-content-between mb-3"><span>Suporte por
+                                    email</span><i class="fa fa-check text-primary pt-1"></i></div>
+                            <a href="#" class="btn btn-primary py-2 px-4 mt-4">Assinar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+                    <div class="bg-white rounded shadow position-relative" style="z-index: 1;">
+                        <div class="border-bottom py-4 px-5 mb-4">
+                            <h4 class="text-primary mb-1">Plano Profissional</h4>
+                            <small class="text-uppercase">Para empresas de médio porte</small>
+                        </div>
+                        <div class="p-5 pt-0">
+                            <h1 class="display-5 mb-3">
+                                <small class="align-top" style="font-size: 22px; line-height: 45px;">R$</small>99,00<small
+                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mês</small>
+                            </h1>
+                            <div class="d-flex justify-content-between mb-3"><span>Até 200 certificados por mês</span><i
+                                    class="fa fa-check text-primary pt-1"></i></div>
+                            <div class="d-flex justify-content-between mb-3"><span>Suporte por email e
+                                    telefone</span><i class="fa fa-check text-primary pt-1"></i></div>
+                            <a href="#" class="btn btn-primary py-2 px-4 mt-4">Assinar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.9s">
+                    <div class="bg-light rounded">
+                        <div class="border-bottom py-4 px-5 mb-4">
+                            <h4 class="text-primary mb-1">Plano Empresarial</h4>
+                            <small class="text-uppercase">Para empresas de grande porte</small>
+                        </div>
+                        <div class="p-5 pt-0">
+                            <h1 class="display-5 mb-3">
+                                <small class="align-top" style="font-size: 22px; line-height: 45px;">R$</small>149,00<small
+                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mês</small>
+                            </h1>
+                            <div class="d-flex justify-content-between mb-3"><span>Análises
+                                    ilimitadas</span><i class="fa fa-check text-primary pt-1"></i></div>
+                            <div class="d-flex justify-content-between mb-3"><span>Suporte por email e
+                                    telefone</span><i class="fa fa-check text-primary pt-1"></i></div>
+                            <a href="#" class="btn btn-primary py-2 px-4 mt-4">Assinar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Planos End -->
+
+
+    <!-- Contato Start -->
+    <div id="contato" class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h5 class="fw-bold text-primary text-uppercase">Contato</h5>
+                <h1 class="mb-0">Entre em contato conosco</h1>
+            </div>
+            <div class="row g-5 mb-5">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.1s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded"
+                            style="width: 60px; height: 60px;">
+                            <i class="fa fa-phone-alt text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Ligue para nós</h5>
+                            <h4 class="text-primary mb-0">+55 (11) 9999-9999</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.4s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded"
+                            style="width: 60px; height: 60px;">
+                            <i class="fa fa-envelope-open text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Escreva para nós</h5>
+                            <h4 class="text-primary mb-0">contato@análisecritica.com.br</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.8s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded"
+                            style="width: 60px; height: 60px;">
+                            <i class="fa fa-map-marker-alt text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Nos encontre</h5>
+                            <h4 class="text-primary mb-0">Fortaleza - CE</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Seu nome"
+                                    style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control border-0 bg-light px-4" placeholder="Seu email"
+                                    style="height: 55px;">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Assunto"
+                                    style="height: 55px;">
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control border-0 bg-light px-4 py-3" rows="4"
+                                    placeholder="Mensagem"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Enviar Mensagem</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="mapouter">
+                        <div class="gmap_canvas">
+                            <iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&height=400&hl=en&q=Fortaleza&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
+                        </div>
+                        <style>
+                            .mapouter {
+                                position: relative;
+                                text-align: right;
+                                width: 100%;
+                                height: 400px;
+                            }
+
+                            .gmap_canvas {
+                                overflow: hidden;
+                                background: none !important;
+                                width: 100%;
+                                height: 400px;
+                            }
+
+                            .gmap_iframe {
+                                width: 100% !important;
+                                height: 400px !important;
+                            }
+                        </style>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contato End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-4 col-md-6 footer-about">
+                    <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
+                        <a href="index.html" class="navbar-brand">
+                            <h1 class="m-0 text-white"><i class="fa fa-user-tie me-2"></i>Análise Crítica</h1>
+                        </a>
+                        <p class="mt-3 mb-4">A plataforma online para análise de certificados de calibração de
+                            equipamentos médico-hospitalares.</p>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-6">
+                    <div class="row gx-5">
+                        <div class="col-lg-4 col-md-12 pt-5 mb-5">
+                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                <h3 class="text-light mb-0">Entre em contato</h3>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-geo-alt text-primary me-2"></i>
+                                <p class="mb-0">Fortaleza - CE</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-envelope-open text-primary me-2"></i>
+                                <p class="mb-0">contato@análisecritica.com.br</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-telephone text-primary me-2"></i>
+                                <p class="mb-0">+55 (11) 9999-9999</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                <h3 class="text-light mb-0">Links Rápidos</h3>
+                            </div>
+                            <div class="link-animated d-flex flex-column justify-content-start">
+                                <a class="text-light mb-2" href="#sobre"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>Sobre</a>
+                                <a class="text-light mb-2" href="#planos"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>Planos</a>
+                                <a class="text-light mb-2" href="#contato"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>Contato</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid text-white" style="background: #061429;">
+        <div class="container text-center">
+            <div class="row justify-content-end">
+                <div class="col-lg-8 col-md-6">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
+                        <p class="mb-0"><a class="text-white border-bottom" href="#">Análise Crítica</a>. Análise Automatizada: Mais Tempo, Menos Esforço.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Template inspirado no HTML Codex - https://htmlcodex.com --> 
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
+
+
+analise.html:
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <title>Análise Crítica de Certificados de Calibração</title>
+
+  <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/analise.css">
+
+  <style>
+    /* Estilo para fixar a navbar APENAS em analise.html */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin: 0;
+      width: 100%;
+      z-index: 1000; 
+      background-color: #0f1d3f;
+    }
+    
+  </style>
+</head>
+<body>
+  <!-- Spinner Start -->
+  <div id="spinner"
+      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+      <div class="spinner"></div>
+  </div>
+  <!-- Spinner End -->
+
+
+  <!-- Navbar & Hero Start -->
+  <div class="container-fluid position-relative p-0">
+      <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+          <a href="index.html" class="navbar-brand p-0">
+              <h1 class="m-0"><i class="fa fa-tasks"></i> Análise Crítica</h1>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+              <span class="fa fa-bars"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+              <div class="navbar-nav ms-auto py-0">
+                  <a href="index.html" class="nav-item nav-link">Início</a>
+                  <a href="index.html#sobre" class="nav-item nav-link">Sobre</a>
+                  <a href="index.html#planos" class="nav-item nav-link">Planos</a>
+                  <a href="index.html#contato" class="nav-item nav-link">Contato</a>
+              </div>
+              <a href="analise.html" class="btn btn-primary py-2 px-4 ms-3">Experimentar</a>
+          </div>
+      </nav>
+  </div>
+  <!-- Navbar & Hero End -->
+
+
+  <div class="container">
+
+    <div class="upload-section">
+      <label for="certificadoInput" class="custom-file-upload">
+        Importar Certificados (PDF)
+      </label>
+      <input type="file" id="certificadoInput" accept=".pdf" multiple>
+    </div>
+
+    <div id="thumbnails" class="thumbnail-container">
+      <!-- Miniaturas dos PDFs aparecerão aqui -->
+    </div>
+
+    <button id="analyze-button" class="analyze-btn">Analisar</button>
+  </div>
+
+  <div id="pdf-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"> 
+        <div class="pdf-navigation">
+          <button id="prev-pdf" class="nav-btn"><</button>
+          <span id="file-count-pdf"></span>
+          <button id="next-pdf" class="nav-btn">></button>
+        </div>
+        <span class="close" data-modal="pdf-modal">×</span> 
+      </div>
+      <div id="pdf-viewer">
+        <canvas id="pdf-canvas"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div id="form-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="pdf-navigation">
+          <button id="prev-form" class="nav-btn"><</button>
+          <span id="file-count-form"></span>
+          <button id="next-form" class="nav-btn">></button>
+          <button id="open-pdf-from-form" class="nav-btn">Ver PDF</button>
+          <div class="responsavel-input">
+            <label for="responsavelAnaliseInput" class="responsavel-label">Responsável:</label>
+            <input type="text" id="responsavelAnaliseInput">
+          </div>
+          <button id="open-pdf-from-form" class="nav-btn">Finalizar Análise</button> 
+        </div>
+        <span class="close" data-modal="form-modal">×</span> 
+      </div>      
+      <div id="form-container">
+        <!-- Formulário será carregado aqui -->
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Template inspirado no HTML Codex - https://htmlcodex.com --> 
+
+
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/counterup/counterup.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
+
+
+formulario.html:
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análise Crítica de Certificado de Calibração</title>
+  <link rel="stylesheet" href="css/formulario.css">
+  <link rel="icon" href="https://img.icons8.com/?size=100&id=fkXojbEAWAzS&format=png&color=000000">
+</head>
+<body>
+  <div class="container">
+    <h2 class="title">ANÁLISE CRÍTICA DE CERTIFICADO DE FORNECEDOR DE CALIBRAÇÃO DE EQUIPAMENTO MÉDICO-HOSPITALAR (EMH)</h2>
+
+    <div class="cabecalho">
+      <div class="header-group">
+        <input type="file" id="certificadoInput" accept="application/pdf">
+      </div>
+    </div>
+
+    <section class="form-section">
+      <h2>Dados do Certificado</h2>
+      <div class="grid-container">
+        <div class="form-group">
+          <label for="codigoCertificado">Código do Certificado:</label>
+          <input type="text" id="codigoCertificado">
+        </div>
+        <div class="form-group">
+          <label for="fornecedor">Fornecedor:</label>
+          <input type="text" id="fornecedor">
+        </div>
+        <div class="form-group">
+          <label for="dataCertificado">Data do Certificado:</label>
+          <input type="text" id="dataCertificado">
+        </div>
+        <div class="form-group">
+          <label for="validadeCertificado">Validade do Certificado:</label>
+          <input type="text" id="validadeCertificado">
+        </div>
+        <div class="form-group">
+          <label for="toleranciaCertificado">Tolerância (%):</label>
+          <input type="text" id="toleranciaCertificado" readonly>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Dados do EMH</h2>
+      <div class="grid-container">
+        <div class="form-group">
+          <label for="descricaoEMH">Equipamento:</label>
+          <input type="text" id="descricaoEMH">
+        </div>
+        <div class="form-group">
+          <label for="numeroSerieEMH">Número de Série:</label>
+          <input type="text" id="numeroSerieEMH">
+        </div>
+        <div class="form-group">
+          <label for="numeroOS">Nº da OS:</label>
+          <input type="text" id="numeroOS">
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section">
+        <h2>Resultados da Calibração</h2>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="7">Condição de Ensaio - ml/h</th>
+            </tr>
+            <tr>
+              <th>V.V.C.</th>
+              <th>Média das leituras (M)</th>
+              <th>Incerteza Expandida (Uk)</th>
+              <th>Tolerância (%)</th>
+              <th>Resultado da Medição <br>(M-Uk, M+Uk)</th>
+              <th>Resultado Esperado <br>(MÍN, MÁX)</th>
+              <th>Conformidade Normativa</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="coluna-vvc"><input type="number" id="vvc1" value="100"></td>
+                  <td class="coluna-media"><input type="number" id="media1"></td>
+                  <td class="coluna-incerteza"><input type="number" id="incerteza1"></td>
+                  <td class="coluna-tolerancia"><input type="text" id="tolerancia1" readonly></td>
+                  <td class="coluna-muk"><span id="resultadoMedicao1"></span></td>
+                  <td class="coluna-resultado-esperado"><span id="resultadoEsperado1"></td>
+                  <td><span id="conformidade1"></span></td>
+              </tr>
+              <tr>
+                  <td><input type="number" id="vvc2" value="50"></td>
+                  <td><input type="number" id="media2"></td>
+                  <td><input type="number" id="incerteza2"></td>
+                  <td><input type="text" id="tolerancia2" readonly></td>
+                  <td><span id="resultadoMedicao2"></span></td>
+                  <td><span id="resultadoEsperado2"></span></td>
+                  <td><span id="conformidade2"></span></td>
+              </tr>
+              <tr>
+                  <td><input type="number" id="vvc3" value="20"></td>
+                  <td><input type="number" id="media3"></td>
+                  <td><input type="number" id="incerteza3"></td>
+                  <td><input type="text" id="tolerancia3" readonly></td>
+                  <td><span id="resultadoMedicao3"></span></td>
+                  <td><span id="resultadoEsperado3"></span></td>
+                  <td><span id="conformidade3"></span></td>
+              </tr>
+          </tbody>
+        </table>
+    </section>
+
+    <section class="form-section">
+      <h2>Checklist do Certificado</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ITEM</th>
+            <th>ITEM DE VERIFICAÇÃO</th>
+            <th>SIM</th>
+            <th>NÃO</th>
+            <th>OBSERVAÇÃO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>O certificado possui a identificação clara do fornecedor terceirizado, incluindo dados no papel timbrado?</td>
+            <td><input type="radio" name="item1" value="sim" data-index="0" id="item1-sim"></td>
+            <td><input type="radio" name="item1" value="nao" data-index="1" id="item1-nao"></td>
+            <td><input type="text" id="observacao1"></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>O equipamento analisado está claramente descrito e identificado, incluindo Código (IDEC), marca, modelo e número de série?</td>
+            <td><input type="radio" name="item2" value="sim" data-index="0" id="item2-sim"></td>
+            <td><input type="radio" name="item2" value="nao" data-index="1" id="item2-nao"></td>
+            <td><input type="text" id="observacao2"></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>A data em que a calibração foi completada está claramente indicada?</td>
+            <td><input type="radio" name="item3" value="sim" data-index="0" id="item3-sim"></td>
+            <td><input type="radio" name="item3" value="nao" data-index="1" id="item3-nao"></td>
+            <td><input type="text" id="observacao3"></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Os resultados da calibração, incluindo o(s) valor(es) da(s) incerteza(s) e o VVC por ponto medido, estão presentes? Se o VVC não for dado, a média das leituras por ponto e/ou o erro (correção) foram fornecidos? VN = VVC + |Erro|</td>
+            <td><input type="radio" name="item4" value="sim" data-index="0" id="item4-sim"></td>
+            <td><input type="radio" name="item4" value="nao" data-index="1" id="item4-nao"></td>
+            <td><input type="text" id="observacao4"></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>O procedimento de calibração utilizado está claramente identificado, incluindo a referência do procedimento?</td>
+            <td><input type="radio" name="item5" value="sim" data-index="0" id="item5-sim"></td>
+            <td><input type="radio" name="item5" value="nao" data-index="1" id="item5-nao"></td>
+            <td><input type="text" id="observacao5"></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>As condições ambientais pertinentes, como umidade e temperatura no momento da calibração, estão apresentadas?</td>
+            <td><input type="radio" name="item6" value="sim" data-index="0" id="item6-sim"></td>
+            <td><input type="radio" name="item6" value="nao" data-index="1" id="item6-nao"></td>
+            <td><input type="text" id="observacao6"></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Quaisquer limitações ao uso do equipamento foram registradas no campo 'Observação'?</td>
+            <td><input type="radio" name="item7" value="sim" data-index="0" id="item7-sim"></td>
+            <td><input type="radio" name="item7" value="nao" data-index="1" id="item7-nao"></td>
+            <td><input type="text" id="observacao7"></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>A(s) pessoa(s) que realizou(ram) a comprovação metrológica estão claramente identificadas?</td>
+            <td><input type="radio" name="item8" value="sim" data-index="0" id="item8-sim"></td>
+            <td><input type="radio" name="item8" value="nao" data-index="1" id="item8-nao"></td>
+            <td><input type="text" id="observacao8"></td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>A(s) pessoa(s) responsável(is) pela correção da informação registrada, incluindo a aprovação do certificado e seus dados pelo fornecedor terceirizado, estão identificadas?</td>
+            <td><input type="radio" name="item9" value="sim" data-index="0" id="item9-sim"></td>
+            <td><input type="radio" name="item9" value="nao" data-index="1" id="item9-nao"></td>
+            <td><input type="text" id="observacao9"></td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Qualquer relatório ou certificado de calibração, incluindo identificação individual como código de documento ou números de série, está claramente indicado, incluindo a rastreabilidade dos padrões utilizados?</td>
+            <td><input type="radio" name="item10" value="sim" data-index="0" id="item10-sim"></td>
+            <td><input type="radio" name="item10" value="nao" data-index="1" id="item10-nao"></td>
+            <td><input type="text" id="observacao10"></td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Foi fornecida evidência da rastreabilidade dos resultados da calibração, incluindo cópia da rastreabilidade dos padrões utilizados?</td>
+            <td><input type="radio" name="item11" value="sim" data-index="0" id="item11-sim"></td>
+            <td><input type="radio" name="item11" value="nao" data-index="1" id="item11-nao"></td>
+            <td><input type="text" id="observacao11"></td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Os resultados da calibração obtidos, antes e onde requerido, após qualquer ajuste, modificação ou reparo, estão claramente documentados?</td>
+            <td><input type="radio" name="item12" value="sim" data-index="0" id="item12-sim"></td>
+            <td><input type="radio" name="item12" value="nao" data-index="1" id="item12-nao"></td>
+            <td><input type="text" id="observacao12"></td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>Detalhes sobre quaisquer manutenções, tais como assistência técnica, calibrações (ajustes), reparos e modificações realizadas, estão disponíveis no software de gestão de engenharia?</td>
+            <td><input type="radio" name="item13" value="sim" data-index="0" id="item13-sim"></td>
+            <td><input type="radio" name="item13" value="nao" data-index="1" id="item13-nao"></td>
+            <td><input type="text" id="observacao13"></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="form-section">
+      <h2>Observações Finais:</h2>
+      <textarea id="observacoesFinais"></textarea>
+    </section>
+
+    <section class="form-section">
+      <h2>Aprovação Final</h2>
+      <div class="form-group-aprovacao">
+        <label for="aprovacao">O certificado satisfaz aos requisitos explicitados?</label><br>
+        <input type="radio" name="aprovacao" value="sim" checked data-index="0" id="aprovacao-sim"> SIM
+        <input type="radio" name="aprovacao" value="nao" data-index="1" id="aprovacao-nao"> NÃO
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Dados da Análise</h2>
+      <div class="grid-container">
+        <div class="form-group">
+          <label for="dataAnalise">Data da Análise:</label>
+          <input type="text" id="dataAnalise">
+        </div>
+        <div class="form-group">
+          <label for="responsavelAnalise">Responsável pela Análise:</label>
+          <input type="text" id="responsavelAnalise">
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</body>
+</html>
+
+
+
+
+main.js:
+(function ($) {
+    "use strict";
+
+    // Spinner
+    var spinner = function () {
+        setTimeout(function () {
+            if ($('#spinner').length > 0) {
+                $('#spinner').removeClass('show');
+            }
+        }, 1);
+    };
+    spinner();
+    
+    
+    // Initiate the wowjs
+    new WOW().init();
+
+
+    // Sticky Navbar
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 45) {
+            $('.navbar').addClass('sticky-top shadow-sm');
+        } else {
+            $('.navbar').removeClass('sticky-top shadow-sm');
+        }
+    });
+    
+    // Dropdown on mouse hover
+    const $dropdown = $(".dropdown");
+    const $dropdownToggle = $(".dropdown-toggle");
+    const $dropdownMenu = $(".dropdown-menu");
+    const showClass = "show";
+    
+    $(window).on("load resize", function() {
+        if (this.matchMedia("(min-width: 992px)").matches) {
+            $dropdown.hover(
+            function() {
+                const $this = $(this);
+                $this.addClass(showClass);
+                $this.find($dropdownToggle).attr("aria-expanded", "true");
+                $this.find($dropdownMenu).addClass(showClass);
+            },
+            function() {
+                const $this = $(this);
+                $this.removeClass(showClass);
+                $this.find($dropdownToggle).attr("aria-expanded", "false");
+                $this.find($dropdownMenu).removeClass(showClass);
+            }
+            );
+        } else {
+            $dropdown.off("mouseenter mouseleave");
+        }
+    });
+
+
+    // Facts counter
+    $('[data-toggle="counter-up"]').counterUp({
+        delay: 10,
+        time: 2000
+    });
+    
+    
+    // Back to top button
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            $('.back-to-top').fadeIn('slow');
+        } else {
+            $('.back-to-top').fadeOut('slow');
+        }
+    });
+    $('.back-to-top').click(function () {
+        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+        return false;
+    });
+
+
+    // Testimonials carousel
+    $(".testimonial-carousel").owlCarousel({
+        autoplay: true,
+        smartSpeed: 1500,
+        dots: true,
+        loop: true,
+        center: true,
+        responsive: {
+            0:{
+                items:1
+            },
+            576:{
+                items:1
+            },
+            768:{
+                items:2
+            },
+            992:{
+                items:3
+            }
+        }
+    });
+
+
+    // Vendor carousel
+    $('.vendor-carousel').owlCarousel({
+        loop: true,
+        margin: 45,
+        dots: false,
+        loop: true,
+        autoplay: true,
+        smartSpeed: 1000,
+        responsive: {
+            0:{
+                items:2
+            },
+            576:{
+                items:4
+            },
+            768:{
+                items:6
+            },
+            992:{
+                items:8
+            }
+        }
+    });
+    
+})(jQuery);
+
+
+
+script.js:
+// 1. Inicialização e Variáveis Globais:
+
+let files = [];
+let currentPDFIndex = 0;
+let pdfDoc = null;
+let modal = document.getElementById("pdf-modal");
+let formModal = document.getElementById("form-modal");
+let closeBtns = document.querySelectorAll(".close");
+let prevPdfBtn = document.getElementById("prev-pdf");
+let nextPdfBtn = document.getElementById("next-pdf");
+let prevFormBtn = document.getElementById("prev-form");
+let nextFormBtn = document.getElementById("next-form");
+let conformidadeSpans;
+let aprovacaoRadios;
+let dadosPDF = []; // Array para armazenar os dados extraídos de cada PDF
+let responsavelAnalise = '';
+
+// 2. Funções para Gerenciar o LocalStorage:
+
+function limparLocalStorage() {
+  localStorage.clear();
+}
+
+// Função para salvar os dados do formulário no LocalStorage
+function salvarDadosFormulario() {
+  const observacoes = document.querySelectorAll('input[id^="observacao"]');
+  const radios = document.querySelectorAll('input[type="radio"]');
+  const inputs = document.querySelectorAll('input[type="text"], input[type="number"]');
+
+  observacoes.forEach(obs => {
+    const chaveLocalStorage = `${obs.id}-${currentPDFIndex}`; 
+    localStorage.setItem(chaveLocalStorage, obs.value);
+  });
+
+  radios.forEach(radio => {
+    if (radio.checked) {
+      const chaveLocalStorage = `${radio.name}-${currentPDFIndex}`;
+      localStorage.setItem(chaveLocalStorage, radio.dataset.index);
+    }
+  });
+
+  inputs.forEach(input => {
+    const chaveLocalStorage = `${input.id}-${currentPDFIndex}`; 
+    
+    // Adiciona a condição para salvar apenas se o input não for responsavelAnalise
+    if (input.id !== 'responsavelAnalise') { 
+      localStorage.setItem(chaveLocalStorage, input.value);
+    }
+  });
+
+  // Salva Observações Finais
+  const observacoesFinais = document.getElementById('observacoesFinais');
+  const chaveObservacoesFinais = `observacoesFinais-${currentPDFIndex}`;
+  localStorage.setItem(chaveObservacoesFinais, observacoesFinais.value);
+}
+
+// Função para carregar os dados do formulário do LocalStorage
+function carregarDadosFormulario() {
+  const observacoes = document.querySelectorAll('input[id^="observacao"]');
+  const radios = document.querySelectorAll('input[type="radio"]');
+  const inputs = document.querySelectorAll('input[type="text"], input[type="number"]');
+
+  observacoes.forEach(obs => {
+    const chaveLocalStorage = `${obs.id}-${currentPDFIndex}`;
+    obs.value = localStorage.getItem(chaveLocalStorage) || '';
+  });
+
+  radios.forEach(radio => {
+    const chaveLocalStorage = `${radio.name}-${currentPDFIndex}`;
+    if (localStorage.getItem(chaveLocalStorage) === radio.dataset.index) {
+      radio.checked = true;
+    }
+  });
+
+  inputs.forEach(input => {
+    const chaveLocalStorage = `${input.id}-${currentPDFIndex}`;
+    input.value = localStorage.getItem(chaveLocalStorage) || '';
+  });
+
+  // Carrega Observações Finais
+  const observacoesFinais = document.getElementById('observacoesFinais');
+  const chaveObservacoesFinais = `observacoesFinais-${currentPDFIndex}`;
+  observacoesFinais.value = localStorage.getItem(chaveObservacoesFinais) || '';
+}
+
+// Função para carregar os dados do formulário do LocalStorage
+function carregarDadosFormulario() {
+  const observacoes = document.querySelectorAll('input[id^="observacao"]');
+  const radios = document.querySelectorAll('input[type="radio"]');
+  const inputs = document.querySelectorAll('input[type="text"], input[type="number"]');
+
+  observacoes.forEach(obs => {
+    obs.value = localStorage.getItem(obs.id) || '';
+  });
+
+  radios.forEach(radio => {
+    if (localStorage.getItem(radio.name) === radio.dataset.index) {
+      radio.checked = true;
+    }
+  });
+
+  inputs.forEach(input => {
+    const chaveLocalStorage = `${input.id}-${currentPDFIndex}`; // Chave única por input e índice do PDF
+    input.value = localStorage.getItem(chaveLocalStorage) || '';
+  });
+}
+
+// 3. Funções para Gerenciar Modais:
+
+closeBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const modalId = btn.dataset.modal;
+    const modalToClose = document.getElementById(modalId);
+    modalToClose.style.display = "none";
+  });
+});
+
+// 4. Funções para Gerenciar Arquivos:
+
+// Função para gerar miniaturas em ordem
+async function generateThumbnailsInOrder(files) {
+  for (let i = 0; i < files.length; i++) {
+    await generateThumbnail(files[i], i);
+  }
+}
+
+// Gera a miniatura do PDF
+async function generateThumbnail(file, index) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = function () {
+      const pdfData = new Uint8Array(reader.result);
+      pdfjsLib.getDocument({ data: pdfData }).promise.then(pdf => {
+        pdf.getPage(1).then(page => {
+          const scale = 0.3;
+          const viewport = page.getViewport({ scale: scale });
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d');
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+
+          const renderContext = {
+            canvasContext: context,
+            viewport: viewport
+          };
+          page.render(renderContext).promise.then(() => {
+            const img = document.createElement('img');
+            img.src = canvas.toDataURL();
+            img.alt = `PDF ${index + 1}`;
+            img.setAttribute('data-index', index);
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', () => {
+              openPDFModal(index);
+            });
+            document.getElementById('thumbnails').appendChild(img);
+            resolve();
+          }).catch(error => {
+            console.error('Erro ao renderizar a página:', error);
+            reject(error);
+          });
+        }).catch(error => {
+          console.error('Erro ao obter a página do PDF:', error);
+          reject(error);
+        });
+      }).catch(error => {
+        console.error('Erro ao carregar o documento PDF:', error);
+        reject(error);
+      });
+    };
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+// Manipula a seleção de arquivos
+async function handleFileSelect(event) {
+  files = [];
+  dadosPDF = []; 
+  const fileList = event.target.files;
+
+  for (let i = 0; i < fileList.length; i++) {
+    files.push(fileList[i]);
+
+    await extractDataFromPDF(fileList[i]);
+  }
+
+  const thumbnails = document.getElementById('thumbnails');
+  thumbnails.innerHTML = '';
+  currentPDFIndex = 0;
+
+  generateThumbnailsInOrder(files);
+
+  limparLocalStorage();
+}
+
+// Extrai dados do PDF
+async function extractDataFromPDF(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = function () {
+      const pdfData = new Uint8Array(reader.result);
+      pdfjsLib.getDocument({ data: pdfData }).promise.then(pdf => {
+        pdf.getPage(1).then(page => {
+          page.getTextContent().then(textContent => {
+            let extractedText = '';
+            textContent.items.forEach(item => {
+              extractedText += item.str + ' ';
+            });
+            extractedText = extractedText.replace(/\s+/g, ' ').trim();
+
+            // Extração de dados do PDF (personalizado para o seu PDF)
+            const codigoCertificado = extractedText.match(/(\d{8}-\d{5}-\d{4})/)?.[1] || extractedText.match(/(\d{8}-\d{4}-\d{4})/)?.[1] || extractedText.match(/(\d{8}-\d{6}-\d{4})/)?.[1] || extractedText.match(/(\d{8}-\d{7}-\d{4})/)?.[1] || '';
+            const numeroSerie = codigoCertificado.split('-')[0];
+            const dataCertificado = extractedText.match(/Data da Emissão:\s*(\d{2}\/\d{2}\/\d{4})/)?.[1]?.trim() || '';
+            const validadeCertificado = calcularDataValidade(dataCertificado);
+            const descricaoEMH = extractedText.match(/Identificação do Equipamento\s+(.*?)\s+\d{8}/s)?.[1]?.trim() || '';
+            const fornecedor = 'Fresenius Kabi'; 
+
+            // Extração da Média das Leituras (considerando até 12 medidas)
+            const blocoTabela = extractedText.split('MÉDIA')[1]?.split('Medida - Padrão')[0]?.trim() || '';
+            const regexMedicao = /(\d+,\d+)\s*ml\/?h?/g;
+            const medias = [];
+            let match;
+            while ((match = regexMedicao.exec(blocoTabela)) !== null) {
+              medias.push(parseFloat(match[1].replace(',', '.')));
+            }
+
+            // Extração da Incerteza Expandida (considerando até 40 incertezas)
+            const regexIncerteza = /(\d+,\d+)/g;
+            const incertezas = [];
+            while ((match = regexIncerteza.exec(extractedText)) !== null) {
+              incertezas.push(parseFloat(match[1].replace(',', '.')));
+            }
+
+            // Lógica para definir as médias e incertezas corretas
+            let media1, media2, media3, incerteza1, incerteza2, incerteza3;
+            if (medias[3] < medias[7] && medias[7] < medias[11]) {
+              media1 = medias[11] || '';
+              media2 = medias[7] || '';
+              media3 = medias[3] || '';
+              incerteza1 = incertezas[39] || '';
+              incerteza2 = incertezas[31] || '';
+              incerteza3 = incertezas[23] || '';
+            } else {
+              media1 = medias[3] || '';
+              media2 = medias[7] || '';
+              media3 = medias[11] || '';
+              incerteza1 = incertezas[23] || incertezas[11] || '';
+              incerteza2 = incertezas[31] || '';
+              incerteza3 = incertezas[39] || '';
+            }
+
+            dadosPDF.push({
+              codigoCertificado,
+              numeroSerie,
+              dataCertificado,
+              validadeCertificado,
+              descricaoEMH,
+              fornecedor,
+              media1,
+              media2,
+              media3,
+              incerteza1,
+              incerteza2,
+              incerteza3,
+              vvc1: 100, // Valor padrão para VVC1
+              vvc2: 50,  // Valor padrão para VVC2
+              vvc3: 20   // Valor padrão para VVC3
+            });
+            resolve();
+          }).catch(error => reject(error));
+        }).catch(error => reject(error));
+      }).catch(error => reject(error));
+    };
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+// Carrega o PDF no visualizador
+function loadPDF(index) {
+  currentPDFIndex = index;
+  const file = files[index];
+  const reader = new FileReader();
+  reader.onload = function () {
+    const pdfData = new Uint8Array(reader.result);
+    pdfjsLib.getDocument({ data: pdfData }).promise.then(pdf => {
+      pdfDoc = pdf;
+      renderPage(1);
+      updateNavigationButtons();
+    }).catch(error => {
+      console.error('Erro ao carregar o documento PDF:', error);
+    });
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+// Renderiza a página do PDF no canvas
+function renderPage(num) {
+  pdfDoc.getPage(num).then(page => {
+    const viewport = page.getViewport({ scale: 5 });
+    const canvas = document.getElementById('pdf-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    const renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    page.render(renderContext);
+  });
+}
+
+// 5. Funções para Abrir Modais:
+
+// Abre o modal do visualizador de PDF
+function openPDFModal(index) {
+  currentPDFIndex = index;
+  loadPDF(currentPDFIndex);
+  modal.style.display = "block";
+}
+
+// Abre o modal do formulário
+function openFormModal() {
+  loadForm(currentPDFIndex);
+  formModal.style.display = "block";
+}
+
+// Abre o modal do formulário e atualiza a contagem de arquivos
+function openFormModalAndCount() {
+  const formContainer = document.getElementById('form-container');
+  formContainer.innerHTML = ''; 
+
+  document.getElementById('responsavelAnaliseInput').value = '';
+  const responsavelAnaliseFields = document.querySelectorAll('input[id="responsavelAnalise"]');
+  responsavelAnaliseFields.forEach(field => {
+    field.value = '';
+  });
+
+  loadForm(currentPDFIndex);
+  formModal.style.display = "block";
+  updateNavigationButtons();
+}
+
+// 6. Funções para Manipular Dados do PDF:
+
+// Calcula a data de validade com base na data de emissão
+function calcularDataValidade(dataEmissaoStr) {
+  if (!dataEmissaoStr) return '';
+  const partesData = dataEmissaoStr.split('/');
+  const dia = parseInt(partesData[0], 10);
+  const mes = parseInt(partesData[1], 10) - 1;
+  const ano = parseInt(partesData[2], 10);
+
+  const dataEmissao = new Date(ano, mes, dia);
+  dataEmissao.setFullYear(dataEmissao.getFullYear() + 1);
+
+  const diaValidade = dataEmissao.getDate().toString().padStart(2, '0');
+  const mesValidade = (dataEmissao.getMonth() + 1).toString().padStart(2, '0');
+  const anoValidade = dataEmissao.getFullYear();
+
+  return `${diaValidade}/${mesValidade}/${anoValidade}`;
+}
+
+// Carrega o formulário e preenche com os dados do PDF
+function loadForm(index) {
+  const formContainer = document.getElementById('form-container');
+  formContainer.innerHTML = '';
+
+  // Carrega o CSS
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'formulario.css';
+  document.head.appendChild(link);
+
+  fetch('formulario.html')
+    .then(response => response.text())
+    .then(html => {
+      formContainer.innerHTML = html;
+      // Carrega os dados do formulário do LocalStorage
+      const observacoes = document.querySelectorAll('input[id^="observacao"]');
+      const radios = document.querySelectorAll('input[type="radio"]');
+      const inputs = document.querySelectorAll('input[type="text"], input[type="number"]');
+      const textareas = document.querySelectorAll('textarea'); // Inclui textareas
+
+      observacoes.forEach(obs => {
+        const chaveLocalStorage = `${obs.id}-${currentPDFIndex}`;
+        obs.value = localStorage.getItem(chaveLocalStorage) || '';
+      });
+
+      radios.forEach(radio => {
+        const chaveLocalStorage = `${radio.name}-${currentPDFIndex}`;
+        if (localStorage.getItem(chaveLocalStorage) === radio.dataset.index) {
+          radio.checked = true;
+        }
+      });
+
+      inputs.forEach(input => {
+        const chaveLocalStorage = `${input.id}-${currentPDFIndex}`;
+        input.value = localStorage.getItem(chaveLocalStorage) || '';
+      });
+
+      // Carrega dados de textareas
+      textareas.forEach(textarea => {
+        const chaveLocalStorage = `${textarea.id}-${currentPDFIndex}`;
+        textarea.value = localStorage.getItem(chaveLocalStorage) || '';
+      });
+
+      const dados = dadosPDF[index];
+
+      if (dados) {
+        document.getElementById('codigoCertificado').value = dados.codigoCertificado;
+        document.getElementById('dataCertificado').value = dados.dataCertificado;
+        document.getElementById('validadeCertificado').value = dados.validadeCertificado;
+        document.getElementById('fornecedor').value = dados.fornecedor;
+        document.getElementById('descricaoEMH').value = dados.descricaoEMH;
+        document.getElementById('numeroSerieEMH').value = dados.numeroSerie;
+        document.getElementById('media1').value = dados.media1;
+        document.getElementById('media2').value = dados.media2;
+        document.getElementById('media3').value = dados.media3;
+        document.getElementById('incerteza1').value = dados.incerteza1;
+        document.getElementById('incerteza2').value = dados.incerteza2;
+        document.getElementById('incerteza3').value = dados.incerteza3;
+        document.getElementById('vvc1').value = dados.vvc1;
+        document.getElementById('vvc2').value = dados.vvc2;
+        document.getElementById('vvc3').value = dados.vvc3;
+
+        const tolerancia = dados.descricaoEMH.toLowerCase().includes("applix") ? '10' : '5';
+        document.getElementById('toleranciaCertificado').value = tolerancia;
+        document.getElementById('tolerancia1').value = tolerancia;
+        document.getElementById('tolerancia2').value = tolerancia;
+        document.getElementById('tolerancia3').value = tolerancia;
+
+        const dataAnaliseInput = document.getElementById('dataAnalise');
+        const dataAtual = new Date();
+        const dia = dataAtual.getDate().toString().padStart(2, '0');
+        const mes = (dataAtual.getMonth() + 1).toString().padStart(2, '0');
+        const ano = dataAtual.getFullYear();
+        const dataFormatada = `${dia}/${mes}/${ano}`;
+        dataAnaliseInput.value = dataFormatada;
+
+        for (let i = 1; i <= 3; i++) {
+          calcularResultados(i - 1);
+        }
+
+        currentPDFIndex = index;
+        updateNavigationButtons();
+
+        const vvcInputs = document.querySelectorAll('input[id^="vvc"]');
+        const mediaInputs = document.querySelectorAll('input[id^="media"]');
+        const incertezaInputs = document.querySelectorAll('input[id^="incerteza"]');
+        const toleranciaInputs = document.querySelectorAll('input[id^="tolerancia"]');
+        conformidadeSpans = document.querySelectorAll('span[id^="conformidade"]');
+        aprovacaoRadios = document.querySelectorAll('input[name="aprovacao"]');
+
+        for (let i = 0; i < vvcInputs.length; i++) {
+          vvcInputs[i].addEventListener('input', () => {
+            calcularResultados(i);
+            atualizarAprovacaoFinal();
+            salvarDadosFormulario();
+          });
+          mediaInputs[i].addEventListener('input', () => {
+            calcularResultados(i);
+            atualizarAprovacaoFinal();
+            salvarDadosFormulario();
+          });
+          incertezaInputs[i].addEventListener('input', () => {
+            calcularResultados(i);
+            atualizarAprovacaoFinal();
+            salvarDadosFormulario();
+          });
+          toleranciaInputs[i].addEventListener('input', () => {
+            calcularResultados(i);
+            atualizarAprovacaoFinal();
+            salvarDadosFormulario();
+          });
+        }
+
+        const responsavelAnaliseInput = document.getElementById('responsavelAnaliseInput');
+
+        // Recupera do LocalStorage com a chave 'responsavelAnalise'
+        responsavelAnalise = localStorage.getItem('responsavelAnalise') || '';
+        responsavelAnaliseInput.value = responsavelAnalise; 
+
+        function atualizarDadosAnalise() {
+          const responsavelAnaliseFields = document.querySelectorAll('input[id="responsavelAnalise"]');
+          responsavelAnaliseFields.forEach(field => {
+            field.value = responsavelAnalise; 
+          });
+
+          const dataAnaliseFields = document.querySelectorAll('input[id="dataAnalise"]');
+          dataAnaliseFields.forEach(field => {
+            field.value = dataFormatada; 
+          });
+        }
+
+        atualizarDadosAnalise();
+
+        responsavelAnaliseInput.addEventListener('input', () => {
+          responsavelAnalise = responsavelAnaliseInput.value; 
+          atualizarDadosAnalise(); 
+          responsavelAnaliseInput.value = responsavelAnalise;
+
+          // Salva no LocalStorage com a chave 'responsavelAnalise'
+          localStorage.setItem('responsavelAnalise', responsavelAnalise); 
+        });
+      } else {
+        console.error('Dados do PDF não encontrados!');
+      }
+
+      // Salva os dados do formulário no LocalStorage ao alterar os campos
+      observacoes.forEach(obs => {
+        obs.addEventListener('input', salvarDadosFormulario);
+      });
+
+      radios.forEach(radio => {
+        radio.addEventListener('change', salvarDadosFormulario);
+      });
+
+      inputs.forEach(input => {
+        // Verifica se o input não é o 'responsavelAnalise' antes de adicionar o listener
+        if (input.id !== 'responsavelAnalise') {
+          input.addEventListener('input', salvarDadosFormulario); 
+        }
+      });
+
+      textareas.forEach(textarea => {
+        textarea.addEventListener('input', salvarDadosFormulario);
+      });
+
+    })
+    .catch(error => {
+      console.error('Erro ao carregar o formulário:', error);
+    });
+}
+
+// 7. Funções para Calcular Resultados e Atualizar Formulário:
+
+// Função para calcular os resultados (M-Uk, M+Uk), (MÍN, MÁX) e Conformidade
+function calcularResultados(index) {
+  const vvc = parseFloat(document.getElementById(`vvc${index + 1}`).value) || 0;
+  const media = parseFloat(document.getElementById(`media${index + 1}`).value) || 0;
+  const incerteza = parseFloat(document.getElementById(`incerteza${index + 1}`).value) || 0;
+  const tolerancia = parseFloat(document.getElementById(`tolerancia${index + 1}`).value) || 0;
+
+  const resultadoMin = media - incerteza;
+  const resultadoMax = media + incerteza;
+  document.getElementById(`resultadoMedicao${index + 1}`).textContent = `${resultadoMin.toFixed(3)}, ${resultadoMax.toFixed(3)}`;
+
+  const esperadoMin = vvc - (vvc * (tolerancia / 100));
+  const esperadoMax = vvc + (vvc * (tolerancia / 100));
+  document.getElementById(`resultadoEsperado${index + 1}`).textContent = `${esperadoMin.toFixed(3)}, ${esperadoMax.toFixed(3)}`;
+
+  if (resultadoMin >= esperadoMin && resultadoMax <= esperadoMax) {
+    document.getElementById(`conformidade${index + 1}`).textContent = 'CONFORME';
+    document.getElementById(`conformidade${index + 1}`).style.color = 'green';
+  } else {
+    document.getElementById(`conformidade${index + 1}`).textContent = 'NÃO CONFORME';
+    document.getElementById(`conformidade${index + 1}`).style.color = 'red';
+  }
+}
+
+// Função para atualizar a aprovação final com base nos resultados
+function atualizarAprovacaoFinal() {
+  let todasConformes = true;
+  for (let i = 0; i < conformidadeSpans.length; i++) {
+    if (conformidadeSpans[i].textContent !== 'CONFORME') {
+      todasConformes = false;
+      break;
+    }
+  }
+
+  if (todasConformes) {
+    aprovacaoRadios[0].checked = true;
+  } else {
+    aprovacaoRadios[1].checked = true;
+  }
+}
+
+
+// 8. Navegação entre PDFs:
+
+// Navegação do PDF
+function nextPDF() {
+  if (currentPDFIndex < files.length - 1) {
+    currentPDFIndex++;
+    openPDFModal(currentPDFIndex);
+    loadForm(currentPDFIndex);
+    updateNavigationButtons();
+  }
+}
+
+function prevPDF() {
+  if (currentPDFIndex > 0) {
+    currentPDFIndex--;
+    openPDFModal(currentPDFIndex);
+    loadForm(currentPDFIndex);
+    updateNavigationButtons();
+  }
+}
+
+// Navegação do Formulário
+function nextForm() {
+  salvarDadosFormulario(); 
+  if (currentPDFIndex < files.length - 1) {
+    currentPDFIndex++;
+    loadForm(currentPDFIndex);
+    updateNavigationButtons();
+  }
+}
+
+function prevForm() {
+  salvarDadosFormulario();
+  if (currentPDFIndex > 0) {
+    currentPDFIndex--;
+    loadForm(currentPDFIndex);
+    updateNavigationButtons();
+  }
+}
+
+// 9. Funções Auxiliares:
+
+// Atualiza os botões de navegação
+function updateNavigationButtons() {
+  prevPdfBtn.disabled = currentPDFIndex === 0;
+  nextPdfBtn.disabled = currentPDFIndex === files.length - 1;
+  prevFormBtn.disabled = currentPDFIndex === 0;
+  nextFormBtn.disabled = currentPDFIndex === files.length - 1;
+
+  prevPdfBtn.style.backgroundColor = prevPdfBtn.disabled ? "#e0e0e0" : "";
+  nextPdfBtn.style.backgroundColor = nextPdfBtn.disabled ? "#e0e0e0" : "";
+  prevFormBtn.style.backgroundColor = prevFormBtn.disabled ? "#e0e0e0" : "";
+  nextFormBtn.style.backgroundColor = nextFormBtn.disabled ? "#e0e0e0" : "";
+
+  let fileCountSpanPdf = document.getElementById('file-count-pdf');
+  if (!fileCountSpanPdf) {
+    const span = document.createElement('span');
+    span.id = 'file-count-pdf';
+    span.style.margin = '0 10px'; 
+    document.querySelector('#pdf-modal .pdf-navigation').appendChild(span);
+  }
+  fileCountSpanPdf.textContent = `${currentPDFIndex + 1} de ${files.length}`;
+
+  let fileCountSpanForm = document.getElementById('file-count-form');
+  if (!fileCountSpanForm) {
+    const span = document.createElement('span');
+    span.id = 'file-count-form';
+    span.style.margin = '0 10px';
+    document.querySelector('#form-modal .pdf-navigation').appendChild(span);
+  }
+  fileCountSpanForm.textContent = `${currentPDFIndex + 1} de ${files.length}`;
+}
+
+// 10. Event Listeners para Botões de Navegação:
+
+prevPdfBtn.addEventListener("click", prevPDF);
+nextPdfBtn.addEventListener("click", nextPDF);
+prevFormBtn.addEventListener("click", prevForm);
+nextFormBtn.addEventListener("click", nextForm);
+
+// 11. Event Listeners:
+
+document.getElementById('certificadoInput').addEventListener('change', (event) => {
+  limparLocalStorage(); // Limpa antes de carregar novos arquivos
+  handleFileSelect(event);
+});
+document.getElementById('analyze-button').addEventListener('click', openFormModalAndCount);
+
+// Event Listener para o botão "Ver PDF" na modal do formulário
+document.getElementById('open-pdf-from-form').addEventListener('click', () => {
+  openPDFModal(currentPDFIndex);
+});
+
+
+
+
+style.css:
+/********** Template CSS **********/
+:root {
+    --primary: #06A3DA;
+    --secondary: #34AD54;
+    --light: #EEF9FF;
+    --dark: #091E3E;
+}
+
+
+/*** Spinner ***/
+.spinner {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    margin: 100px auto;
+    -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+    animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+    0% {
+        -webkit-transform: perspective(120px)
+    }
+    50% {
+        -webkit-transform: perspective(120px) rotateY(180deg)
+    }
+    100% {
+        -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg)
+    }
+}
+
+@keyframes sk-rotateplane {
+    0% {
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+    }
+    50% {
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+    }
+    100% {
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    }
+}
+
+#spinner {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    z-index: 99999;
+}
+
+#spinner.show {
+    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/*** Heading ***/
+h1,
+h2,
+.fw-bold {
+    font-weight: 800 !important;
+}
+
+h3,
+h4,
+.fw-semi-bold {
+    font-weight: 700 !important;
+}
+
+h5,
+h6,
+.fw-medium {
+    font-weight: 600 !important;
+}
+
+
+/*** Button ***/
+.btn {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    transition: .5s;
+}
+
+.btn-primary,
+.btn-secondary {
+    color: #FFFFFF;
+    box-shadow: inset 0 0 0 50px transparent;
+}
+
+.btn-primary:hover {
+    box-shadow: inset 0 0 0 0 var(--primary);
+}
+
+.btn-secondary:hover {
+    box-shadow: inset 0 0 0 0 var(--secondary);
+}
+
+.btn-square {
+    width: 36px;
+    height: 36px;
+}
+
+.btn-sm-square {
+    width: 30px;
+    height: 30px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+}
+
+
+/*** Navbar ***/
+.navbar-dark .navbar-nav .nav-link {
+    font-family: 'Nunito', sans-serif;
+    position: relative;
+    margin-left: 25px;
+    padding: 25px 0;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 600;
+    outline: none;
+    transition: .5s;
+}
+
+.sticky-top.navbar-dark .navbar-nav .nav-link {
+    padding: 20px 0;
+    color: var(--dark);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+.navbar-dark .navbar-brand h1 {
+    color: #FFFFFF;
+}
+
+.navbar-dark .navbar-toggler {
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+@media (max-width: 991.98px) {
+    .sticky-top.navbar-dark {
+        position: relative;
+        background: #FFFFFF;
+    }
+
+    .navbar-dark .navbar-nav .nav-link,
+    .navbar-dark .navbar-nav .nav-link.show,
+    .sticky-top.navbar-dark .navbar-nav .nav-link {
+        padding: 10px 0;
+        color: var(--dark);
+    }
+
+    .navbar-dark .navbar-brand h1 {
+        color: var(--primary);
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-dark {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        border-bottom: 1px solid rgba(256, 256, 256, .1);
+        z-index: 999;
+    }
+    
+    .sticky-top.navbar-dark {
+        position: fixed;
+        background: #FFFFFF;
+    }
+
+    .navbar-dark .navbar-nav .nav-link::before {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 2px;
+        bottom: -1px;
+        left: 50%;
+        background: var(--primary);
+        transition: .5s;
+    }
+
+    .navbar-dark .navbar-nav .nav-link:hover::before,
+    .navbar-dark .navbar-nav .nav-link.active::before {
+        width: 100%;
+        left: 0;
+    }
+
+    .navbar-dark .navbar-nav .nav-link.nav-contact::before {
+        display: none;
+    }
+
+    .sticky-top.navbar-dark .navbar-brand h1 {
+        color: var(--primary);
+    }
+}
+
+
+/*** Carousel ***/
+.carousel-caption {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(9, 30, 62, .7);
+    z-index: 1;
+}
+
+@media (max-width: 576px) {
+    .carousel-caption h5 {
+        font-size: 14px;
+        font-weight: 500 !important;
+    }
+
+    .carousel-caption h1 {
+        font-size: 30px;
+        font-weight: 600 !important;
+    }
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 10%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+
+/*** Section Title ***/
+.section-title::before {
+    position: absolute;
+    content: "";
+    width: 150px;
+    height: 5px;
+    left: 0;
+    bottom: 0;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+.section-title.text-center::before {
+    left: 50%;
+    margin-left: -75px;
+}
+
+.section-title.section-title-sm::before {
+    width: 90px;
+    height: 3px;
+}
+
+.section-title::after {
+    position: absolute;
+    content: "";
+    width: 6px;
+    height: 5px;
+    bottom: 0px;
+    background: #FFFFFF;
+    -webkit-animation: section-title-run 5s infinite linear;
+    animation: section-title-run 5s infinite linear;
+}
+
+.section-title.section-title-sm::after {
+    width: 4px;
+    height: 3px;
+}
+
+.section-title.text-center::after {
+    -webkit-animation: section-title-run-center 5s infinite linear;
+    animation: section-title-run-center 5s infinite linear;
+}
+
+.section-title.section-title-sm::after {
+    -webkit-animation: section-title-run-sm 5s infinite linear;
+    animation: section-title-run-sm 5s infinite linear;
+}
+
+@-webkit-keyframes section-title-run {
+    0% {left: 0; } 50% { left : 145px; } 100% { left: 0; }
+}
+
+@-webkit-keyframes section-title-run-center {
+    0% { left: 50%; margin-left: -75px; } 50% { left : 50%; margin-left: 45px; } 100% { left: 50%; margin-left: -75px; }
+}
+
+@-webkit-keyframes section-title-run-sm {
+    0% {left: 0; } 50% { left : 85px; } 100% { left: 0; }
+}
+
+
+/*** Service ***/
+.service-item {
+    position: relative;
+    height: 300px;
+    padding: 0 30px;
+    transition: .5s;
+}
+
+.service-item .service-icon {
+    margin-bottom: 30px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    border-radius: 2px;
+    transform: rotate(-45deg);
+}
+
+.service-item .service-icon i {
+    transform: rotate(45deg);
+}
+
+.service-item a.btn {
+    position: absolute;
+    width: 60px;
+    bottom: -48px;
+    left: 50%;
+    margin-left: -30px;
+    opacity: 0;
+}
+
+.service-item:hover a.btn {
+    bottom: -24px;
+    opacity: 1;
+}
+
+
+/*** Testimonial ***/
+.testimonial-carousel .owl-dots {
+    margin-top: 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.testimonial-carousel .owl-dot {
+    position: relative;
+    display: inline-block;
+    margin: 0 5px;
+    width: 15px;
+    height: 15px;
+    background: #DDDDDD;
+    border-radius: 2px;
+    transition: .5s;
+}
+
+.testimonial-carousel .owl-dot.active {
+    width: 30px;
+    background: var(--primary);
+}
+
+.testimonial-carousel .owl-item.center {
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-carousel .owl-item .testimonial-item {
+    transition: .5s;
+}
+
+.testimonial-carousel .owl-item.center .testimonial-item {
+    background: #FFFFFF !important;
+    box-shadow: 0 0 30px #DDDDDD;
+}
+
+
+/*** Team ***/
+.team-item {
+    transition: .5s;
+}
+
+.team-social {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .5s;
+}
+
+.team-social a.btn {
+    position: relative;
+    margin: 0 3px;
+    margin-top: 100px;
+    opacity: 0;
+}
+
+.team-item:hover {
+    box-shadow: 0 0 30px #DDDDDD;
+}
+
+.team-item:hover .team-social {
+    background: rgba(9, 30, 62, .7);
+}
+
+.team-item:hover .team-social a.btn:first-child {
+    opacity: 1;
+    margin-top: 0;
+    transition: .3s 0s;
+}
+
+.team-item:hover .team-social a.btn:nth-child(2) {
+    opacity: 1;
+    margin-top: 0;
+    transition: .3s .05s;
+}
+
+.team-item:hover .team-social a.btn:nth-child(3) {
+    opacity: 1;
+    margin-top: 0;
+    transition: .3s .1s;
+}
+
+.team-item:hover .team-social a.btn:nth-child(4) {
+    opacity: 1;
+    margin-top: 0;
+    transition: .3s .15s;
+}
+
+.team-item .team-img img,
+.blog-item .blog-img img  {
+    transition: .5s;
+}
+
+.team-item:hover .team-img img,
+.blog-item:hover .blog-img img {
+    transform: scale(1.15);
+}
+
+
+/*** Miscellaneous ***/
+@media (min-width: 991.98px) {
+    .facts {
+        position: relative;
+        margin-top: -75px;
+        z-index: 1;
+    }
+}
+
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 45px;
+    bottom: 45px;
+    z-index: 99;
+}
+
+.bg-header {
+    background: linear-gradient(rgba(9, 30, 62, .7), rgba(9, 30, 62, .7)), url(../img/carousel-1.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.link-animated a {
+    transition: .5s;
+}
+
+.link-animated a:hover {
+    padding-left: 10px;
+}
+
+@media (min-width: 767.98px) {
+    .footer-about {
+        margin-bottom: -75px;
+    }
+}
+
+
+analise.css:
+body, html {
+  font-family: 'Nunito', sans-serif;
+  background-color: #f4f4f4;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  width: 95%; 
+  margin: 35px auto;
+  text-align: center;
+}
+
+.upload-section{
+  display: flex;
+  margin-top: 10%;
+  justify-content: center;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #06A3DA;
+  color: white;
+  border-radius: 3px;
+  font-size: 16px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.custom-file-upload:hover{
+  background-color: #18b0e8;
+}
+
+#certificadoInput {
+  display: none;
+}
+
+.thumbnail-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.thumbnail-container img {
+  width: 100px;
+  height: auto;
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.thumbnail-container img:hover {
+  transform: scale(1.1);
+}
+
+.analyze-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  color: white;
+  background-color: #00a11b;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+}
+
+.analyze-btn:hover {
+  background-color: #08b725;
+}
+
+#pdf-viewer {
+  width: 100%;
+  height: 95vh; /* Ocupa 80% da altura da viewport */
+  overflow: auto;
+  border: 1px solid #ddd;
+  margin-top: 0px;
+}
+
+#pdf-canvas {
+  width: 100%;
+}
+
+#pdf-modal {
+  z-index: 2; /* Valor maior para o modal do PDF */
+}
+
+#form-container{
+  width: 100%;
+  max-height: 95vh; /* Altura máxima de 80% da viewport */
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  margin-top: 0px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;  /* Começar a modal no topo da página */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 70px auto;  /* Margem superior para acomodar a navbar */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-height: calc(100% - 60px); /* Altura máxima com espaço para margens */
+  position: relative;
+}
+
+
+.modal-header {  
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  margin-bottom: 0px; 
+}
+
+.close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer; 
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
+
+.pdf-navigation {
+  text-align: left; 
+  display: flex; /* Ativando o Flexbox para organizar os elementos na mesma linha */
+  align-items: center; /* Alinhando os itens verticalmente */
+}
+
+.nav-btn {
+  background-color: #43a3dc;
+  color: white;
+  padding: 12px 15px;
+  margin: 0 5px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: Arial, sans-serif; /* Supondo que o botão use Arial */
+  font-size: 14px;             /* Supondo que o botão use tamanho 16px */
+}
+
+.nav-btn:hover{
+  background-color: #3d94c6;
+}
+
+.responsavel-input {
+  display: flex;
+  align-items: center; /* Alinhando o label e o input verticalmente */
+  margin-left: 5px; /* Espaçamento à esquerda do grupo */
+  margin-right: 5px; /* Espaçamento à right do grupo */
+  background-color: #43a3dc; /* Adiciona um fundo leve */
+  border-radius: 5px; /* Arredonda as bordas */
+}
+
+.responsavel-label {
+  display: flex;
+  margin-left: 5px;
+  align-items: center;
+  font-weight:normal;
+  margin-right: 5px; /* Espaçamento entre o label e o input */
+  margin-left: 5px; /* Espaçamento entre o label e o input */
+  color: #ffffff;
+  font-size: 14px;
+}
+
+#responsavelAnaliseInput {
+    border: 1px solid #ccc; /* Adiciona uma borda ao input */
+    border-radius: 3px;
+    font-size: 16px;
+    color: #333; /* Define a cor do texto */
+    width: 100%; /* Ocupa a largura total do container */
+}
+
+#file-count-pdf,
+#file-count-form {
+  color: #737b79; /* Cor cinza */
+  margin: 0 5px;
+  font-size: 14px;
+}
+
+@media (max-width: 991.98px) {
+  .upload-section{
+    display: flex;
+    margin-top: 15%;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 992px) {
+  .upload-section{
+    display: flex;
+    margin-top: 15%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .upload-section{
+    display: flex;
+    margin-top: 20%;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 767.98px) {
+  .upload-section{
+    display: flex;
+    margin-top: 15%;
+    justify-content: center;
+  }
+}
+
+
+
+
+
+
+formulario.css:
+:root {
+    --primary-color: #343d4b;
+    --secondary-color: #4c596d;
+    --background-color: #f8f9fa;
+    --text-color: #343d4b;
+    --border-color: #dee2e6;
+    --input-background-color: #ffffff;
+    --input-border-color: #ced4da;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    gap: 0px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--background-color);
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .title {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+  }
+  
+  h2 {
+    color: var(--primary-color);
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #52b2e2;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-top: 5px;
+    background-color: #ebebeb;
+  }
+  
+  .cabecalho {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .header-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .btn-upload {
+    cursor: pointer;
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: var(--secondary-color);
+  }
+  
+  textarea {
+    height: 80px;
+  }
+  
+  input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid var(--border-color);
+    padding: 5px;
+    text-align: left;
+    word-wrap: break-word;
+  }
+  
+  th {
+    background-color: var(--secondary-color);
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .coluna-vvc {
+    width: 90px;
+  }
+  
+  .coluna-media {
+    width: 150px;
+  }
+  
+  .coluna-incerteza {
+    width: 150px;
+  }
+  
+  .coluna-tolerancia {
+    width: 80px;
+  }
+  
+  .coluna-muk {
+    width: 150px;
+  }
+  
+  .form-group-aprovacao{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  
+  
+  
+  /* Estilos específicos para impressão */
+  @media print {
+    .cabecalho {
+        display: none;
+    }
+  
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+  
+    h2 {
+        background-color: var(--input-border-color) !important;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border-bottom: 3px solid #52b2e2;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-top: 5px;
+        color: var(--primary-color); /* Mantenha a cor do texto */
+    }
+    
+    input[type="text"],
+    input[type="date"],
+    input[type="number"] {
+        border: none;
+        box-shadow: none;
+        font-size: small;
+        word-wrap: break-word;
+    }
+  
+    
+  
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 10px;
+    }
+    
+    table {
+        border: 1px solid var(--border-color);
+        font-size: small;
+    }
+  
+    thead {
+        background-color: #d3e4cd; /* Cor diferente para a impressão */
+        color: #000; /* Texto preto para melhor leitura */
+    }
+  
+    th {
+        background-color: var(--secondary-color);
+        color: #fff;
+        font-weight: bold;
+    }
+  
+    td {
+        border: 1px solid var(--border-color);
+        font-size: small;
+        word-wrap: break-word;
+    }
+  
+    .title,
+    h2 {
+        page-break-after: avoid;
+    }
+  
+    .form-section {
+        page-break-inside: avoid;
+    }
+  
+    .coluna-vvc {
+        width: 70px;
+    }
+    
+    .coluna-media {
+        width: 100px;
+    }
+    
+    .coluna-incerteza {
+        width: 70px;
+    }
+    
+    .coluna-tolerancia {
+        width: 60px;
+    }
+    
+    .coluna-muk {
+        width: 100px;
+    }
+  
+    /* Classe para o resultado esperado */
+    .coluna-resultado-esperado { 
+        min-width: 80px; /* Largura mínima da coluna Resultado Esperado (MÍN, MÁX) na impressão */
+        word-wrap: break-word; /* Permite quebra de linha */
+    }
+  }
+  
+  /* Estilos para manter as tabelas legíveis na tela */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  thead {
+    background-color: var(--secondary-color);
+    color: #fff;
+  }
+  
+  th, td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: left;
+    word-wrap: break-word; /* Permite quebra de linha automática */
+    white-space: normal;
+  }

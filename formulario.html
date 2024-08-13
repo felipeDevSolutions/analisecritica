@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análise Crítica de Certificado de Calibração</title>
+  <link rel="stylesheet" href="css/formulario.css">
+  <link rel="icon" href="https://img.icons8.com/?size=100&id=fkXojbEAWAzS&format=png&color=000000">
+</head>
+<body>
+  <div class="container">
+    <h2 class="title">ANÁLISE CRÍTICA DE CERTIFICADO DE FORNECEDOR DE CALIBRAÇÃO DE EQUIPAMENTO MÉDICO-HOSPITALAR (EMH)</h2>
+
+    <div class="cabecalho">
+      <div class="header-group">
+        <input type="file" id="certificadoInput" accept="application/pdf">
+      </div>
+    </div>
+
+    <section class="form-section">
+      <h2>Dados do Certificado</h2>
+      <div class="grid-container">
+        <div class="form-group">
+          <label for="codigoCertificado">Código do Certificado:</label>
+          <input type="text" id="codigoCertificado">
+        </div>
+        <div class="form-group">
+          <label for="fornecedor">Fornecedor:</label>
+          <input type="text" id="fornecedor">
+        </div>
+        <div class="form-group">
+          <label for="dataCertificado">Data do Certificado:</label>
+          <input type="text" id="dataCertificado">
+        </div>
+        <div class="form-group">
+          <label for="validadeCertificado">Validade do Certificado:</label>
+          <input type="text" id="validadeCertificado">
+        </div>
+        <div class="form-group">
+          <label for="toleranciaCertificado">Tolerância (%):</label>
+          <input type="text" id="toleranciaCertificado" readonly>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Dados do EMH</h2>
+      <div class="grid-container">
+        <div class="form-group">
+          <label for="descricaoEMH">Equipamento:</label>
+          <input type="text" id="descricaoEMH">
+        </div>
+        <div class="form-group">
+          <label for="numeroSerieEMH">Número de Série:</label>
+          <input type="text" id="numeroSerieEMH">
+        </div>
+        <div class="form-group">
+          <label for="numeroOS">Nº da OS:</label>
+          <input type="text" id="numeroOS">
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section">
+        <h2>Resultados da Calibração</h2>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="7">Condição de Ensaio - ml/h</th>
+            </tr>
+            <tr>
+              <th>V.V.C.</th>
+              <th>Média das leituras (M)</th>
+              <th>Incerteza Expandida (Uk)</th>
+              <th>Tolerância (%)</th>
+              <th>Resultado da Medição <br>(M-Uk, M+Uk)</th>
+              <th>Resultado Esperado <br>(MÍN, MÁX)</th>
+              <th>Conformidade Normativa</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="coluna-vvc"><input type="number" id="vvc1" value="100"></td>
+                  <td class="coluna-media"><input type="number" id="media1"></td>
+                  <td class="coluna-incerteza"><input type="number" id="incerteza1"></td>
+                  <td class="coluna-tolerancia"><input type="text" id="tolerancia1" readonly></td>
+                  <td class="coluna-muk"><span id="resultadoMedicao1"></span></td>
+                  <td class="coluna-resultado-esperado"><span id="resultadoEsperado1"></td>
+                  <td><span id="conformidade1"></span></td>
+              </tr>
+              <tr>
+                  <td><input type="number" id="vvc2" value="50"></td>
+                  <td><input type="number" id="media2"></td>
+                  <td><input type="number" id="incerteza2"></td>
+                  <td><input type="text" id="tolerancia2" readonly></td>
+                  <td><span id="resultadoMedicao2"></span></td>
+                  <td><span id="resultadoEsperado2"></span></td>
+                  <td><span id="conformidade2"></span></td>
+              </tr>
+              <tr>
+                  <td><input type="number" id="vvc3" value="20"></td>
+                  <td><input type="number" id="media3"></td>
+                  <td><input type="number" id="incerteza3"></td>
+                  <td><input type="text" id="tolerancia3" readonly></td>
+                  <td><span id="resultadoMedicao3"></span></td>
+                  <td><span id="resultadoEsperado3"></span></td>
+                  <td><span id="conformidade3"></span></td>
+              </tr>
+          </tbody>
+        </table>
+    </section>
+
+    <section class="form-section">
+      <h2>Checklist do Certificado</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ITEM</th>
+            <th>ITEM DE VERIFICAÇÃO</th>
+            <th>SIM</th>
+            <th>NÃO</th>
+            <th>OBSERVAÇÃO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>O certificado possui a identificação clara do fornecedor terceirizado, incluindo dados no papel timbrado?</td>
+            <td><input type="radio" name="item1" value="sim" data-index="0" id="item1-sim"></td>
+            <td><input type="radio" name="item1" value="nao" data-index="1" id="item1-nao"></td>
+            <td><input type="text" id="observacao1"></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>O equipamento analisado está claramente descrito e identificado, incluindo Código (IDEC), marca, modelo e número de série?</td>
+            <td><input type="radio" name="item2" value="sim" data-index="0" id="item2-sim"></td>
+            <td><input type="radio" name="item2" value="nao" data-index="1" id="item2-nao"></td>
+            <td><input type="text" id="observacao2"></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>A data em que a calibração foi completada está claramente indicada?</td>
+            <td><input type="radio" name="item3" value="sim" data-index="0" id="item3-sim"></td>
+            <td><input type="radio" name="item3" value="nao" data-index="1" id="item3-nao"></td>
+            <td><input type="text" id="observacao3"></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Os resultados da calibração, incluindo o(s) valor(es) da(s) incerteza(s) e o VVC por ponto medido, estão presentes? Se o VVC não for dado, a média das leituras por ponto e/ou o erro (correção) foram fornecidos? VN = VVC + |Erro|</td>
+            <td><input type="radio" name="item4" value="sim" data-index="0" id="item4-sim"></td>
+            <td><input type="radio" name="item4" value="nao" data-index="1" id="item4-nao"></td>
+            <td><input type="text" id="observacao4"></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>O procedimento de calibração utilizado está claramente identificado, incluindo a referência do procedimento?</td>
+            <td><input type="radio" name="item5" value="sim" data-index="0" id="item5-sim"></td>
+            <td><input type="radio" name="item5" value="nao" data-index="1" id="item5-nao"></td>
+            <td><input type="text" id="observacao5"></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>As condições ambientais pertinentes, como umidade e temperatura no momento da calibração, estão apresentadas?</td>
+            <td><input type="radio" name="item6" value="sim" data-index="0" id="item6-sim"></td>
+            <td><input type="radio" name="item6" value="nao" data-index="1" id="item6-nao"></td>
+            <td><input type="text" id="observacao6"></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Quaisquer limitações ao uso do equipamento foram registradas no campo 'Observação'?</td>
+            <td><input type="radio" name="item7" value="sim" data-index="0" id="item7-sim"></td>
+            <td><input type="radio" name="item7" value="nao" data-index="1" id="item7-nao"></td>
+            <td><input type="text" id="observacao7"></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>A(s) pessoa(s) que realizou(ram) a comprovação metrológica estão claramente identificadas?</td>
+            <td><input type="radio" name="item8" value="sim" data-index="0" id="item8-sim"></td>
+            <td><input type="radio" name="item8" value="nao" data-index="1" id="item8-nao"></td>
+            <td><input type="text" id="observacao8"></td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>A(s) pessoa(s) responsável(is) pela correção da informação registrada, incluindo a aprovação do certificado e seus dados pelo fornecedor terceirizado, estão identificadas?</td>
+            <td><input type="radio" name="item9" value="sim" data-index="0" id="item9-sim"></td>
+            <td><input type="radio" name="item9" value="nao" data-index="1" id="item9-nao"></td>
+            <td><input type="text" id="observacao9"></td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Qualquer relatório ou certificado de calibração, incluindo identificação individual como código de documento ou números de série, está claramente indicado, incluindo a rastreabilidade dos padrões utilizados?</td>
+            <td><input type="radio" name="item10" value="sim" data-index="0" id="item10-sim"></td>
+            <td><input type="radio" name="item10" value="nao" data-index="1" id="item10-nao"></td>
+            <td><input type="text" id="observacao10"></td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Foi fornecida evidência da rastreabilidade dos resultados da calibração, incluindo cópia da rastreabilidade dos padrões utilizados?</td>
+            <td><input type="radio" name="item11" value="sim" data-index="0" id="item11-sim"></td>
+            <td><input type="radio" name="item11" value="nao" data-index="1" id="item11-nao"></td>
+            <td><input type="text" id="observacao11"></td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Os resultados da calibração obtidos, antes e onde requerido, após qualquer ajuste, modificação ou reparo, estão claramente documentados?</td>
+            <td><input type="radio" name="item12" value="sim" data-index="0" id="item12-sim"></td>
+            <td><input type="radio" name="item12" value="nao" data-index="1" id="item12-nao"></td>
+            <td><input type="text" id="observacao12"></td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>Detalhes sobre quaisquer manutenções, tais como assistência técnica, calibrações (ajustes), reparos e modificações realizadas, estão disponíveis no software de gestão de engenharia?</td>
+            <td><input type="radio" name="item13" value="sim" data-index="0" id="item13-sim"></td>
+            <td><input type="radio" name="item13" value="nao" data-index="1" id="item13-nao"></td>
+            <td><input type="text" id="observacao13"></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="form-section">
+      <h2>Observações Finais:</h2>
+      <textarea id="observacoesFinais"></textarea>
+    </section>
+
+    <section class="form-section">
+      <h2>Aprovação Final</h2>
+      <div class="form-group-aprovacao">
+        <label for="aprovacao">O certificado satisfaz aos requisitos explicitados?</label><br>
+        <input type="radio" name="aprovacao" value="sim" checked data-index="0" id="aprovacao-sim"> SIM
+        <input type="radio" name="aprovacao" value="nao" data-index="1" id="aprovacao-nao"> NÃO
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Dados da Análise</h2>
+      <div class="grid-container">
+        <div class="form-group">
+          <label for="dataAnalise">Data da Análise:</label>
+          <input type="text" id="dataAnalise">
+        </div>
+        <div class="form-group">
+          <label for="responsavelAnalise">Responsável pela Análise:</label>
+          <input type="text" id="responsavelAnalise">
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</body>
+</html>

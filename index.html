@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>Análise Crítica de Certificados</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Ferramenta para Análise Crítica de Certificados de Calibração de Equipamentos Médico-Hospitalares"
+        name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+            <a href="index.html" class="navbar-brand p-0">
+                <h1 class="m-0"><i class="fa fa-tasks"></i> Análise Crítica</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="index.html" class="nav-item nav-link active">Início</a>
+                    <a href="#sobre" class="nav-item nav-link">Sobre</a>
+                    <a href="#planos" class="nav-item nav-link">Planos</a>
+                    <a href="#contato" class="nav-item nav-link">Contato</a>
+                </div>
+                <a href="analise.html" class="btn btn-primary py-2 px-4 ms-3">Experimentar</a>
+            </div>
+        </nav>
+
+        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="img/carousel-1.jpg" alt="Análise Crítica de Certificados">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Simplifique seu processo
+                                de
+                                Análise Crítica</h5>
+                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Experimente Nossa Solução Automatizada!</h1>
+                            <a href="#planos" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Veja
+                                nossos planos</a>
+                            <a href="analise.html"
+                                class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Experimentar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="img/carousel-2.jpg" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Otimize seu Tempo com Análise de Certificados Inteligente</h5>
+                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Analise seus certificados de
+                                forma
+                                fácil e eficiente</h1>
+                            <a href="#planos" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Veja
+                                nossos planos</a>
+                            <a href="analise.html"
+                                class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Experimentar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Sobre Start -->
+    <div id="sobre" class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-7">
+                    <div class="section-title position-relative pb-3 mb-5">
+                        <h5 class="fw-bold text-primary text-uppercase">Sobre Nós</h5>
+                        <h1 class="mb-0">A melhor solução para análise de certificados de calibração</h1>
+                    </div>
+                    <p class="mb-4">Cansado de analisar manualmente certificados de calibração? Apresentamos a você a
+                        ferramenta definitiva para facilitar o seu dia a dia! Com nossa plataforma online, você poderá:
+                    </p>
+                    <div class="row g-0 mb-3">
+                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Carregar múltiplos
+                                certificados
+                                em PDF</h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Extrair dados importantes
+                                automaticamente
+                            </h5>
+                        </div>
+                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Preencher um checklist
+                                interativo</h5>
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Gerar relatórios completos
+                                de
+                                análise
+                            </h5>
+                        </div>
+                    </div>
+                    <a href="analise.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">
+                        Experimentar agora</a>
+                </div>
+                <div class="col-lg-5" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s"
+                            src="img/about.jpg" style="object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sobre End -->
+
+
+    <!-- Recursos Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h5 class="fw-bold text-primary text-uppercase">Deixe a Tecnologia Simplificar Suas Análises!</h5>
+                <h1 class="mb-0">Análise Crítica de Certificados: Eficiência e Precisão na Ponta dos Dedos!</h1>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="row g-5">
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa fa-file-alt text-white"></i>
+                            </div>
+                            <h4>Agilidade e Precisão</h4>
+                            <p class="mb-0">Extraia dados essenciais dos certificados automaticamente, eliminando a digitação manual e acelerando o processo de análise.</p>
+                        </div>
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa fa-chart-line text-white"></i>
+                            </div>
+                            <h4>Economia de Tempo</h4>
+                            <p class="mb-0">Automatize o processo de análise e economize tempo para se concentrar em
+                                outras tarefas importantes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.1s"
+                            src="img/feature.jpg" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row g-5">
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa fa-check-circle text-white"></i>
+                            </div>
+                            <h4>Conformidade Normativa</h4>
+                            <p class="mb-0">Garanta a conformidade com as normas com análises precisas e confiáveis. Minimize o risco de erros humanos e garanta a qualidade das suas calibrações.</p>
+                        </div>
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.8s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa fa-users text-white"></i>
+                            </div>
+                            <h4>Fácil de usar</h4>
+                            <p class="mb-0">Carregue, Analise, Pronto! Interface simples e intuitiva. Com poucos cliques, tenha grandes resultados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Recursos End -->
+
+    <!-- Planos Start -->
+    <div id="planos" class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h5 class="fw-bold text-primary text-uppercase">Planos</h5>
+                <h1 class="mb-0">Oferecemos planos flexíveis</h1>
+            </div>
+            <div class="row g-0">
+                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
+                    <div class="bg-light rounded">
+                        <div class="border-bottom py-4 px-5 mb-4">
+                            <h4 class="text-primary mb-1">Plano Básico</h4>
+                            <small class="text-uppercase">Para empresas de pequeno porte</small>
+                        </div>
+                        <div class="p-5 pt-0">
+                            <h1 class="display-5 mb-3">
+                                <small class="align-top" style="font-size: 22px; line-height: 45px;">R$</small>49,00<small
+                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mês</small>
+                            </h1>
+                            <div class="d-flex justify-content-between mb-3"><span>Até 50 certificados por mês</span><i
+                                    class="fa fa-check text-primary pt-1"></i></div>
+                            <div class="d-flex justify-content-between mb-3"><span>Suporte por
+                                    email</span><i class="fa fa-check text-primary pt-1"></i></div>
+                            <a href="#" class="btn btn-primary py-2 px-4 mt-4">Assinar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+                    <div class="bg-white rounded shadow position-relative" style="z-index: 1;">
+                        <div class="border-bottom py-4 px-5 mb-4">
+                            <h4 class="text-primary mb-1">Plano Profissional</h4>
+                            <small class="text-uppercase">Para empresas de médio porte</small>
+                        </div>
+                        <div class="p-5 pt-0">
+                            <h1 class="display-5 mb-3">
+                                <small class="align-top" style="font-size: 22px; line-height: 45px;">R$</small>99,00<small
+                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mês</small>
+                            </h1>
+                            <div class="d-flex justify-content-between mb-3"><span>Até 200 certificados por mês</span><i
+                                    class="fa fa-check text-primary pt-1"></i></div>
+                            <div class="d-flex justify-content-between mb-3"><span>Suporte por email e
+                                    telefone</span><i class="fa fa-check text-primary pt-1"></i></div>
+                            <a href="#" class="btn btn-primary py-2 px-4 mt-4">Assinar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.9s">
+                    <div class="bg-light rounded">
+                        <div class="border-bottom py-4 px-5 mb-4">
+                            <h4 class="text-primary mb-1">Plano Empresarial</h4>
+                            <small class="text-uppercase">Para empresas de grande porte</small>
+                        </div>
+                        <div class="p-5 pt-0">
+                            <h1 class="display-5 mb-3">
+                                <small class="align-top" style="font-size: 22px; line-height: 45px;">R$</small>149,00<small
+                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mês</small>
+                            </h1>
+                            <div class="d-flex justify-content-between mb-3"><span>Análises
+                                    ilimitadas</span><i class="fa fa-check text-primary pt-1"></i></div>
+                            <div class="d-flex justify-content-between mb-3"><span>Suporte por email e
+                                    telefone</span><i class="fa fa-check text-primary pt-1"></i></div>
+                            <a href="#" class="btn btn-primary py-2 px-4 mt-4">Assinar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Planos End -->
+
+
+    <!-- Contato Start -->
+    <div id="contato" class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h5 class="fw-bold text-primary text-uppercase">Contato</h5>
+                <h1 class="mb-0">Entre em contato conosco</h1>
+            </div>
+            <div class="row g-5 mb-5">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.1s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded"
+                            style="width: 60px; height: 60px;">
+                            <i class="fa fa-phone-alt text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Ligue para nós</h5>
+                            <h4 class="text-primary mb-0">+55 (11) 9999-9999</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.4s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded"
+                            style="width: 60px; height: 60px;">
+                            <i class="fa fa-envelope-open text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Escreva para nós</h5>
+                            <h4 class="text-primary mb-0">contato@análisecritica.com.br</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.8s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded"
+                            style="width: 60px; height: 60px;">
+                            <i class="fa fa-map-marker-alt text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Nos encontre</h5>
+                            <h4 class="text-primary mb-0">Fortaleza - CE</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Seu nome"
+                                    style="height: 55px;">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control border-0 bg-light px-4" placeholder="Seu email"
+                                    style="height: 55px;">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Assunto"
+                                    style="height: 55px;">
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control border-0 bg-light px-4 py-3" rows="4"
+                                    placeholder="Mensagem"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Enviar Mensagem</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="mapouter">
+                        <div class="gmap_canvas">
+                            <iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&height=400&hl=en&q=Fortaleza&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
+                        </div>
+                        <style>
+                            .mapouter {
+                                position: relative;
+                                text-align: right;
+                                width: 100%;
+                                height: 400px;
+                            }
+
+                            .gmap_canvas {
+                                overflow: hidden;
+                                background: none !important;
+                                width: 100%;
+                                height: 400px;
+                            }
+
+                            .gmap_iframe {
+                                width: 100% !important;
+                                height: 400px !important;
+                            }
+                        </style>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contato End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-4 col-md-6 footer-about">
+                    <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
+                        <a href="index.html" class="navbar-brand">
+                            <h1 class="m-0 text-white"><i class="fa fa-user-tie me-2"></i>Análise Crítica</h1>
+                        </a>
+                        <p class="mt-3 mb-4">A plataforma online para análise de certificados de calibração de
+                            equipamentos médico-hospitalares.</p>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-6">
+                    <div class="row gx-5">
+                        <div class="col-lg-4 col-md-12 pt-5 mb-5">
+                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                <h3 class="text-light mb-0">Entre em contato</h3>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-geo-alt text-primary me-2"></i>
+                                <p class="mb-0">Fortaleza - CE</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-envelope-open text-primary me-2"></i>
+                                <p class="mb-0">contato@análisecritica.com.br</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-telephone text-primary me-2"></i>
+                                <p class="mb-0">+55 (11) 9999-9999</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                <h3 class="text-light mb-0">Links Rápidos</h3>
+                            </div>
+                            <div class="link-animated d-flex flex-column justify-content-start">
+                                <a class="text-light mb-2" href="#sobre"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>Sobre</a>
+                                <a class="text-light mb-2" href="#planos"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>Planos</a>
+                                <a class="text-light mb-2" href="#contato"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>Contato</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid text-white" style="background: #061429;">
+        <div class="container text-center">
+            <div class="row justify-content-end">
+                <div class="col-lg-8 col-md-6">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
+                        <p class="mb-0"><a class="text-white border-bottom" href="#">Análise Crítica</a>. Análise Automatizada: Mais Tempo, Menos Esforço.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Template inspirado no HTML Codex - https://htmlcodex.com --> 
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
