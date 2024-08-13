@@ -155,6 +155,8 @@ h6,
     border-color: var(--primary) !important;
 }
 
+
+
 @media (max-width: 991.98px) {
     .sticky-top.navbar-dark {
         position: relative;
