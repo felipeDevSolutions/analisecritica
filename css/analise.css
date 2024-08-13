@@ -13,7 +13,7 @@ body, html {
 
 .upload-section{
   display: flex;
-  margin-top: 10%;
+  margin-top: 9%;
   justify-content: center;
 }
 
@@ -204,18 +204,11 @@ body, html {
   }
 }
 
-@media (min-width: 992px) {
-  .upload-section{
-    display: flex;
-    margin-top: 15%;
-    justify-content: center;
-  }
-}
 
 @media (max-width: 576px) {
   .upload-section{
     display: flex;
-    margin-top: 20%;
+    margin-top: 15%;
     justify-content: center;
   }
 }
@@ -223,7 +216,7 @@ body, html {
 @media (min-width: 767.98px) {
   .upload-section{
     display: flex;
-    margin-top: 15%;
+    margin-top: 9%;
     justify-content: center;
   }
 }
