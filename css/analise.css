@@ -196,33 +196,23 @@ body, html {
   font-size: 14px;
 }
 
-@media (max-width: 991.98px) {
+@media  (max-width: 320px) {
   .upload-section{
     display: flex;
-    margin-top: 15%;
+    margin-top: 40%;
+    justify-content: center;
+  }
+} 
+
+@media  (min-width: 321px) and (max-width: 390px) {
+  .upload-section{
+    display: flex;
+    margin-top: 35%;
     justify-content: center;
   }
 }
 
-
-@media (max-width: 576px) {
-  .upload-section{
-    display: flex;
-    margin-top: 15%;
-    justify-content: center;
-  }
-}
-
-@media (min-width: 767.98px) {
-  .upload-section{
-    display: flex;
-    margin-top: 15%;
-    justify-content: center;
-  }
-}
-
-
-@media (max-width: 391px) {
+@media (min-width: 391px) and (max-width: 576px) {
   .upload-section{
     display: flex;
     margin-top: 25%;
@@ -230,3 +220,12 @@ body, html {
   }
 }
 
+
+
+@media (min-width: 767.98px) and (max-width: 992px) {
+  .upload-section{
+    display: flex;
+    margin-top: 15%;
+    justify-content: center;
+  }
+}
