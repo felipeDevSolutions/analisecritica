@@ -216,7 +216,16 @@ body, html {
 @media (min-width: 767.98px) {
   .upload-section{
     display: flex;
-    margin-top: 9%;
+    margin-top: 15%;
+    justify-content: center;
+  }
+}
+
+
+@media (max-width: 391px) {
+  .upload-section{
+    display: flex;
+    margin-top: 25%;
     justify-content: center;
   }
 }
