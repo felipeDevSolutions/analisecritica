@@ -1442,7 +1442,7 @@ function loadForm(index) {
   // Carrega o CSS
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = 'formulario.css';
+  link.href = 'css/formulario.css';
   document.head.appendChild(link);
 
   fetch('formulario.html')
