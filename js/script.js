@@ -364,7 +364,7 @@ function calcularDataValidade(dataEmissaoStr) {
 // Carrega o formulário e preenche com os dados do PDF
 function loadForm(index) {
   const formContainer = document.getElementById('form-container');
-  formContainer.innerHTML = '';
+  formContainer.innerHTML = ''; 
 
   // Carrega o CSS
   const link = document.createElement('link');
@@ -376,11 +376,12 @@ function loadForm(index) {
     .then(response => response.text())
     .then(html => {
       formContainer.innerHTML = html;
+
       // Carrega os dados do formulário do LocalStorage
       const observacoes = document.querySelectorAll('input[id^="observacao"]');
       const radios = document.querySelectorAll('input[type="radio"]');
       const inputs = document.querySelectorAll('input[type="text"], input[type="number"]');
-      const textareas = document.querySelectorAll('textarea'); // Inclui textareas
+      const textareas = document.querySelectorAll('textarea');
 
       observacoes.forEach(obs => {
         const chaveLocalStorage = `${obs.id}-${currentPDFIndex}`;
@@ -399,7 +400,6 @@ function loadForm(index) {
         input.value = localStorage.getItem(chaveLocalStorage) || '';
       });
 
-      // Carrega dados de textareas
       textareas.forEach(textarea => {
         const chaveLocalStorage = `${textarea.id}-${currentPDFIndex}`;
         textarea.value = localStorage.getItem(chaveLocalStorage) || '';
@@ -438,19 +438,24 @@ function loadForm(index) {
         const dataFormatada = `${dia}/${mes}/${ano}`;
         dataAnaliseInput.value = dataFormatada;
 
+        // Define conformidadeSpans e aprovacaoRadios antes do loop
+        conformidadeSpans = document.querySelectorAll('span[id^="conformidade"]');
+        aprovacaoRadios = document.querySelectorAll('input[name="aprovacao"]');
+
+        // Calcula os resultados e atualiza a aprovação
         for (let i = 1; i <= 3; i++) {
           calcularResultados(i - 1);
         }
+        atualizarAprovacaoFinal();
 
         currentPDFIndex = index;
         updateNavigationButtons();
 
+        // Adiciona event listeners para os campos do formulário
         const vvcInputs = document.querySelectorAll('input[id^="vvc"]');
         const mediaInputs = document.querySelectorAll('input[id^="media"]');
         const incertezaInputs = document.querySelectorAll('input[id^="incerteza"]');
         const toleranciaInputs = document.querySelectorAll('input[id^="tolerancia"]');
-        conformidadeSpans = document.querySelectorAll('span[id^="conformidade"]');
-        aprovacaoRadios = document.querySelectorAll('input[name="aprovacao"]');
 
         for (let i = 0; i < vvcInputs.length; i++) {
           vvcInputs[i].addEventListener('input', () => {
@@ -475,16 +480,23 @@ function loadForm(index) {
           });
         }
 
-        const responsavelAnaliseInput = document.getElementById('responsavelAnaliseInput');
+        // Adiciona event listener para atualizar a aprovação final
+        // quando a conformidade normativa mudar
+        conformidadeSpans.forEach(span => {
+          span.addEventListener('DOMSubtreeModified', () => {
+            atualizarAprovacaoFinal();
+          });
+        });
 
-        // Recupera do LocalStorage com a chave 'responsavelAnalise'
+        // Gerencia o campo "Responsável pela Análise"
+        const responsavelAnaliseInput = document.getElementById('responsavelAnaliseInput');
         responsavelAnalise = localStorage.getItem('responsavelAnalise') || '';
-        responsavelAnaliseInput.value = responsavelAnalise; 
+        responsavelAnaliseInput.value = responsavelAnalise;
 
         function atualizarDadosAnalise() {
           const responsavelAnaliseFields = document.querySelectorAll('input[id="responsavelAnalise"]');
           responsavelAnaliseFields.forEach(field => {
-            field.value = responsavelAnalise; 
+            field.value = responsavelAnalise;
           });
 
           const dataAnaliseFields = document.querySelectorAll('input[id="dataAnalise"]');
@@ -496,13 +508,12 @@ function loadForm(index) {
         atualizarDadosAnalise();
 
         responsavelAnaliseInput.addEventListener('input', () => {
-          responsavelAnalise = responsavelAnaliseInput.value; 
-          atualizarDadosAnalise(); 
+          responsavelAnalise = responsavelAnaliseInput.value;
+          atualizarDadosAnalise();
           responsavelAnaliseInput.value = responsavelAnalise;
-
-          // Salva no LocalStorage com a chave 'responsavelAnalise'
-          localStorage.setItem('responsavelAnalise', responsavelAnalise); 
+          localStorage.setItem('responsavelAnalise', responsavelAnalise);
         });
+
       } else {
         console.error('Dados do PDF não encontrados!');
       }
@@ -517,9 +528,8 @@ function loadForm(index) {
       });
 
       inputs.forEach(input => {
-        // Verifica se o input não é o 'responsavelAnalise' antes de adicionar o listener
-        if (input.id !== 'responsavelAnalise') {
-          input.addEventListener('input', salvarDadosFormulario); 
+        if (input.id !== 'responsavelAnalise') { 
+          input.addEventListener('input', salvarDadosFormulario);
         }
       });
 
@@ -557,22 +567,31 @@ function calcularResultados(index) {
     document.getElementById(`conformidade${index + 1}`).textContent = 'NÃO CONFORME';
     document.getElementById(`conformidade${index + 1}`).style.color = 'red';
   }
+
+  atualizarAprovacaoFinal();
 }
 
 // Função para atualizar a aprovação final com base nos resultados
 function atualizarAprovacaoFinal() {
   let todasConformes = true;
+
+  // Verifica se ALGUM dos spans de conformidade é 'NÃO CONFORME'
   for (let i = 0; i < conformidadeSpans.length; i++) {
-    if (conformidadeSpans[i].textContent !== 'CONFORME') {
+    if (conformidadeSpans[i].textContent === 'NÃO CONFORME') {
       todasConformes = false;
-      break;
+      break; // Sai do loop, pois já encontramos um 'NÃO CONFORME'
     }
   }
 
+  const aprovacaoSim = document.getElementById('aprovacao-sim');
+  const aprovacaoNao = document.getElementById('aprovacao-nao');
+
   if (todasConformes) {
-    aprovacaoRadios[0].checked = true;
+    aprovacaoSim.checked = true;
+    aprovacaoNao.checked = false;
   } else {
-    aprovacaoRadios[1].checked = true;
+    aprovacaoSim.checked = false;
+    aprovacaoNao.checked = true; // Marca "NÃO" se houver algum 'NÃO CONFORME'
   }
 }
 
