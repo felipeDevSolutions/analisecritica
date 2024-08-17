@@ -1462,6 +1462,7 @@ analise.html:
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.1/purify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     
   
     <script src="lib/wow/wow.min.js"></script>
@@ -2419,94 +2420,151 @@ const estilosDeImpressao = {
 // --- Função para Gerar PDF ---
 async function gerarPDFAnalise() {
   try {
-    for (let i = 0; i < dadosPDF.length; i++) {
-      const response = await fetch('formulario.html');
-      let html = await response.text();
+    if (dadosPDF.length === 0) {
+      alert('Nenhum arquivo para baixar.');
+      return;
+    }
 
-      // Obtém os dados do formulário do array dadosPDF
-      const dadosFormulario = dadosPDF[i];
+    if (dadosPDF.length === 1) {
+      // Se houver apenas um PDF, faça o download diretamente
+      const dadosFormulario = dadosPDF[0];
+      gerarPDFUnico(dadosFormulario);
+    } else {
+      // Se houver vários PDFs, crie um arquivo .zip
+      const zip = new JSZip();
+      const folder = zip.folder('Analises_Crítica_Certificados'); 
 
-      // Calcula os resultados e formata a string HTML da tabela
-      let resultadosHTML = '';
-      for (let k = 1; k <= 3; k++) {
-        const vvc = parseFloat(dadosFormulario[`vvc${k}`]) || 0;
-        const media = parseFloat(dadosFormulario[`media${k}`]) || 0;
-        const incerteza = parseFloat(dadosFormulario[`incerteza${k}`]) || 0;
-        const tolerancia = dadosFormulario.descricaoEMH.toLowerCase().includes("applix") ? 10 : 5;
+      for (let i = 0; i < dadosPDF.length; i++) {
+        const dadosFormulario = dadosPDF[i];
+        const html = await obterHTMLFormulario(dadosFormulario);
 
-        const resultadoMin = media - incerteza;
-        const resultadoMax = media + incerteza;
-        const resultadoMedicao = `${resultadoMin.toFixed(3)}, ${resultadoMax.toFixed(3)}`;
-
-        const esperadoMin = vvc - (vvc * (tolerancia / 100));
-        const esperadoMax = vvc + (vvc * (tolerancia / 100));
-        const resultadoEsperado = `${esperadoMin.toFixed(3)}, ${esperadoMax.toFixed(3)}`;
-
-        const conformidade = (resultadoMin >= esperadoMin && resultadoMax <= esperadoMax) ? 'CONFORME' : 'NÃO CONFORME';
-        const corConformidade = (conformidade === 'CONFORME') ? 'green' : 'red';
-
-        // Criar a linha da tabela HTML com estilos inline
-        resultadosHTML += `
-          <tr>
-            <td>${vvc}</td>
-            <td>${media}</td>
-            <td>${incerteza}</td>
-            <td>${tolerancia}</td> 
-            <td>${resultadoMedicao}</td>
-            <td>${resultadoEsperado}</td>
-            <td style="color: ${corConformidade};">${conformidade}</td> 
-          </tr>
-        `;
+        // Crie o PDF e adicione à pasta dentro do .zip
+        const pdf = await gerarPDF(html, dadosFormulario.codigoCertificado);
+        folder.file(`Analise_Crítica_Certificado_${dadosFormulario.codigoCertificado}.pdf`, pdf, { binary: true });
       }
 
-      // Insere os resultados no HTML
-      html = html.replace('<tbody>', '<tbody>' + resultadosHTML);
-
-      // Preenche o restante do HTML do formulário
-      for (const chave in dadosFormulario) {
-        html = html.replaceAll(`{${chave}}`, dadosFormulario[chave] || '');
-      }
-
-      // Cria o jsPDF
-      const doc = new jspdf.jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'a4', 
-      });
-
-      // Define as Margens e Propriedades do Documento
-      const margin = 5;
-      doc.setProperties({
-        title: `Analise_Certificado_${dadosFormulario.codigoCertificado}`,
-        author: 'Seu Nome ou da Empresa',
-        creator: 'Seu Nome ou da Empresa',
-      });
-
-      // Adiciona o HTML ao PDF
-      doc.html(html, {
-        callback: (doc) => {
-          doc.save(`Analise_Certificado_${dadosFormulario.codigoCertificado}.pdf`);
-        },
-        x: margin,
-        y: margin,
-        html2canvas: {
-          scale: 0.5, // Ajuste a escala conforme necessário
-          useCORS: true,
-          onclone: (doc) => {
-            // Aplica os estilos de impressão
-            Object.keys(estilosDeImpressao).forEach(seletor => {
-              const elementos = doc.querySelectorAll(seletor);
-              elementos.forEach(elemento => {
-                Object.assign(elemento.style, estilosDeImpressao[seletor]);
-              });
-            });
-          }
-        }
+      zip.generateAsync({ type: 'blob' }).then(function (content) {
+        saveAs(content, 'Analises_Crítica_Certificados.zip');
       });
     }
   } catch (error) {
     console.error('Erro ao gerar o PDF:', error);
   }
+}
+
+// Função auxiliar para gerar um único PDF
+async function gerarPDFUnico(dadosFormulario) {
+  const html = await obterHTMLFormulario(dadosFormulario);
+  const doc = new jspdf.jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4',
+  });
+
+  const margin = 5;
+  doc.setProperties({
+    title: `Analise_Crítica_Certificado_${dadosFormulario.codigoCertificado}`,
+    author: 'Seu Nome ou da Empresa',
+    creator: 'Seu Nome ou da Empresa',
+  });
+
+  doc.html(html, {
+    callback: (doc) => {
+      doc.save(`Analise_Crítica_Certificado_${dadosFormulario.codigoCertificado}.pdf`);
+    },
+    x: margin,
+    y: margin,
+    html2canvas: {
+      scale: 0.5,
+      useCORS: true,
+      onclone: (doc) => {
+        Object.keys(estilosDeImpressao).forEach(seletor => {
+          const elementos = doc.querySelectorAll(seletor);
+          elementos.forEach(elemento => {
+            Object.assign(elemento.style, estilosDeImpressao[seletor]);
+          });
+        });
+      }
+    }
+  });
+}
+
+// Função auxiliar para obter o HTML do formulário preenchido
+async function obterHTMLFormulario(dadosFormulario) {
+  const response = await fetch('formulario.html');
+  let html = await response.text();
+
+  // Calcula os resultados e formata a string HTML da tabela
+  let resultadosHTML = '';
+  for (let k = 1; k <= 3; k++) {
+    const vvc = parseFloat(dadosFormulario[`vvc${k}`]) || 0;
+    const media = parseFloat(dadosFormulario[`media${k}`]) || 0;
+    const incerteza = parseFloat(dadosFormulario[`incerteza${k}`]) || 0;
+    const tolerancia = dadosFormulario.descricaoEMH.toLowerCase().includes("applix") ? 10 : 5;
+
+    const resultadoMin = media - incerteza;
+    const resultadoMax = media + incerteza;
+    const resultadoMedicao = `${resultadoMin.toFixed(3)}, ${resultadoMax.toFixed(3)}`;
+
+    const esperadoMin = vvc - (vvc * (tolerancia / 100));
+    const esperadoMax = vvc + (vvc * (tolerancia / 100));
+    const resultadoEsperado = `${esperadoMin.toFixed(3)}, ${esperadoMax.toFixed(3)}`;
+
+    const conformidade = (resultadoMin >= esperadoMin && resultadoMax <= esperadoMax) ? 'CONFORME' : 'NÃO CONFORME';
+    const corConformidade = (conformidade === 'CONFORME') ? 'green' : 'red';
+
+    resultadosHTML += `
+      <tr>
+        <td>${vvc}</td>
+        <td>${media}</td>
+        <td>${incerteza}</td>
+        <td>${tolerancia}</td>
+        <td>${resultadoMedicao}</td>
+        <td>${resultadoEsperado}</td>
+        <td style="color: ${corConformidade};">${conformidade}</td>
+      </tr>
+    `;
+  }
+
+  html = html.replace('<tbody>', '<tbody>' + resultadosHTML);
+
+  for (const chave in dadosFormulario) {
+    html = html.replaceAll(`{${chave}}`, dadosFormulario[chave] || '');
+  }
+
+  return html;
+}
+
+// Função auxiliar para gerar o PDF usando jspdf.html()
+async function gerarPDF(htmlContent, nomeArquivo) {
+  return new Promise((resolve, reject) => {
+    const doc = new jspdf.jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4',
+    });
+
+    doc.html(htmlContent, {
+      callback: (doc) => {
+        const pdfOutput = doc.output('arraybuffer'); 
+        resolve(pdfOutput);
+      },
+      x: 5,
+      y: 5,
+      html2canvas: {
+        scale: 0.5,
+        useCORS: true,
+        onclone: (doc) => {
+          Object.keys(estilosDeImpressao).forEach(seletor => {
+            const elementos = doc.querySelectorAll(seletor);
+            elementos.forEach(elemento => {
+              Object.assign(elemento.style, estilosDeImpressao[seletor]);
+            });
+          });
+        }
+      }
+    });
+  });
 }
 
 // Funções para aplicar e remover estilos de impressão
