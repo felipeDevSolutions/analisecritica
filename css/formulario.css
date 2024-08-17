@@ -95,13 +95,6 @@
     margin-bottom: 5px;
   }
   
-
-  
-  textarea {
-    height: 80px;
-    text-align: left;
-  }
-  
   input[type="radio"] {
     margin-right: 5px;
   }
@@ -167,6 +160,11 @@
     display: flex;
     align-items: center;
     margin: 0;
+  }
+
+  textarea {
+    height: 80px;
+    text-align: left;
   }
   
   

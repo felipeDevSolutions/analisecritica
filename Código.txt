@@ -2273,19 +2273,24 @@ const estilosDeImpressao = {
     backgroundColor: '#e1e2e1',
     fontSize: '7pt',
   },
-    // --- Centralização Vertical nos Inputs e Textareas ---
-    'input[type="text"], input[type="date"], input[type="number"], textarea, select': {
-      width: '100%',
-      height: '5mm',
-      padding: '0', // Remova padding desnecessário
-      fontSize: '6pt',
-      color: '#4c596d',
-      textAlign: 'center', 
-      borderRadius:'2px',
-      // Centralização Vertical:
-      display: 'table-cell', // Transforma o input em uma célula de tabela
-      verticalAlign: 'middle', // Centraliza verticalmente na célula
-    },
+  // --- Centralização Vertical nos Inputs e Textareas ---
+  'input[type="text"], input[type="date"], input[type="number"], textarea, select': {
+    width: '100%',
+    height: '5mm',
+    padding: '0', // Remova padding desnecessário
+    fontSize: '6pt',
+    color: '#4c596d',
+    textAlign: 'center', 
+    borderRadius:'2px',
+    // Centralização Vertical:
+    display: 'table-cell', // Transforma o input em uma célula de tabela
+    verticalAlign: 'middle', // Centraliza verticalmente na célula
+    border: 'none', // Remove a borda dos inputs no PDF      
+  },
+  // Especificamente para os campos de observação
+  'input[id^="observacao"]': { 
+    textAlign: 'left',
+  },
   '.cabecalho, .header-group, .btn-upload': {
     display: 'none', 
   },
@@ -2299,20 +2304,20 @@ const estilosDeImpressao = {
   },
   '.page-break-after-resultados': {
     marginTop: '3mm',
-    marginBottom: '18mm',
+    marginBottom: '20mm',
   },
   '.checklist': {
-    marginBottom: '10mm',
+    marginBottom: '14mm',
   },
   '.observacoesFinais': {
     textAlign: 'left', 
-    marginTop: '3mm',
+    marginTop: '5mm',
     marginBottom: '3mm',
   },
   '.grid-container': {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(25mm, 1fr))',
-    gap: '2mm',
+    gap: '4mm',
   },
   '.form-group': {
     display: 'flex',
@@ -2325,9 +2330,8 @@ const estilosDeImpressao = {
   },
   'textarea': {
     height: '15mm', 
-    textAlign: 'left', 
+    textAlign: 'left', // Alinha o texto à esquerda
     padding: '3px',
-    // ... outros estilos para textarea ...
   },
 
   'table': {
@@ -2407,6 +2411,8 @@ const estilosDeImpressao = {
       lineHeight: '6pt', 
     },
   },
+
+  
 };
 
 
@@ -2857,91 +2863,91 @@ formulario.html:
             <td>O certificado possui a identificação clara do fornecedor terceirizado, incluindo dados no papel timbrado?</td>
             <td><input type="radio" name="item1" value="sim" data-index="0" id="item1-sim" {item1-sim}></td> 
             <td><input type="radio" name="item1" value="nao" data-index="1" id="item1-nao" {item1-nao}></td> 
-            <td><input type="text" id="observacao1" value="{observacao1}" ></td> 
+            <td><input type="text" id="observacao1" value="{observacao1}" style="text-align: left;"></td> 
           </tr>
           <tr>
             <td>2</td>
             <td>O equipamento analisado está claramente descrito e identificado, incluindo Código (IDEC), marca, modelo e número de série?</td>
             <td><input type="radio" name="item2" value="sim" data-index="0" id="item2-sim" {item2-sim}></td> 
             <td><input type="radio" name="item2" value="nao" data-index="1" id="item2-nao" {item2-nao}></td> 
-            <td><input type="text" id="observacao2" value="{observacao2}" ></td> 
+            <td><input type="text" id="observacao2" value="{observacao2}" style="text-align: left;"></td> 
           </tr>
           <tr>
             <td>3</td>
             <td>A data em que a calibração foi completada está claramente indicada?</td>
             <td><input type="radio" name="item3" value="sim" data-index="0" id="item3-sim" {item3-sim}></td> 
             <td><input type="radio" name="item3" value="nao" data-index="1" id="item3-nao" {item3-nao}></td> 
-            <td><input type="text" id="observacao3" value="{observacao3}" ></td> 
+            <td><input type="text" id="observacao3" value="{observacao3}" style="text-align: left;"></td> 
           </tr>
           <tr>
             <td>4</td>
             <td>Os resultados da calibração, incluindo o(s) valor(es) da(s) incerteza(s) e o VVC por ponto medido, estão presentes? Se o VVC não for dado, a média das leituras por ponto e/ou o erro (correção) foram fornecidos? VN = VVC + |Erro|</td>
             <td><input type="radio" name="item4" value="sim" data-index="0" id="item4-sim" {item4-sim}></td> 
             <td><input type="radio" name="item4" value="nao" data-index="1" id="item4-nao" {item4-nao}></td> 
-            <td><input type="text" id="observacao4" value="{observacao4}" ></td> 
+            <td><input type="text" id="observacao4" value="{observacao4}" style="text-align: left;"></td> 
           </tr>
           <tr>
             <td>5</td>
             <td>O procedimento de calibração utilizado está claramente identificado, incluindo a referência do procedimento?</td>
             <td><input type="radio" name="item5" value="sim" data-index="0" id="item5-sim" {item5-sim}></td> 
             <td><input type="radio" name="item5" value="nao" data-index="1" id="item5-nao" {item5-nao}></td> 
-            <td><input type="text" id="observacao5" value="{observacao5}" ></td> 
+            <td><input type="text" id="observacao5" value="{observacao5}" style="text-align: left;"></td> 
           </tr>
           <tr>
             <td>6</td>
             <td>As condições ambientais pertinentes, como umidade e temperatura no momento da calibração, estão apresentadas?</td>
             <td><input type="radio" name="item6" value="sim" data-index="0" id="item6-sim" {item6-sim}></td> 
             <td><input type="radio" name="item6" value="nao" data-index="1" id="item6-nao" {item6-nao}></td> 
-            <td><input type="text" id="observacao6" value="{observacao6}" ></td> 
+            <td><input type="text" id="observacao6" value="{observacao6}" style="text-align: left;"></td> 
           </tr>
           <tr>
             <td>7</td>
             <td>Quaisquer limitações ao uso do equipamento foram registradas no campo 'Observação'?</td>
             <td><input type="radio" name="item7" value="sim" data-index="0" id="item7-sim" {item7-sim}></td> 
             <td><input type="radio" name="item7" value="nao" data-index="1" id="item7-nao" {item7-nao}></td> 
-            <td><input type="text" id="observacao7" value="{observacao7}" ></td> 
+            <td><input type="text" id="observacao7" value="{observacao7}" style="text-align: left;"></td> 
           </tr>
           <tr>
             <td>8</td>
             <td>A(s) pessoa(s) que realizou(ram) a comprovação metrológica estão claramente identificadas?</td>
             <td><input type="radio" name="item8" value="sim" data-index="0" id="item8-sim" {item8-sim}></td> 
             <td><input type="radio" name="item8" value="nao" data-index="1" id="item8-nao" {item8-nao}></td> 
-            <td><input type="text" id="observacao8" value="{observacao8}" ></td> 
+            <td><input type="text" id="observacao8" value="{observacao8}" style="text-align: left;"></td> 
           </tr>
           <tr>
             <td>9</td>
             <td>A(s) pessoa(s) responsável(is) pela correção da informação registrada, incluindo a aprovação do certificado e seus dados pelo fornecedor terceirizado, estão identificadas?</td>
             <td><input type="radio" name="item9" value="sim" data-index="0" id="item9-sim" {item9-sim}></td> 
             <td><input type="radio" name="item9" value="nao" data-index="1" id="item9-nao" {item9-nao}></td> 
-            <td><input type="text" id="observacao9" value="{observacao9}" ></td> 
+            <td><input type="text" id="observacao9" value="{observacao9}" style="text-align: left;"></td> 
           </tr>
           <tr>
             <td>10</td>
             <td>Qualquer relatório ou certificado de calibração, incluindo identificação individual como código de documento ou números de série, está claramente indicado, incluindo a rastreabilidade dos padrões utilizados?</td>
             <td><input type="radio" name="item10" value="sim" data-index="0" id="item10-sim" {item10-sim}></td> 
             <td><input type="radio" name="item10" value="nao" data-index="1" id="item10-nao" {item10-nao}></td> 
-            <td><input type="text" id="observacao10" value="{observacao10}" ></td> 
+            <td><input type="text" id="observacao10" value="{observacao10}" style="text-align: left;"></td> 
           </tr>
           <tr>
             <td>11</td>
             <td>Foi fornecida evidência da rastreabilidade dos resultados da calibração, incluindo cópia da rastreabilidade dos padrões utilizados?</td>
             <td><input type="radio" name="item11" value="sim" data-index="0" id="item11-sim" {item11-sim}></td> 
             <td><input type="radio" name="item11" value="nao" data-index="1" id="item11-nao" {item11-nao}></td> 
-            <td><input type="text" id="observacao11" value="{observacao11}" ></td> 
+            <td><input type="text" id="observacao11" value="{observacao11}" style="text-align: left;"></td> 
           </tr>
           <tr>
             <td>12</td>
             <td>Os resultados da calibração obtidos, antes e onde requerido, após qualquer ajuste, modificação ou reparo, estão claramente documentados?</td>
             <td><input type="radio" name="item12" value="sim" data-index="0" id="item12-sim" {item12-sim}></td> 
             <td><input type="radio" name="item12" value="nao" data-index="1" id="item12-nao" {item12-nao}></td> 
-            <td><input type="text" id="observacao12" value="{observacao12}" ></td> 
+            <td><input type="text" id="observacao12" value="{observacao12}" style="text-align: left;"></td> 
           </tr>
           <tr>
             <td>13</td>
             <td>Detalhes sobre quaisquer manutenções, tais como assistência técnica, calibrações (ajustes), reparos e modificações realizadas, estão disponíveis no software de gestão de engenharia?</td>
             <td><input type="radio" name="item13" value="sim" data-index="0" id="item13-sim" {item13-sim}></td> 
             <td><input type="radio" name="item13" value="nao" data-index="1" id="item13-nao" {item13-nao}></td> 
-            <td><input type="text" id="observacao13" value="{observacao13}" ></td> 
+            <td><input type="text" id="observacao13" value="{observacao13}" style="text-align: left;"></td> 
           </tr>
         </tbody>
       </table>
@@ -3077,13 +3083,6 @@ formulario.css:
     margin-bottom: 5px;
   }
   
-
-  
-  textarea {
-    height: 80px;
-    text-align: left;
-  }
-  
   input[type="radio"] {
     margin-right: 5px;
   }
@@ -3150,3 +3149,10 @@ formulario.css:
     align-items: center;
     margin: 0;
   }
+
+  textarea {
+    height: 80px;
+    text-align: left;
+  }
+  
+  

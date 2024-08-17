@@ -790,19 +790,24 @@ const estilosDeImpressao = {
     backgroundColor: '#e1e2e1',
     fontSize: '7pt',
   },
-    // --- Centralização Vertical nos Inputs e Textareas ---
-    'input[type="text"], input[type="date"], input[type="number"], textarea, select': {
-      width: '100%',
-      height: '5mm',
-      padding: '0', // Remova padding desnecessário
-      fontSize: '6pt',
-      color: '#4c596d',
-      textAlign: 'center', 
-      borderRadius:'2px',
-      // Centralização Vertical:
-      display: 'table-cell', // Transforma o input em uma célula de tabela
-      verticalAlign: 'middle', // Centraliza verticalmente na célula
-    },
+  // --- Centralização Vertical nos Inputs e Textareas ---
+  'input[type="text"], input[type="date"], input[type="number"], textarea, select': {
+    width: '100%',
+    height: '5mm',
+    padding: '0', // Remova padding desnecessário
+    fontSize: '6pt',
+    color: '#4c596d',
+    textAlign: 'center', 
+    borderRadius:'2px',
+    // Centralização Vertical:
+    display: 'table-cell', // Transforma o input em uma célula de tabela
+    verticalAlign: 'middle', // Centraliza verticalmente na célula
+    border: 'none', // Remove a borda dos inputs no PDF      
+  },
+  // Especificamente para os campos de observação
+  'input[id^="observacao"]': { 
+    textAlign: 'left',
+  },
   '.cabecalho, .header-group, .btn-upload': {
     display: 'none', 
   },
@@ -816,20 +821,20 @@ const estilosDeImpressao = {
   },
   '.page-break-after-resultados': {
     marginTop: '3mm',
-    marginBottom: '18mm',
+    marginBottom: '20mm',
   },
   '.checklist': {
-    marginBottom: '10mm',
+    marginBottom: '14mm',
   },
   '.observacoesFinais': {
     textAlign: 'left', 
-    marginTop: '3mm',
+    marginTop: '5mm',
     marginBottom: '3mm',
   },
   '.grid-container': {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(25mm, 1fr))',
-    gap: '2mm',
+    gap: '4mm',
   },
   '.form-group': {
     display: 'flex',
@@ -842,9 +847,8 @@ const estilosDeImpressao = {
   },
   'textarea': {
     height: '15mm', 
-    textAlign: 'left', 
+    textAlign: 'left', // Alinha o texto à esquerda
     padding: '3px',
-    // ... outros estilos para textarea ...
   },
 
   'table': {
@@ -924,6 +928,8 @@ const estilosDeImpressao = {
       lineHeight: '6pt', 
     },
   },
+
+  
 };
 
 
