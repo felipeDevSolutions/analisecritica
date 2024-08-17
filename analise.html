@@ -1,166 +1,167 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Análise Crítica de Certificados de Calibração</title>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Crítica de Certificados de Calibração</title>
 
-  <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <!-- Favicon -->
+      <link href="img/favicon.ico" rel="icon">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+      <!-- Google Web Fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link
+          href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+      <!-- Icon Font Stylesheet -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
+      <!-- Libraries Stylesheet -->
+      <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+      <link href="lib/animate/animate.min.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+      <!-- Customized Bootstrap Stylesheet -->
+      <link href="css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Template Stylesheet -->
-  <link href="css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/analise.css">
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/analise.css">
 
-  <style>
-    /* Estilo para fixar a navbar APENAS em analise.html */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      margin: 0;
-      width: 100%;
-      z-index: 1000; 
-      background-color: #0f1d3f;
-    }
-  </style>
-</head>
-<body>
-  <!-- Spinner Start -->
-  <div id="spinner"
-      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-      <div class="spinner"></div>
-  </div>
-  <!-- Spinner End -->
+    <style>
+      /* Estilo para fixar a navbar APENAS em analise.html */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+        width: 100%;
+        z-index: 1000; 
+        background-color: #0f1d3f;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner"></div>
+    </div>
+    <!-- Spinner End -->
 
 
-  <!-- Navbar & Hero Start -->
-  <div class="container-fluid position-relative p-0">
-      <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-          <a href="index.html" class="navbar-brand p-0">
-              <h1 class="m-0"><i class="fa fa-tasks"></i> Análise Crítica</h1>
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-              <span class="fa fa-bars"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-              <div class="navbar-nav ms-auto py-0">
-                  <a href="index.html" class="nav-item nav-link">Início</a>
-                  <a href="index.html#sobre" class="nav-item nav-link">Sobre</a>
-                  <a href="index.html#planos" class="nav-item nav-link">Planos</a>
-                  <a href="index.html#contato" class="nav-item nav-link">Contato</a>
-              </div>
-              <a href="analise.html" class="btn btn-primary py-2 px-4 ms-3">Experimentar</a>
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+            <a href="index.html" class="navbar-brand p-0">
+                <h1 class="m-0"><i class="fa fa-tasks"></i> Análise Crítica</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="index.html" class="nav-item nav-link">Início</a>
+                    <a href="index.html#sobre" class="nav-item nav-link">Sobre</a>
+                    <a href="index.html#planos" class="nav-item nav-link">Planos</a>
+                    <a href="index.html#contato" class="nav-item nav-link">Contato</a>
+                </div>
+                <a href="analise.html" class="btn btn-primary py-2 px-4 ms-3">Experimentar</a>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar & Hero End -->
+
+
+    <div class="container">
+
+      <div class="upload-section">
+        <label for="certificadoInput" class="custom-file-upload">
+          Importar Certificados (PDF)
+        </label>
+        <input type="file" id="certificadoInput" accept=".pdf" multiple>
+      </div>
+
+      <div id="thumbnails" class="thumbnail-container">
+        <!-- Miniaturas dos PDFs aparecerão aqui -->
+      </div>
+
+      <button id="analyze-button" class="analyze-btn">Analisar</button>
+    </div>
+
+    <div id="pdf-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header"> 
+          <div class="pdf-navigation">
+            <button id="prev-pdf" class="nav-btn"><</button>
+            <span id="file-count-pdf"></span>
+            <button id="next-pdf" class="nav-btn">></button>
           </div>
-      </nav>
-  </div>
-  <!-- Navbar & Hero End -->
-
-
-  <div class="container">
-
-    <div class="upload-section">
-      <label for="certificadoInput" class="custom-file-upload">
-        Importar Certificados (PDF)
-      </label>
-      <input type="file" id="certificadoInput" accept=".pdf" multiple>
-    </div>
-
-    <div id="thumbnails" class="thumbnail-container">
-      <!-- Miniaturas dos PDFs aparecerão aqui -->
-    </div>
-
-    <button id="analyze-button" class="analyze-btn">Analisar</button>
-  </div>
-
-  <div id="pdf-modal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header"> 
-        <div class="pdf-navigation">
-          <button id="prev-pdf" class="nav-btn"><</button>
-          <span id="file-count-pdf"></span>
-          <button id="next-pdf" class="nav-btn">></button>
+          <span class="close" data-modal="pdf-modal">×</span> 
         </div>
-        <span class="close" data-modal="pdf-modal">×</span> 
-      </div>
-      <div id="pdf-viewer">
-        <canvas id="pdf-canvas"></canvas>
+        <div id="pdf-viewer">
+          <canvas id="pdf-canvas"></canvas>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div id="form-modal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="pdf-navigation">
-          <button id="prev-form" class="nav-btn"><</button>
-          <span id="file-count-form"></span>
-          <button id="next-form" class="nav-btn">></button>
-          <button id="open-pdf-from-form" class="nav-btn">Ver PDF</button>
-          <div class="responsavel-input">
-            <label for="responsavelAnaliseInput" class="responsavel-label">Responsável:</label>
-            <input type="text" id="responsavelAnaliseInput">
+    <div id="form-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="pdf-navigation">
+            <button id="prev-form" class="nav-btn"><</button>
+            <span id="file-count-form"></span>
+            <button id="next-form" class="nav-btn">></button>
+            <button id="open-pdf-from-form" class="nav-btn">Ver PDF</button>
+            <div class="responsavel-input">
+              <label for="responsavelAnaliseInput" class="responsavel-label">Responsável:</label>
+              <input type="text" id="responsavelAnaliseInput">
+            </div>
+            <button id="baixar-analise" class="nav-btn">Baixar Análise</button>
+            
           </div>
-          <button id="finalizar-analise" class="nav-btn">Finalizar Análise</button> 
-          
+          <span class="close" data-modal="form-modal">×</span> 
+        </div>      
+        <div id="form-container">
+          <!-- Formulário será carregado aqui -->
         </div>
-        <span class="close" data-modal="form-modal">×</span> 
-      </div>      
-      <div id="form-container">
-        <!-- Formulário será carregado aqui -->
       </div>
     </div>
-  </div>
+    
+
+    <!-- Template inspirado no HTML Codex - https://htmlcodex.com --> 
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script> 
   
-
-  <!-- Template inspirado no HTML Codex - https://htmlcodex.com --> 
-
-
-  <!-- Back to Top -->
-  <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-  <!-- JavaScript Libraries -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script> 
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf-autotable.min.js"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.1/purify.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf-autotable.min.js"></script>
   
-
-  <script src="lib/wow/wow.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/waypoints/waypoints.min.js"></script>
-  <script src="lib/counterup/counterup.min.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-  <!-- Template Javascript -->
-  <script src="js/main.js"></script>
-  <script src="js/script.js"></script>
-</body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.1/purify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    
+  
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+  
+    <!-- Mova script.js para DEPOIS da inclusão da biblioteca jsPDF -->
+    <script src="js/script.js"></script> 
+  </body>
 </html>

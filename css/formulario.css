@@ -1,28 +1,36 @@
 :root {
     --primary-color: #343d4b;
-    --secondary-color: #4c596d;
+    --secondary-color: #494f4c;
     --background-color: #f8f9fa;
     --text-color: #343d4b;
     --border-color: #dee2e6;
     --input-background-color: #ffffff;
     --input-border-color: #ced4da;
   }
+
+  *{
+    margin: 0;
+    padding: 0;
+  }
   
   body {
     font-family: 'Arial', sans-serif;
     margin: 0;
-    background-color: var(--background-color);
+    padding: 0;
     color: var(--text-color);
     gap: 0px;
   }
   
   .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    background-color: var(--background-color);
-    padding: 10px;
+    padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 1px;
   }
   
   .title {
@@ -30,16 +38,26 @@
     color: var(--primary-color);
     margin-bottom: 30px;
   }
+
+  .logo-container {
+    text-align: center; /* Centraliza a logo */
+    margin-bottom: 20px; /* Espaçamento abaixo da logo */
+  }
+  
+  .logo-container img {
+    width: 150px; /* Ajuste a largura da logo conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+  }
   
   h2 {
     color: var(--primary-color);
     margin-top: 30px;
     margin-bottom: 30px;
-    border-bottom: 2px solid #52b2e2;
+    border-bottom: 2px solid #4dca6a;
     padding-bottom: 5px;
     padding-left: 10px;
     padding-top: 5px;
-    background-color: #ebebeb;
+    background-color: #e1e2e1;
   }
   
   .cabecalho {
@@ -77,22 +95,11 @@
     margin-bottom: 5px;
   }
   
-  input[type="text"],
-  input[type="date"],
-  input[type="number"],
-  textarea,
-  select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--input-border-color);
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
-    color: var(--secondary-color);
-  }
+
   
   textarea {
     height: 80px;
+    text-align: left;
   }
   
   input[type="radio"] {
@@ -143,92 +150,23 @@
     gap: 5px;
     align-items: center;
   }
-  
-  
-  
-  /* Estilos específicos para impressão */
-@media print {
-  body {
-    font-size: 10pt; /* Define o tamanho da fonte para 10pt */
-  }
 
-  .container {
-    padding: 10mm; /* Margens menores */
-  }
-
-  .cabecalho {
-    display: none;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-
-  h2 {
-    background-color: var(--input-border-color) !important;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    border-bottom: 3px solid #52b2e2;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-top: 5px;
-    color: var(--primary-color); 
-  }
-  
   input[type="text"],
   input[type="date"],
-  input[type="number"] {
-    border: none;
-    box-shadow: none;
-    font-size: 10pt; /* Tamanho da fonte consistente */
-    word-wrap: break-word;
-  }
-
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 10px;
+  input[type="number"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 7px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: var(--secondary-color);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin: 0;
   }
   
-  table {
-    border: 1px solid var(--border-color);
-    font-size: 10pt; /* Tamanho da fonte consistente */
-  }
-
-  thead {
-    background-color: #d3e4cd; 
-    color: #000;
-  }
-
-  th {
-    background-color: var(--secondary-color);
-    color: #fff;
-    font-weight: bold;
-  }
-
-  td {
-    border: 1px solid var(--border-color);
-    font-size: 10pt; /* Tamanho da fonte consistente */
-    word-wrap: break-word;
-  }
-
-  .title,
-  h2 {
-    page-break-after: avoid;
-  }
-
-  .form-section {
-    page-break-inside: avoid;
-  }
-
-  /* Classes para quebras de página */
-  .page-break-after-dados-emh { 
-    page-break-after: always; 
-  }
-  .page-break-after-resultados { 
-    page-break-after: always;
-  }
-
-  /* ... outros estilos de impressão ... */
-}
+  

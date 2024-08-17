@@ -21,38 +21,53 @@ function limparLocalStorage() {
   localStorage.clear();
 }
 
-// Função para salvar os dados do formulário no LocalStorage
+// --- Função para salvar os dados do formulário no LocalStorage e no array dadosPDF ---
 function salvarDadosFormulario() {
   const observacoes = document.querySelectorAll('input[id^="observacao"]');
   const radios = document.querySelectorAll('input[type="radio"]');
   const inputs = document.querySelectorAll('input[type="text"], input[type="number"]');
+  const textareas = document.querySelectorAll('textarea');
+
+  // Objeto para armazenar os dados do formulário atual
+  const dadosFormulario = {};
 
   observacoes.forEach(obs => {
-    const chaveLocalStorage = `${obs.id}-${currentPDFIndex}`; 
+    const chaveLocalStorage = `${obs.id}-${currentPDFIndex}`;
     localStorage.setItem(chaveLocalStorage, obs.value);
+    dadosFormulario[obs.id] = obs.value; // Salva no objeto
   });
 
   radios.forEach(radio => {
     if (radio.checked) {
       const chaveLocalStorage = `${radio.name}-${currentPDFIndex}`;
       localStorage.setItem(chaveLocalStorage, radio.dataset.index);
+  
+      // Salva 'checked' no atributo correto do objeto
+      dadosFormulario[`${radio.id}`] = 'checked';
     }
   });
 
   inputs.forEach(input => {
-    const chaveLocalStorage = `${input.id}-${currentPDFIndex}`; 
-    
-    // Adiciona a condição para salvar apenas se o input não for responsavelAnalise
-    if (input.id !== 'responsavelAnalise') { 
+    const chaveLocalStorage = `${input.id}-${currentPDFIndex}`;
+    if (input.id !== 'responsavelAnalise') {
       localStorage.setItem(chaveLocalStorage, input.value);
+      dadosFormulario[input.id] = input.value; // Salva no objeto
     }
   });
 
-  // Salva Observações Finais
-  const observacoesFinais = document.getElementById('observacoesFinais');
-  const chaveObservacoesFinais = `observacoesFinais-${currentPDFIndex}`;
-  localStorage.setItem(chaveObservacoesFinais, observacoesFinais.value);
+  textareas.forEach(textarea => {
+    const chaveLocalStorage = `${textarea.id}-${currentPDFIndex}`;
+    localStorage.setItem(chaveLocalStorage, textarea.value);
+    dadosFormulario[textarea.id] = textarea.value; // Salva no objeto
+  });
+
+  // Salva o Responsável pela Análise no objeto
+  dadosFormulario['responsavelAnalise'] = document.getElementById('responsavelAnaliseInput').value;
+
+  // Salva os dados do formulário no array dadosPDF
+  dadosPDF[currentPDFIndex] = dadosFormulario;
 }
+
 
 // Função para carregar os dados do formulário do LocalStorage
 function carregarDadosFormulario() {
@@ -364,7 +379,7 @@ function calcularDataValidade(dataEmissaoStr) {
 // Carrega o formulário e preenche com os dados do PDF
 function loadForm(index) {
   const formContainer = document.getElementById('form-container');
-  formContainer.innerHTML = ''; 
+  formContainer.innerHTML = '';
 
   // Carrega o CSS
   const link = document.createElement('link');
@@ -408,28 +423,44 @@ function loadForm(index) {
       const dados = dadosPDF[index];
 
       if (dados) {
+        // Dados do Certificado
         document.getElementById('codigoCertificado').value = dados.codigoCertificado;
         document.getElementById('dataCertificado').value = dados.dataCertificado;
         document.getElementById('validadeCertificado').value = dados.validadeCertificado;
+
+        // Dados do Equipamento
         document.getElementById('fornecedor').value = dados.fornecedor;
         document.getElementById('descricaoEMH').value = dados.descricaoEMH;
         document.getElementById('numeroSerieEMH').value = dados.numeroSerie;
-        document.getElementById('media1').value = dados.media1;
-        document.getElementById('media2').value = dados.media2;
-        document.getElementById('media3').value = dados.media3;
-        document.getElementById('incerteza1').value = dados.incerteza1;
-        document.getElementById('incerteza2').value = dados.incerteza2;
-        document.getElementById('incerteza3').value = dados.incerteza3;
-        document.getElementById('vvc1').value = dados.vvc1;
-        document.getElementById('vvc2').value = dados.vvc2;
-        document.getElementById('vvc3').value = dados.vvc3;
 
+        // Criar as linhas da tabela dinamicamente
+        let linhasTabela = '';
+        for (let i = 1; i <= 3; i++) {
+          linhasTabela += `
+            <tr>
+              <td class="coluna-vvc"><input type="number" id="vvc${i}" value="${dados[`vvc${i}`] || ''}"></td>
+              <td class="coluna-media"><input type="number" id="media${i}" value="${dados[`media${i}`] || ''}"></td>
+              <td class="coluna-incerteza"><input type="number" id="incerteza${i}" value="${dados[`incerteza${i}`] || ''}"></td>
+              <td class="coluna-tolerancia"><input type="text" id="tolerancia${i}" value="${dados[`tolerancia${i}`] || ''}" readonly></td>
+              <td class="coluna-muk"><span id="resultadoMedicao${i}"></span></td>
+              <td class="coluna-resultado-esperado"><span id="resultadoEsperado${i}"></span></td>
+              <td><span id="conformidade${i}"></span></td>
+            </tr>
+          `;
+        }
+
+        // Inserir as linhas da tabela no placeholder
+        const tbody = formContainer.querySelector('tbody');
+        tbody.innerHTML = linhasTabela;
+
+        // Tolerância
         const tolerancia = dados.descricaoEMH.toLowerCase().includes("applix") ? '10' : '5';
         document.getElementById('toleranciaCertificado').value = tolerancia;
         document.getElementById('tolerancia1').value = tolerancia;
         document.getElementById('tolerancia2').value = tolerancia;
         document.getElementById('tolerancia3').value = tolerancia;
 
+        // Data da Análise
         const dataAnaliseInput = document.getElementById('dataAnalise');
         const dataAtual = new Date();
         const dia = dataAtual.getDate().toString().padStart(2, '0');
@@ -483,9 +514,15 @@ function loadForm(index) {
         // Adiciona event listener para atualizar a aprovação final
         // quando a conformidade normativa mudar
         conformidadeSpans.forEach(span => {
-          span.addEventListener('DOMSubtreeModified', () => {
-            atualizarAprovacaoFinal();
+          const observer = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+              if (mutation.type === 'childList') {
+                atualizarAprovacaoFinal();
+              }
+            });
           });
+
+          observer.observe(span, { childList: true });
         });
 
         // Gerencia o campo "Responsável pela Análise"
@@ -501,7 +538,7 @@ function loadForm(index) {
 
           const dataAnaliseFields = document.querySelectorAll('input[id="dataAnalise"]');
           dataAnaliseFields.forEach(field => {
-            field.value = dataFormatada; 
+            field.value = dataFormatada;
           });
         }
 
@@ -528,7 +565,7 @@ function loadForm(index) {
       });
 
       inputs.forEach(input => {
-        if (input.id !== 'responsavelAnalise') { 
+        if (input.id !== 'responsavelAnalise') {
           input.addEventListener('input', salvarDadosFormulario);
         }
       });
@@ -688,3 +725,311 @@ document.getElementById('analyze-button').addEventListener('click', openFormModa
 document.getElementById('open-pdf-from-form').addEventListener('click', () => {
   openPDFModal(currentPDFIndex);
 });
+
+document.getElementById('baixar-analise').addEventListener('click', () => {
+  gerarPDFAnalise();
+});
+
+
+// --- Estilos de Impressão ---
+const estilosDeImpressao = {
+  '*': {
+    margin: '0mm',
+    padding: '0mm',
+  },
+  'body': {
+    width: '105mm',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    height: '297mm', 
+    fontFamily: 'Arial, sans-serif',
+  },
+  '.formulario-container': {
+    width: '105mm',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginTop: '0mm',
+
+    padding: '0mm',
+    color: '#343d4b',
+    fontSize: '6pt',
+  },
+  '.form-section': {
+    width: '105mm',
+    display: 'flex',
+    flexDirection: 'column',
+    margin: '0mm',
+    padding: '0mm',
+  },
+  '.logo-container': {
+    width: '105mm', 
+    height: '10mm',
+    marginTop: '10mm',
+  },
+  'img': {
+    width: '20mm',
+    height: 'auto',
+  },
+  '.title': {
+    textAlign: 'center',
+    color: '#343d4b',
+    marginBottom: '5px',
+  },
+  'h2': {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '105mm',
+    color: '#343d4b',
+    marginTop: '2mm',
+    marginBottom: '3mm',
+    borderBottom: '1px solid #4dca6a',
+    padding: '1mm',
+    backgroundColor: '#e1e2e1',
+    fontSize: '7pt',
+  },
+    // --- Centralização Vertical nos Inputs e Textareas ---
+    'input[type="text"], input[type="date"], input[type="number"], textarea, select': {
+      width: '100%',
+      height: '5mm',
+      padding: '0', // Remova padding desnecessário
+      fontSize: '6pt',
+      color: '#4c596d',
+      textAlign: 'center', 
+      borderRadius:'2px',
+      // Centralização Vertical:
+      display: 'table-cell', // Transforma o input em uma célula de tabela
+      verticalAlign: 'middle', // Centraliza verticalmente na célula
+    },
+  '.cabecalho, .header-group, .btn-upload': {
+    display: 'none', 
+  },
+  '.page-break-after-dados-certificado': {
+    marginTop: '0mm',
+    marginBottom: '3mm',
+  },
+  '.page-break-after-dados-emh': {
+    marginTop: '3mm',
+    marginBottom: '3mm',
+  },
+  '.page-break-after-resultados': {
+    marginTop: '3mm',
+    marginBottom: '18mm',
+  },
+  '.checklist': {
+    marginBottom: '10mm',
+  },
+  '.observacoesFinais': {
+    textAlign: 'left', 
+    marginTop: '3mm',
+    marginBottom: '3mm',
+  },
+  '.grid-container': {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(25mm, 1fr))',
+    gap: '2mm',
+  },
+  '.form-group': {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  'label': {
+    fontWeight: 'bold',
+    marginBottom: '3px',
+    fontSize: '6pt',
+  },
+  'textarea': {
+    height: '15mm', 
+    textAlign: 'left', 
+    padding: '3px',
+    // ... outros estilos para textarea ...
+  },
+
+  'table': {
+    width: '100%',
+    borderCollapse: 'collapse',
+    marginTop: '3px',
+    tableLayout: 'fixed', 
+  },
+  'th, td': { 
+    padding: '1mm',
+    textAlign: 'left',
+    fontSize: '5pt',
+    overflow: 'hidden', 
+  },
+  'th': {
+    backgroundColor: '#41554b',
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  '.coluna-vvc': {
+    width: '5mm',
+  },
+  '.coluna-media': {
+    width: '13mm',
+  },
+  '.coluna-incerteza': {
+    width: '15mm',
+  },
+  '.coluna-tolerancia': {
+    width: '15mm',
+  },
+  '.coluna-muk': {
+    width: '20mm',
+  },
+  '.checklist table th:first-child, .checklist table td:first-child': {
+    width: '8mm',
+    textAlign: 'center',
+  },
+  '.checklist table th:nth-child(2), .checklist table td:nth-child(2)': {
+    width: '50mm', 
+  },
+  '.checklist table th:nth-child(3), .checklist table td:nth-child(3), .checklist table th:nth-child(4), .checklist table td:nth-child(4)': {
+    width: '8mm', 
+  },
+  '.form-group-aprovacao': {
+    display: 'flex',
+    gap: '5px',
+    alignItems: 'center',
+  },
+
+  // --- Estilos para os Radio Buttons ---
+  'input[type="radio"]': {
+    appearance: 'none',
+    width: '6pt', 
+    height: '6pt',
+    border: '1px solid #4c596d',
+    borderRadius: '0', 
+    outline: 'none',
+    cursor: 'pointer',
+    marginRight: '3mm', // Adicione espaço à direita
+
+    // Para exibir o "v" e "x":
+    '&:checked::before': { // Use &:checked::before
+      content: '"✓"',
+      display: 'block',
+      textAlign: 'center',
+      color: '#fff',
+      fontSize: '5pt',
+      lineHeight: '6pt',
+    },
+    '&:not(:checked)::before': { // Use &:not(:checked)::before
+      content: '"✗"',
+      display: 'block',
+      textAlign: 'center',
+      color: '#4c596d',
+      fontSize: '5pt',
+      lineHeight: '6pt', 
+    },
+  },
+};
+
+
+// --- Função para Gerar PDF ---
+async function gerarPDFAnalise() {
+  try {
+    for (let i = 0; i < dadosPDF.length; i++) {
+      const response = await fetch('formulario.html');
+      let html = await response.text();
+
+      // Obtém os dados do formulário do array dadosPDF
+      const dadosFormulario = dadosPDF[i];
+
+      // Calcula os resultados e formata a string HTML da tabela
+      let resultadosHTML = '';
+      for (let k = 1; k <= 3; k++) {
+        const vvc = parseFloat(dadosFormulario[`vvc${k}`]) || 0;
+        const media = parseFloat(dadosFormulario[`media${k}`]) || 0;
+        const incerteza = parseFloat(dadosFormulario[`incerteza${k}`]) || 0;
+        const tolerancia = dadosFormulario.descricaoEMH.toLowerCase().includes("applix") ? 10 : 5;
+
+        const resultadoMin = media - incerteza;
+        const resultadoMax = media + incerteza;
+        const resultadoMedicao = `${resultadoMin.toFixed(3)}, ${resultadoMax.toFixed(3)}`;
+
+        const esperadoMin = vvc - (vvc * (tolerancia / 100));
+        const esperadoMax = vvc + (vvc * (tolerancia / 100));
+        const resultadoEsperado = `${esperadoMin.toFixed(3)}, ${esperadoMax.toFixed(3)}`;
+
+        const conformidade = (resultadoMin >= esperadoMin && resultadoMax <= esperadoMax) ? 'CONFORME' : 'NÃO CONFORME';
+        const corConformidade = (conformidade === 'CONFORME') ? 'green' : 'red';
+
+        // Criar a linha da tabela HTML com estilos inline
+        resultadosHTML += `
+          <tr>
+            <td>${vvc}</td>
+            <td>${media}</td>
+            <td>${incerteza}</td>
+            <td>${tolerancia}</td> 
+            <td>${resultadoMedicao}</td>
+            <td>${resultadoEsperado}</td>
+            <td style="color: ${corConformidade};">${conformidade}</td> 
+          </tr>
+        `;
+      }
+
+      // Insere os resultados no HTML
+      html = html.replace('<tbody>', '<tbody>' + resultadosHTML);
+
+      // Preenche o restante do HTML do formulário
+      for (const chave in dadosFormulario) {
+        html = html.replaceAll(`{${chave}}`, dadosFormulario[chave] || '');
+      }
+
+      // Cria o jsPDF
+      const doc = new jspdf.jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4', 
+      });
+
+      // Define as Margens e Propriedades do Documento
+      const margin = 5;
+      doc.setProperties({
+        title: `Analise_Certificado_${dadosFormulario.codigoCertificado}`,
+        author: 'Seu Nome ou da Empresa',
+        creator: 'Seu Nome ou da Empresa',
+      });
+
+      // Adiciona o HTML ao PDF
+      doc.html(html, {
+        callback: (doc) => {
+          doc.save(`Analise_Certificado_${dadosFormulario.codigoCertificado}.pdf`);
+        },
+        x: margin,
+        y: margin,
+        html2canvas: {
+          scale: 0.5, // Ajuste a escala conforme necessário
+          useCORS: true,
+          onclone: (doc) => {
+            // Aplica os estilos de impressão
+            Object.keys(estilosDeImpressao).forEach(seletor => {
+              const elementos = doc.querySelectorAll(seletor);
+              elementos.forEach(elemento => {
+                Object.assign(elemento.style, estilosDeImpressao[seletor]);
+              });
+            });
+          }
+        }
+      });
+    }
+  } catch (error) {
+    console.error('Erro ao gerar o PDF:', error);
+  }
+}
+
+// Funções para aplicar e remover estilos de impressão
+function aplicarEstiloImpressao() {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'css/formulario.css'; // Ou o caminho para o seu CSS de impressão
+  link.media = 'print';
+  document.head.appendChild(link);
+}
+
+function removerEstiloImpressao() {
+  const links = document.querySelectorAll('link[media="print"]');
+  links.forEach(link => link.remove());
+}
