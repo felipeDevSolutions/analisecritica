@@ -933,7 +933,7 @@ const estilosDeImpressao = {
 };
 
 
-// --- Função para Gerar PDF ---
+// --- Função para Gerar PDF da Análise ---
 async function gerarPDFAnalise() {
   try {
     if (dadosPDF.length === 0) {
@@ -952,6 +952,8 @@ async function gerarPDFAnalise() {
 
       for (let i = 0; i < dadosPDF.length; i++) {
         const dadosFormulario = dadosPDF[i];
+
+        // Obtém o HTML do formulário preenchido com os dados do PDF atual
         const html = await obterHTMLFormulario(dadosFormulario);
 
         // Crie o PDF e adicione à pasta dentro do .zip
@@ -959,16 +961,19 @@ async function gerarPDFAnalise() {
         folder.file(`Analise_Crítica_Certificado_${dadosFormulario.codigoCertificado}.pdf`, pdf, { binary: true });
       }
 
+      // Gera o arquivo ZIP
       zip.generateAsync({ type: 'blob' }).then(function (content) {
+        // Download do arquivo ZIP
         saveAs(content, 'Analises_Crítica_Certificados.zip');
       });
     }
   } catch (error) {
     console.error('Erro ao gerar o PDF:', error);
+    // Trate o erro, exibindo uma mensagem para o usuário, por exemplo.
   }
 }
 
-// Função auxiliar para gerar um único PDF
+// --- Função auxiliar para gerar um único PDF ---
 async function gerarPDFUnico(dadosFormulario) {
   const html = await obterHTMLFormulario(dadosFormulario);
   const doc = new jspdf.jsPDF({
@@ -1005,53 +1010,64 @@ async function gerarPDFUnico(dadosFormulario) {
   });
 }
 
-// Função auxiliar para obter o HTML do formulário preenchido
+// --- Função auxiliar para obter o HTML do formulário preenchido ---
 async function obterHTMLFormulario(dadosFormulario) {
-  const response = await fetch('formulario.html');
-  let html = await response.text();
+  try {
+    // Obtém o HTML do arquivo 'formulario.html'
+    const response = await fetch('formulario.html');
+    let html = await response.text();
 
-  // Calcula os resultados e formata a string HTML da tabela
-  let resultadosHTML = '';
-  for (let k = 1; k <= 3; k++) {
-    const vvc = parseFloat(dadosFormulario[`vvc${k}`]) || 0;
-    const media = parseFloat(dadosFormulario[`media${k}`]) || 0;
-    const incerteza = parseFloat(dadosFormulario[`incerteza${k}`]) || 0;
-    const tolerancia = dadosFormulario.descricaoEMH.toLowerCase().includes("applix") ? 10 : 5;
+    // Calcula os resultados e formata a string HTML da tabela de resultados
+    let resultadosHTML = '';
+    for (let k = 1; k <= 3; k++) {
+      const vvc = parseFloat(dadosFormulario[`vvc${k}`]) || 0;
+      const media = parseFloat(dadosFormulario[`media${k}`]) || 0;
+      const incerteza = parseFloat(dadosFormulario[`incerteza${k}`]) || 0;
+      const tolerancia = dadosFormulario.descricaoEMH.toLowerCase().includes("applix") ? 10 : 5;
 
-    const resultadoMin = media - incerteza;
-    const resultadoMax = media + incerteza;
-    const resultadoMedicao = `${resultadoMin.toFixed(3)}, ${resultadoMax.toFixed(3)}`;
+      const resultadoMin = media - incerteza;
+      const resultadoMax = media + incerteza;
+      const resultadoMedicao = `${resultadoMin.toFixed(3)}, ${resultadoMax.toFixed(3)}`;
 
-    const esperadoMin = vvc - (vvc * (tolerancia / 100));
-    const esperadoMax = vvc + (vvc * (tolerancia / 100));
-    const resultadoEsperado = `${esperadoMin.toFixed(3)}, ${esperadoMax.toFixed(3)}`;
+      const esperadoMin = vvc - (vvc * (tolerancia / 100));
+      const esperadoMax = vvc + (vvc * (tolerancia / 100));
+      const resultadoEsperado = `${esperadoMin.toFixed(3)}, ${esperadoMax.toFixed(3)}`;
 
-    const conformidade = (resultadoMin >= esperadoMin && resultadoMax <= esperadoMax) ? 'CONFORME' : 'NÃO CONFORME';
-    const corConformidade = (conformidade === 'CONFORME') ? 'green' : 'red';
+      const conformidade = (resultadoMin >= esperadoMin && resultadoMax <= esperadoMax) ? 'CONFORME' : 'NÃO CONFORME';
+      const corConformidade = (conformidade === 'CONFORME') ? 'green' : 'red';
 
-    resultadosHTML += `
-      <tr>
-        <td>${vvc}</td>
-        <td>${media}</td>
-        <td>${incerteza}</td>
-        <td>${tolerancia}</td>
-        <td>${resultadoMedicao}</td>
-        <td>${resultadoEsperado}</td>
-        <td style="color: ${corConformidade};">${conformidade}</td>
-      </tr>
-    `;
+      // Cria o HTML da linha da tabela
+      resultadosHTML += `
+        <tr>
+          <td>${vvc}</td>
+          <td>${media}</td>
+          <td>${incerteza}</td>
+          <td>${tolerancia}</td>
+          <td>${resultadoMedicao}</td>
+          <td>${resultadoEsperado}</td>
+          <td style="color: ${corConformidade};">${conformidade}</td>
+        </tr>
+      `;
+    }
+
+    // Insere as linhas da tabela no HTML do formulário
+    html = html.replace('<tbody>', '<tbody>' + resultadosHTML);
+
+    // Substitui os placeholders pelos valores reais do formulário
+    for (const chave in dadosFormulario) {
+      const valor = dadosFormulario[chave] || ''; // Se o valor for undefined, use uma string vazia
+      html = html.replaceAll(`{${chave}}`, valor);
+    }
+
+    return html; 
+  } catch (error) {
+    console.error('Erro ao obter o HTML do formulário:', error);
+    // Trate o erro, exibindo uma mensagem para o usuário, por exemplo.
+    throw error; // Repassa o erro para que a função chamadora também possa tratá-lo
   }
-
-  html = html.replace('<tbody>', '<tbody>' + resultadosHTML);
-
-  for (const chave in dadosFormulario) {
-    html = html.replaceAll(`{${chave}}`, dadosFormulario[chave] || '');
-  }
-
-  return html;
 }
 
-// Função auxiliar para gerar o PDF usando jspdf.html()
+// --- Função auxiliar para gerar o PDF usando jspdf.html() ---
 async function gerarPDF(htmlContent, nomeArquivo) {
   return new Promise((resolve, reject) => {
     const doc = new jspdf.jsPDF({
@@ -1062,8 +1078,9 @@ async function gerarPDF(htmlContent, nomeArquivo) {
 
     doc.html(htmlContent, {
       callback: (doc) => {
-        const pdfOutput = doc.output('arraybuffer'); 
-        resolve(pdfOutput);
+        // Obtém o PDF como um array buffer
+        const pdfOutput = doc.output('arraybuffer');
+        resolve(pdfOutput); 
       },
       x: 5,
       y: 5,
