@@ -156,6 +156,49 @@ h6,
 }
 
 
+/* Estilos para o Loading */
+#loading-overlay {
+    display: none; /* Inicialmente oculto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    z-index: 10000; /* Certifique-se de que esteja acima de outros elementos */
+  }
+  
+  .loading-container { /* Centraliza o loader */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Estilos do Loader (fornecidos por você) */
+  .loader {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    position: relative;
+    background: #FFF;
+    box-sizing: border-box;
+    animation: flipX 1s linear infinite;
+  }
+  
+  @keyframes flipX {
+    0% {
+      transform: perspective(200px) rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+      transform: perspective(200px) rotateX(-180deg) rotateY(0deg);
+    }
+    100% {
+      transform: perspective(200px) rotateX(-180deg) rotateY(-180deg);
+    }
+}
+
+
 
 @media (max-width: 991.98px) {
     .sticky-top.navbar-dark {

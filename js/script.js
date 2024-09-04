@@ -28,6 +28,10 @@ function salvarDadosFormulario() {
   const inputs = document.querySelectorAll('input[type="text"], input[type="number"]');
   const textareas = document.querySelectorAll('textarea');
 
+  // Salva 'numeroSerieEMH' no LocalStorage
+  const numeroSerieEMH = document.getElementById('numeroSerieEMH').value;
+  localStorage.setItem('numeroSerieEMH-' + currentPDFIndex, numeroSerieEMH);
+
   // Objeto para armazenar os dados do formulário atual
   const dadosFormulario = {};
 
@@ -192,6 +196,9 @@ async function handleFileSelect(event) {
   dadosPDF = []; 
   const fileList = event.target.files;
 
+  // Mostra o overlay de loading
+  document.getElementById('loading-overlay').style.display = 'block';
+
   for (let i = 0; i < fileList.length; i++) {
     files.push(fileList[i]);
 
@@ -203,6 +210,9 @@ async function handleFileSelect(event) {
   currentPDFIndex = 0;
 
   generateThumbnailsInOrder(files);
+
+  // Oculta o overlay de loading após a geração do PDF
+  document.getElementById('loading-overlay').style.display = 'none';
 
   limparLocalStorage();
 }
@@ -431,7 +441,7 @@ function loadForm(index) {
         // Dados do Equipamento
         document.getElementById('fornecedor').value = dados.fornecedor;
         document.getElementById('descricaoEMH').value = dados.descricaoEMH;
-        document.getElementById('numeroSerieEMH').value = dados.numeroSerie;
+        document.getElementById('numeroSerieEMH').value = localStorage.getItem('numeroSerieEMH-' + index) || dados.numeroSerie || ''; 
 
         // Criar as linhas da tabela dinamicamente
         let linhasTabela = '';
@@ -726,9 +736,25 @@ document.getElementById('open-pdf-from-form').addEventListener('click', () => {
   openPDFModal(currentPDFIndex);
 });
 
+
 document.getElementById('baixar-analise').addEventListener('click', () => {
-  gerarPDFAnalise();
+  // Mostra o overlay de loading
+  document.getElementById('loading-overlay').style.display = 'block';
+
+  // Chama a função para gerar o PDF (ou ZIP)
+  gerarPDFAnalise() 
+    .then(() => {
+      // Oculta o overlay de loading após a geração do PDF
+      document.getElementById('loading-overlay').style.display = 'none';
+    })
+    .catch((error) => {
+      // Oculta o overlay de loading em caso de erro
+      document.getElementById('loading-overlay').style.display = 'none';
+      // Trate o erro, exibindo uma mensagem para o usuário, por exemplo.
+      console.error('Erro ao gerar o PDF:', error);
+    });
 });
+
 
 
 // --- Estilos de Impressão ---
@@ -933,81 +959,45 @@ const estilosDeImpressao = {
 };
 
 
-// --- Função para Gerar PDF da Análise ---
+// --- Função para Gerar Arquivo ZIP da Análise ---
 async function gerarPDFAnalise() {
   try {
-    if (dadosPDF.length === 0) {
-      alert('Nenhum arquivo para baixar.');
-      return;
-    }
+    const zip = new JSZip();
+    const pdfs = [];
 
-    if (dadosPDF.length === 1) {
-      // Se houver apenas um PDF, faça o download diretamente
-      const dadosFormulario = dadosPDF[0];
-      gerarPDFUnico(dadosFormulario);
-    } else {
-      // Se houver vários PDFs, crie um arquivo .zip
-      const zip = new JSZip();
-      const folder = zip.folder('Analises_Crítica_Certificados'); 
-
-      for (let i = 0; i < dadosPDF.length; i++) {
-        const dadosFormulario = dadosPDF[i];
-
-        // Obtém o HTML do formulário preenchido com os dados do PDF atual
-        const html = await obterHTMLFormulario(dadosFormulario);
-
-        // Crie o PDF e adicione à pasta dentro do .zip
-        const pdf = await gerarPDF(html, dadosFormulario.codigoCertificado);
-        folder.file(`Analise_Crítica_Certificado_${dadosFormulario.codigoCertificado}.pdf`, pdf, { binary: true });
-      }
-
-      // Gera o arquivo ZIP
-      zip.generateAsync({ type: 'blob' }).then(function (content) {
-        // Download do arquivo ZIP
-        saveAs(content, 'Analises_Crítica_Certificados.zip');
+    // Gera cada PDF individualmente e adiciona ao array 'pdfs'
+    for (let i = 0; i < dadosPDF.length; i++) {
+      const pdfContent = await gerarPDFIndividual(i);
+      pdfs.push({
+        nome: `Analise_Certificado_${dadosPDF[i].codigoCertificado}.pdf`,
+        conteudo: pdfContent
       });
     }
+
+    // Adiciona cada PDF ao arquivo ZIP
+    pdfs.forEach(pdf => {
+      zip.file(pdf.nome, pdf.conteudo);
+    });
+
+    // Gera o arquivo ZIP e faz o download
+    const zipContent = await zip.generateAsync({ type: "blob" });
+    saveAs(zipContent, "Analises_Certificados.zip");
+
   } catch (error) {
-    console.error('Erro ao gerar o PDF:', error);
-    // Trate o erro, exibindo uma mensagem para o usuário, por exemplo.
+    console.error('Erro ao gerar o arquivo ZIP:', error);
   }
 }
 
-// --- Função auxiliar para gerar um único PDF ---
-async function gerarPDFUnico(dadosFormulario) {
-  const html = await obterHTMLFormulario(dadosFormulario);
-  const doc = new jspdf.jsPDF({
-    orientation: 'portrait',
-    unit: 'mm',
-    format: 'a4',
-  });
-
-  const margin = 5;
-  doc.setProperties({
-    title: `Analise_Crítica_Certificado_${dadosFormulario.codigoCertificado}`,
-    author: 'Seu Nome ou da Empresa',
-    creator: 'Seu Nome ou da Empresa',
-  });
-
-  doc.html(html, {
-    callback: (doc) => {
-      doc.save(`Analise_Crítica_Certificado_${dadosFormulario.codigoCertificado}.pdf`);
-    },
-    x: margin,
-    y: margin,
-    html2canvas: {
-      scale: 0.5,
-      useCORS: true,
-      onclone: (doc) => {
-        Object.keys(estilosDeImpressao).forEach(seletor => {
-          const elementos = doc.querySelectorAll(seletor);
-          elementos.forEach(elemento => {
-            Object.assign(elemento.style, estilosDeImpressao[seletor]);
-          });
-        });
-      }
-    }
-  });
+// --- Função para Gerar um Único PDF (modificada para retornar o conteúdo do PDF) ---
+async function gerarPDFIndividual(index) {
+  try {
+    const html = await obterHTMLFormulario(dadosPDF[index]);
+    const pdfContent = await gerarPDF(html, `Analise_Certificado_${dadosPDF[index].codigoCertificado}.pdf`);
+    return pdfContent;
+  } catch (error) {
+    console.error(`Erro ao gerar o PDF ${index + 1}:`, error);
+    throw error; 
+  }
 }
 
 // --- Função auxiliar para obter o HTML do formulário preenchido ---
